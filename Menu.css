@@ -1,0 +1,91 @@
+body
+{
+	font-family: cursive;
+	background-image: url("Images/Logo_paris_2024_grand.png");
+	background-repeat: no-repeat;
+	background-position: center 200px;
+}
+#connexion 
+{
+	float: right;	/*Place la connexio en haut a droite*/
+	display: inline-block; /*Permet de le mettre sur la même ligne que le titre*/
+}
+#connexion input[type="text"] /*champ texte*/
+{
+	font-size: 12px;
+	border-radius: 4px;	/*coin arrondi*/
+	border: 1px #D8D9D9 solid;
+}
+#connexion a /*lien inscription*/
+{
+	font-size: 12px;
+	color: #3CBBFF;
+	text-decoration: none; /*pas de soulignement*/
+}
+#connexion a:hover /*au survol*/
+{
+	text-decoration: underline;
+}
+#connexion input[type="submit"] /*bouton connexio et deconnexion*/
+{
+	border-radius: 10px;
+	border: 1px solid #3CBBFF;
+	background-color: #BBE7FF;
+	margin: 3px 2px;
+	font-size: 12px;
+	float: right;
+}
+#connexion input[type="submit"]:hover /*au survol*/
+{
+	border-radius: 10px;
+	border: none;
+	border: 1px solid #3CBBFF;
+	background-color: #3CBBFF;
+}
+#menu li /*menu (liste)*/
+{
+	list-style: none;	/*sans le puce de la liste*/
+	border: 1px #6E6E6E solid;
+	border-radius: 4px;
+	width: 120px;
+	height: 25px;
+	background-color: #989898;
+	color: white;
+	margin-left: 1px;
+}
+#menu li a 
+{
+	line-height: 50%;
+	color: white;
+	text-decoration: none;
+	margin-left: 3px;
+}
+#menu li:hover
+{
+	background-color: #DF185A;
+	transform: translate(10px);
+}
+#banniere_haut
+{
+	height: 150px;
+	border-bottom: 1px solid black;
+}
+#titre a
+{
+	text-align: center;
+	color: black;
+	text-decoration: none;
+	font-size: 25px;
+	margin-top: 75px;
+	position: absolute;
+	width: 210px;
+	left: 50%;
+	transform:  translate(-50%,-50%); /* Permet de le sécaler de 50% de sa taille */
+}
+#menu
+{
+	width: 130px;
+	display: inline-block;
+	position: fixed;
+	margin-top: 10px;
+}
