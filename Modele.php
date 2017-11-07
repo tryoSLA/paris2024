@@ -1,5 +1,5 @@
 <?php
-	class Fonction
+	class Modele
 	{
 		private $pdo,$table;
 		public function __construct($serveur,$bdd,$user,$mdp)
