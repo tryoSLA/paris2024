@@ -24,7 +24,7 @@ CREATE TABLE Pays(
         id_pays          int (11) Auto_increment  NOT NULL ,
         Libelle          Varchar (25) NOT NULL ,
         Image_pays       Varchar (25) ,
-        Description_pays Varchar (1000) ,
+        Description_pays TEXT (1000) ,
         PRIMARY KEY (id_pays ) ,
         UNIQUE (Libelle )
 )ENGINE=InnoDB;
@@ -38,7 +38,7 @@ CREATE TABLE Sport(
         id_sport          int (11) Auto_increment  NOT NULL ,
         Libelle_sport     Varchar (25) NOT NULL ,
         Image_sport       Varchar (25) ,
-        Description_sport Varchar (1000) ,
+        Description_sport TEXT (1000) ,
         PRIMARY KEY (id_sport ) ,
         UNIQUE (Libelle_sport )
 )ENGINE=InnoDB;
@@ -52,7 +52,7 @@ CREATE TABLE Athlete(
         Taille      Float NOT NULL ,
         Poids       Float ,
         Photo       Varchar (25) ,
-        Biographie  Varchar (1000) ,
+        Biographie  TEXT (1000) ,
         id_personne Int NOT NULL ,
         id_pays     Int NOT NULL ,
         id_equipe   Int NOT NULL ,
@@ -68,7 +68,7 @@ CREATE TABLE Athlete(
 CREATE TABLE Evenement(
         id_event            int (11) Auto_increment  NOT NULL ,
         Titre_event         Varchar (25) ,
-        Description         Varchar (2500) NOT NULL ,
+        Description         TEXT (2500) NOT NULL ,
         Date_evenement      Date NOT NULL ,
         id_ville            Int NOT NULL ,
         id_event_Type_event Int NOT NULL ,
@@ -83,7 +83,7 @@ CREATE TABLE Evenement(
 
 CREATE TABLE Message(
         id_message  int (11) Auto_increment  NOT NULL ,
-        Message     Char (500) NOT NULL ,
+        Message     TEXT (500) NOT NULL ,
         id_personne Int NOT NULL ,
         PRIMARY KEY (id_message )
 )ENGINE=InnoDB;
@@ -95,7 +95,7 @@ CREATE TABLE Message(
 
 CREATE TABLE FluxRSS(
         id_flux  int (11) Auto_increment  NOT NULL ,
-        Lien     Varchar (500) NOT NULL ,
+        Lien     TEXT (500) NOT NULL ,
         Titre    Varchar (250) NOT NULL ,
         id_event Int NOT NULL ,
         PRIMARY KEY (id_flux ) ,
