@@ -55,8 +55,8 @@
 
 <?php
 include ("Class_utilisateur.php");
-include ("Fonction.php");
-$unC = new Fonction("localhost","paris_2024", "root","","personne");
+include ("Controleur.php");
+$uneBdd = new Bdd("localhost","paris_2024", "user_paris2024","123","personne");
 if(isset($_POST['inscription']))
 {
     $unUtilisateur = new Utilisateur();
