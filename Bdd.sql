@@ -23,11 +23,11 @@ CREATE TABLE Utilisateur(
 
 CREATE TABLE Pays(
         id_pays          int (11) Auto_increment  NOT NULL ,
-        Libelle          Varchar (25) NOT NULL ,
+        Libelle_pays          Varchar (25) NOT NULL ,
         Image_pays       Varchar (25) ,
         Description_pays TEXT (1000) ,
         PRIMARY KEY (id_pays ) ,
-        UNIQUE (Libelle )
+        UNIQUE (Libelle_pays )
 )ENGINE=InnoDB;
 
 
@@ -69,7 +69,7 @@ CREATE TABLE Athlete(
 CREATE TABLE Evenement(
         id_event            int (11) Auto_increment  NOT NULL ,
         Titre_event         Varchar (25) ,
-        Description         TEXT (2500) NOT NULL ,
+        Description_event         TEXT (2500) NOT NULL ,
         Date_evenement      Date NOT NULL ,
         id_ville            Int NOT NULL ,
         id_event_Type_event Int NOT NULL ,
@@ -168,7 +168,7 @@ CREATE TABLE Ville(
 
 CREATE TABLE Type_event(
         id_event int (11) Auto_increment  NOT NULL ,
-        Libelle  Varchar (25) NOT NULL ,
+        Libelle_event  Varchar (25) NOT NULL ,
         PRIMARY KEY (id_event )
 )ENGINE=InnoDB;
 
@@ -266,14 +266,24 @@ GRANT ALL PRIVILEGES ON DATABASE paris_2024.* TO 'user_paris2024'@'localhost';
 FLUSH PRIVILEGES;
 
 #------------------------------------------------------------
-# Insertion table athlete
+# Insertion table athlete trigger
 #------------------------------------------------------------
 
-INSERT INTO `athlete` (`Taille`, `Poids`, `Photo`, `Biographie`,`id_personne`,`id_pays`,`id_equipe`,`id_sport`) VALUES
-        (2.04,131,'Teddy_Riner.jpg','Teddy Riner, né le 7 avril 1989 aux Abymes en Guadeloupe, est un judoka français évoluant
-        dans la catégorie des plus de 100 kg (poids lourds), détenteur d\'un record de neuf titres de champion du monde,
-        champion olympique à Londres en 2012 et à Rio de Janeiro en 2016, médaillé de bronze à Pékin en 2008, quintuple champion d\'Europe.',
-        NULL,1,NULL,1),
+#DELIMITER |
+#create trigger avant_insertion_athlete before insert
+#  on Athlete
+#for each row
+#  begin
+#    INSERT INTO `personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,``,``,``,``);
+#  end |
+#DELIMITER ;
+#
+#
+#INSERT INTO `athlete` (`Taille`, `Poids`, `Photo`, `Biographie`,`id_personne`,`id_pays`,`id_equipe`,`id_sport`) VALUES
+#        (2.04,131,'Teddy_Riner.jpg','Teddy Riner, né le 7 avril 1989 aux Abymes en Guadeloupe, est un judoka français évoluant
+#        dans la catégorie des plus de 100 kg (poids lourds), détenteur d\'un record de neuf titres de champion du monde,
+#        champion olympique à Londres en 2012 et à Rio de Janeiro en 2016, médaillé de bronze à Pékin en 2008, quintuple champion d\'Europe.',
+#        NULL,1,NULL,1);
 
 #------------------------------------------------------------
 # Insertion table sport
@@ -310,7 +320,7 @@ INSERT INTO `sport` (`id_sport`, `Libelle_sport`, `Image_sport`, `Description_sp
 # Insertion table pays
 #------------------------------------------------------------
 
-INSERT INTO `pays` (`id_pays`, `Libelle`, `Image_pays`, `Description_pays`) VALUES
+INSERT INTO `pays` (`id_pays`, `Libelle_pays`, `Image_pays`, `Description_pays`) VALUES
         (NULL, 'France', 'France.png', 'La France, en forme longue depuis 1875 la République est un État transcontinental souverain,
         dont le territoire métropolitain est situé en Europe de l\'Ouest. Il a des frontières terrestres avec la Belgique, le Luxembourg,
         l\'Allemagne, la Suisse, l\'Italie, l\'Espagne et les principautés d\'Andorre et de Monaco et dispose d\'importantes façades
@@ -327,7 +337,7 @@ INSERT INTO `pays` (`id_pays`, `Libelle`, `Image_pays`, `Description_pays`) VALU
         situées dans le nord de l\'océan Atlantique. Membre fondateur de l\'OTAN, le Portugal est étroitement lié politiquement et militairement avec
         l\'ensemble des autres pays occidentaux. Il est également membre de l’OCDE, de l\'ONU, du conseil de l\'Europe, de l’espace Schengen et
         est l\'un des pays fondateurs de la zone euro. Le Portugal entretient en outre d\'importantes relations avec l\'Espagne, la France8, l\'Allemagne, le Royaume-Uni et l\'Italie,
-        qui sont ses cinq plus importants partenaires commerciaux.')
+        qui sont ses cinq plus importants partenaires commerciaux.'),
         (NULL,'Royaume-Uni','Royaume_uni.png','Le Royaume-Uni, en forme longue le Royaume-Uni de Grande-Bretagne et d\'Irlande du Nord est un pays d\'Europe
         de l\'Ouest, ou selon certaines définitions, d\'Europe du Nord, dont le territoire comprend l\'île de Grande-Bretagne et la partie nord de l\'île d\'Irlande,
         ainsi que de nombreuses petites îles autour de l\'archipel. Le territoire du Royaume-Uni partage une frontière terrestre avec la République d\'Irlande,
@@ -335,5 +345,24 @@ INSERT INTO `pays` (`id_pays`, `Libelle`, `Image_pays`, `Description_pays`) VALU
         Le Royaume-Uni couvre une superficie de 246 690 km2, faisant de lui le 80e plus grand pays du monde, et le 11e d\'Europe. Il est le 22e pays le plus peuplé du monde,
         avec une population estimée à 65,1 millions d\'habitants. Le Royaume-Uni est une monarchie constitutionnelle ; il possède un système parlementaire de gouvernance.
         Sa capitale est Londres, une ville mondiale et la première place financière au monde, mais également la plus grande aire métropolitaine de l\'Union européenne.');
+
+
+#------------------------------------------------------------
+# Vue pays detaille
+#------------------------------------------------------------
+
+CREATE VIEW pays_detaille AS
+  SELECT Sport.Libelle_sport, Personne.Nom,Personne.Prenom
+  FROM sport,personne, pays;
+
+#------------------------------------------------------------
+# Vue athlete detaille
+#------------------------------------------------------------
+
+CREATE VIEW sport_detaille AS
+  SELECT Pays.Libelle_pays,Personne.Nom,Personne.Prenom
+  FROM pays, personne, sport;
+
+
 
 
