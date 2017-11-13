@@ -260,7 +260,7 @@ ALTER TABLE Commenter ADD CONSTRAINT FK_Commenter_id_personne FOREIGN KEY (id_pe
 # Creation de l'utilisateur
 #------------------------------------------------------------
 
-CREATE USER 'user_paris2024'@'localhost' IDENTIFIED BY '123';
+CREATE USER IF NOT EXISTS 'user_paris2024'@'localhost' IDENTIFIED BY '123';
 use paris_2024;
 GRANT ALL PRIVILEGES ON DATABASE paris_2024.* TO 'user_paris2024'@'localhost';
 FLUSH PRIVILEGES;
