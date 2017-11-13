@@ -266,14 +266,24 @@ GRANT ALL PRIVILEGES ON DATABASE paris_2024.* TO 'user_paris2024'@'localhost';
 FLUSH PRIVILEGES;
 
 #------------------------------------------------------------
-# Insertion table athlete
+# Insertion table athlete trigger
 #------------------------------------------------------------
 
-INSERT INTO `athlete` (`Taille`, `Poids`, `Photo`, `Biographie`,`id_personne`,`id_pays`,`id_equipe`,`id_sport`) VALUES
-        (2.04,131,'Teddy_Riner.jpg','Teddy Riner, né le 7 avril 1989 aux Abymes en Guadeloupe, est un judoka français évoluant
-        dans la catégorie des plus de 100 kg (poids lourds), détenteur d\'un record de neuf titres de champion du monde,
-        champion olympique à Londres en 2012 et à Rio de Janeiro en 2016, médaillé de bronze à Pékin en 2008, quintuple champion d\'Europe.',
-        NULL,1,NULL,1),
+#DELIMITER |
+#create trigger avant_insertion_athlete before insert
+#  on Athlete
+#for each row
+#  begin
+#    INSERT INTO `personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,``,``,``,``);
+#  end |
+#DELIMITER ;
+#
+#
+#INSERT INTO `athlete` (`Taille`, `Poids`, `Photo`, `Biographie`,`id_personne`,`id_pays`,`id_equipe`,`id_sport`) VALUES
+#        (2.04,131,'Teddy_Riner.jpg','Teddy Riner, né le 7 avril 1989 aux Abymes en Guadeloupe, est un judoka français évoluant
+#        dans la catégorie des plus de 100 kg (poids lourds), détenteur d\'un record de neuf titres de champion du monde,
+#        champion olympique à Londres en 2012 et à Rio de Janeiro en 2016, médaillé de bronze à Pékin en 2008, quintuple champion d\'Europe.',
+#        NULL,1,NULL,1);
 
 #------------------------------------------------------------
 # Insertion table sport
