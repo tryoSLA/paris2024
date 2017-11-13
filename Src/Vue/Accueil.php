@@ -1,11 +1,11 @@
 <?php
- include ("Menu.php");
+ include("../Controleur/Menu.php");
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="bootstrap-4.0.0-beta-dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="base.css">
+	<link rel="stylesheet" type="text/css" href="../../Web/Css/Bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../Web/Css/My_css/base.css">
 	<title></title>
 </head>
 <body>
