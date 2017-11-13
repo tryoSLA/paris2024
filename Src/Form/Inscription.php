@@ -1,5 +1,5 @@
 <?php
- include ("Menu.php");
+ include("Menu.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,9 +8,9 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-	<link rel="stylesheet" type="text/css" href="bootstrap-4.0.0-beta-dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="base.css">
-	<link rel="stylesheet" type="text/css" href="Inscription.css">
+	<link rel="stylesheet" type="text/css" href="Css/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="Css/My_css/base.css">
+	<link rel="stylesheet" type="text/css" href="Css/My_css/Inscription.css">
 	<title>Inscription</title>
 </head>
 <body>
@@ -54,7 +54,7 @@
 
 
 <?php
-include ("Class_utilisateur.php");
+include("Class_utilisateur.php");
 include ("Controleur.php");
 $uneBdd = new Bdd("localhost","paris_2024", "user_paris2024","123","personne");
 if(isset($_POST['inscription']))
