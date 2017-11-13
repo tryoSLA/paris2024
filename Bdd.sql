@@ -270,7 +270,6 @@ FLUSH PRIVILEGES;
 #------------------------------------------------------------
 # Insertion table athlete trigger
 #------------------------------------------------------------
-
 #DELIMITER |
 #create trigger avant_insertion_athlete before insert
 #  on Athlete
