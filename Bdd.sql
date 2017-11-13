@@ -274,6 +274,7 @@ INSERT INTO `athlete` (`Taille`, `Poids`, `Photo`, `Biographie`,`id_personne`,`i
         dans la catégorie des plus de 100 kg (poids lourds), détenteur d\'un record de neuf titres de champion du monde,
         champion olympique à Londres en 2012 et à Rio de Janeiro en 2016, médaillé de bronze à Pékin en 2008, quintuple champion d\'Europe.',
         NULL,1,NULL,1),
+
 #------------------------------------------------------------
 # Insertion table sport
 #------------------------------------------------------------
