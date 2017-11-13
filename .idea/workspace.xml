@@ -1,56 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b3211d49-51fc-47d6-9182-3ea782d85db7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Src/Vue/Vue_header.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Web/Css/bootstrap/css/bootstrap-grid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Web/Css/bootstrap/css/bootstrap-grid.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Web/Css/bootstrap/css/bootstrap-grid.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Web/Css/bootstrap/css/bootstrap-grid.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Web/Css/bootstrap/css/bootstrap-reboot.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Web/Css/bootstrap/css/bootstrap-reboot.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Web/Css/bootstrap/css/bootstrap-reboot.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Web/Css/bootstrap/css/bootstrap-reboot.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Web/Css/bootstrap/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Web/Css/bootstrap/css/bootstrap.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Web/Css/bootstrap/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Web/Css/bootstrap/css/bootstrap.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Web/Css/bootstrap/js/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Web/Css/bootstrap/js/bootstrap.min.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Accueil.php" afterPath="$PROJECT_DIR$/Src/Vue/Accueil.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Class_utilisateur.php" afterPath="$PROJECT_DIR$/Src/Modele/Class_utilisateur.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Controleur_bdd.php" afterPath="$PROJECT_DIR$/Src/Modele/Controleur_bdd.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Evenement.php" afterPath="$PROJECT_DIR$/Src/Vue/Evenement.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Athletique.png" afterPath="$PROJECT_DIR$/Web/Images/Sports/Athletique.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/France.png" afterPath="$PROJECT_DIR$/Web/Images/Pays/France.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Golf.png" afterPath="$PROJECT_DIR$/Web/Images/Sports/Golf.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Italie.png" afterPath="$PROJECT_DIR$/Web/Images/Pays/Italie.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Journal.jpg" afterPath="$PROJECT_DIR$/Web/Images/Icons/Journal.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Judo.png" afterPath="$PROJECT_DIR$/Web/Images/Sports/Judo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Logo_femme.png" afterPath="$PROJECT_DIR$/Web/Images/Icons/Logo_femme.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Logo_femme_petit.png" afterPath="$PROJECT_DIR$/Web/Images/Icons/Logo_femme_petit.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Logo_homme.png" afterPath="$PROJECT_DIR$/Web/Images/Icons/Logo_homme.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Logo_homme_petit.png" afterPath="$PROJECT_DIR$/Web/Images/Icons/Logo_homme_petit.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Logo_paris_2024.png" afterPath="$PROJECT_DIR$/Web/Images/Profile_site/Logo_paris_2024.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Logo_paris_2024_grand.png" afterPath="$PROJECT_DIR$/Web/Images/Profile_site/Logo_paris_2024_grand.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Loic_Korval.jpg" afterPath="$PROJECT_DIR$/Web/Images/Athlete/Loic_Korval.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Medaille.jpg" afterPath="$PROJECT_DIR$/Web/Images/Icons/Medaille.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Natation.png" afterPath="$PROJECT_DIR$/Web/Images/Sports/Natation.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Portugal.png" afterPath="$PROJECT_DIR$/Web/Images/Pays/Portugal.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Royaume_uni.png" afterPath="$PROJECT_DIR$/Web/Images/Pays/Royaume_uni.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Teddy_Riner.jpg" afterPath="$PROJECT_DIR$/Web/Images/Athlete/Teddy_Riner.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/Triathlon.png" afterPath="$PROJECT_DIR$/Web/Images/Sports/Triathlon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/logo_atol_1.png" afterPath="$PROJECT_DIR$/Web/Images/Profile_site/logo_atol_1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Images/logo_atol_2.png" afterPath="$PROJECT_DIR$/Web/Images/Profile_site/logo_atol_2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Inscription.css" afterPath="$PROJECT_DIR$/Web/Css/My_css/Inscription.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Inscription.php" afterPath="$PROJECT_DIR$/Src/Form/Inscription.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Menu.css" afterPath="$PROJECT_DIR$/Web/Css/My_css/Menu.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Menu.php" afterPath="$PROJECT_DIR$/Src/Controleur/Menu.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Vue_pays.php" afterPath="$PROJECT_DIR$/Src/Vue/Vue_pays.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/base.css" afterPath="$PROJECT_DIR$/Web/Css/My_css/base.css" />
-    </list>
+    <list default="true" id="b3211d49-51fc-47d6-9182-3ea782d85db7" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,11 +11,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Vue_header.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Vue_header.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Src/Vue/Vue_header.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
+            <state relative-caret-position="735">
               <caret line="35" column="27" lean-forward="false" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Bdd.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Bdd.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="498">
+              <caret line="357" column="61" lean-forward="true" selection-start-line="357" selection-start-column="61" selection-end-line="357" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -73,7 +34,7 @@
       <file leaf-file-name="Accueil.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Src/Vue/Accueil.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
+            <state relative-caret-position="147">
               <caret line="7" column="59" lean-forward="false" selection-start-line="7" selection-start-column="59" selection-end-line="7" selection-end-column="59" />
               <folding />
             </state>
@@ -83,7 +44,7 @@
       <file leaf-file-name="Menu.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Src/Controleur/Menu.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
+            <state relative-caret-position="105">
               <caret line="5" column="59" lean-forward="false" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
               <folding />
             </state>
@@ -93,7 +54,7 @@
       <file leaf-file-name="Index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
+            <state relative-caret-position="21">
               <caret line="1" column="14" lean-forward="false" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
               <folding />
             </state>
@@ -122,6 +83,7 @@
         <option value="$PROJECT_DIR$/Src/Vue/Accueil.php" />
         <option value="$PROJECT_DIR$/Src/Controleur/Menu.php" />
         <option value="$PROJECT_DIR$/Src/Vue/Vue_header.html" />
+        <option value="$PROJECT_DIR$/Bdd.sql" />
       </list>
     </option>
   </component>
@@ -208,6 +170,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -242,17 +205,18 @@
       <updated>1510565151724</updated>
       <workItem from="1510565154507" duration="2818000" />
       <workItem from="1510568855169" duration="5507000" />
+      <workItem from="1510578016439" duration="2153000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8325000" />
+    <option name="totallyTimeSpent" value="10478000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="20" y="34" width="1366" height="768" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1295754" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12916666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -282,6 +246,38 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Src/Vue/Vue_header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Src/Vue/Accueil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="59" lean-forward="false" selection-start-line="7" selection-start-column="59" selection-end-line="7" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Src/Controleur/Menu.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="59" lean-forward="false" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="14" lean-forward="false" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Src/Vue/Vue_header.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -347,7 +343,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="8" lean-forward="true" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -355,13 +350,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Src/Vue/Accueil.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
+        <state relative-caret-position="147">
           <caret line="7" column="59" lean-forward="false" selection-start-line="7" selection-start-column="59" selection-end-line="7" selection-end-column="59" />
           <folding />
         </state>
@@ -369,7 +363,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Src/Controleur/Menu.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
+        <state relative-caret-position="105">
           <caret line="5" column="59" lean-forward="false" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
           <folding />
         </state>
@@ -377,7 +371,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
+        <state relative-caret-position="21">
           <caret line="1" column="14" lean-forward="false" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
           <folding />
         </state>
@@ -385,8 +379,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Src/Vue/Vue_header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
+        <state relative-caret-position="735">
           <caret line="35" column="27" lean-forward="false" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bdd.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="357" column="61" lean-forward="true" selection-start-line="357" selection-start-column="61" selection-end-line="357" selection-end-column="61" />
           <folding />
         </state>
       </provider>
