@@ -1,0 +1,23 @@
+#div_titre
+{
+    text-align: center;
+    padding: 30px;
+}
+
+#titre
+{
+    font-size: 25px;
+    color: black;
+}
+
+#pseudo
+{
+    padding:5px;
+}
+
+#passe
+{
+    padding: 5px;
+}
+
+
