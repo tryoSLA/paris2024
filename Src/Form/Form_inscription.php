@@ -5,6 +5,7 @@
             <h2>Inscription</h2>
         </div>
         <form>
+            <!-- entrees form -->
             <div class="row">
                 <!-- premiere colonne du form -->
                 <div class="col-sm-6">
@@ -71,6 +72,15 @@
                             <input type="password" class="form-control" id="conf_password" placeholder="Confirmez le mot de passe">
                         </div>
                     </div>
+                </div>
+            </div>
+            <!-- boutons form -->
+            <div class="row">
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-success">Valider</button>
+                </div>
+                <div class="col-sm-6">
+                    <button type="reset" class="btn btn-danger">Annuler</button>
                 </div>
             </div>
         </form>
