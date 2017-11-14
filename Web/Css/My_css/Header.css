@@ -25,7 +25,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-image: -webkit-linear-gradient(left, #29abe2, #fcee21, #39b54a, #ff0000);
-
+    border-color: black;
 }
 
 /* formulaire connection droite */
