@@ -24,10 +24,12 @@
                             <label for="age">Age : </label><input type="number" id="age" name=""><br>
                             <label id="genre" for="genre">Genre : </label>
                                 <div id="femme">
-                                    <img src="Images/Logo_femme_petit.png">  <input type="radio" class="genre" name="genre"> 
+                                    <img src="Images/Logo_femme_petit.png">
+                                    <input type="radio" class="genre" name="genre">
                                 </div>             
                                 <div id="homme">
-                                    <img src="Images/Logo_homme_petit.png">  <input type="radio" class="genre" name="genre"><br>
+                                    <img src="Images/Logo_homme_petit.png">
+                                    <input type="radio" class="genre" name="genre"><br>
                                 </div>
                         </div>
                         <div class="col-sm-6">
