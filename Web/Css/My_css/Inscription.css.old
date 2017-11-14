@@ -1,0 +1,50 @@
+body
+{
+	font-family: cursive;
+}
+#titre
+{
+	text-align: center;
+}
+
+#formulaire input[type="text"], 
+#formulaire input[type="password"],
+#formulaire input[type="number"],
+#formulaire input[type="email"]
+{
+	font-size: 12px;
+	border-radius: 4px;	/*coin arrondi*/
+	border: 1px #D8D9D9 solid;
+}
+#formulaire input[type="submit"]
+{
+	border: 1px solid #0081C8;
+	color: #0081C8;
+	background-color: white;
+	border-radius: 4px;
+	float: right;
+}
+#formulaire input[type="submit"]:hover
+{
+	border: 1px solid #0081C8;
+	color: white;
+	background-color: #0081C8;
+	border-radius: 4px;
+}
+label
+{
+	display: inline-block;
+	width: 120px;
+}
+#homme
+{
+	display: inline-block;
+}
+#femme
+{
+	display: inline-block;
+}
+#genre
+{
+	
+}

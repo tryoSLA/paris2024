@@ -1,0 +1,53 @@
+/* header complet */
+#header
+{
+    background-image: url("../../../Web/Images/Profile_site/Back_head.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position-y: 28%;
+    opacity: 0.9;
+}
+
+/* logo gauche */
+#logo
+{
+    position: relative;
+    width: auto;
+    height: 150px;
+}
+
+/* titre centre */
+#titre
+{
+    font-size: 40px;
+    font-weight: bold;
+    font-family: cursive;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: -webkit-linear-gradient(left, #29abe2, #fcee21, #39b54a, #ff0000);
+    border-color: black;
+}
+
+/* formulaire connection droite */
+#pseudo
+{
+    margin-right: 5px;
+    padding: 5px;
+}
+
+#passe
+{
+    padding: 5px;
+}
+
+#formulaire
+{
+    opacity: 0.7;
+}
+
+/* general */
+a:hover
+{
+    text-decoration: none;
+}
+
