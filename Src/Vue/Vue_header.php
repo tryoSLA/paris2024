@@ -33,14 +33,15 @@
                     <div class="row">
                         <!-- boutons -->
                         <div class="col">
-                            <button type="submit" class="btn btn-success" name="connexion">Connexion</button>
+                            <button type="submit" class="btn-sm btn-success" name="connexion">Connexion</button>
                         </div>
                         <div class="col d-flex align-items-center">
-                            <a class="btn btn-light" href="#">Inscription</a>
+                            <a class="btn-sm btn-light" href="#">Inscription</a>
                         </div>
                     </div>
                 </form>
             </div>
+
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">Home</a>
@@ -57,7 +58,6 @@
             </ul>
         </div>
     </div>
-
 </header>
 <div class="tab-content">
     <div class="tab-pane active" id="home" role="tabpanel">...</div>
