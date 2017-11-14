@@ -1,9 +1,25 @@
+/* header complet */
+#header
+{
+    /*background: blue;*/
+}
+
+/* logo gauche */
+#logo
+{
+    position: relative;
+    width: auto;
+    height: 150px;
+}
+
+/* titre centre */
 #titre
 {
     font-size: 25px;
     color: black;
 }
 
+/* formulaire connection droite */
 #pseudo
 {
     margin-right: 5px;
@@ -13,6 +29,11 @@
 #passe
 {
     padding: 5px;
+}
+
+#formulaire
+{
+    opacity: 0.7;
 }
 
 
