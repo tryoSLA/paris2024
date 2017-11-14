@@ -56,7 +56,7 @@ CREATE TABLE Athlete(
         Biographie  TEXT (1000) ,
         id_personne Int NOT NULL ,
         id_pays     Int NOT NULL ,
-        id_equipe   Int NOT NULL ,
+        id_equipe   Int,
         id_sport    Int NOT NULL ,
         PRIMARY KEY (id_personne )
 )ENGINE=InnoDB;
@@ -96,7 +96,7 @@ CREATE TABLE Message(
 
 CREATE TABLE FluxRSS(
         id_flux  int (11) Auto_increment  NOT NULL ,
-        Lien     TEXT (500) NOT NULL ,
+        Lien     varchar (1500) NOT NULL ,
         Titre    Varchar (250) NOT NULL ,
         id_event Int NOT NULL ,
         PRIMARY KEY (id_flux ) ,
@@ -268,23 +268,23 @@ GRANT ALL PRIVILEGES ON paris_2024.* TO 'user_paris2024'@'localhost';
 FLUSH PRIVILEGES;
 
 #------------------------------------------------------------
-# Insertion table athlete trigger
+# Procedure insertion table athlete
 #------------------------------------------------------------
-#DELIMITER |
-#create trigger avant_insertion_athlete before insert
-#  on Athlete
-#for each row
-#  begin
-#    INSERT INTO `personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,``,``,``,``);
-#  end |
-#DELIMITER ;
-#
-#
-#INSERT INTO `athlete` (`Taille`, `Poids`, `Photo`, `Biographie`,`id_personne`,`id_pays`,`id_equipe`,`id_sport`) VALUES
-#        (2.04,131,'Teddy_Riner.jpg','Teddy Riner, né le 7 avril 1989 aux Abymes en Guadeloupe, est un judoka français évoluant
-#        dans la catégorie des plus de 100 kg (poids lourds), détenteur d\'un record de neuf titres de champion du monde,
-#        champion olympique à Londres en 2012 et à Rio de Janeiro en 2016, médaillé de bronze à Pékin en 2008, quintuple champion d\'Europe.',
-#        NULL,1,NULL,1);
+
+DELIMITER |
+CREATE PROCEDURE insert_athlete (IN nom varchar(25), prenom VARCHAR(25),
+  age int, genre varchar (25), taille float, poids float, photo varchar(25),
+  biographie text (1000),id_pays int, id_equipe int, id_sport int)
+BEGIN
+  DECLARE
+  idp int(5);
+  INSERT INTO `personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
+  SELECT id_personne INTO @idp FROM personne WHERE nom =@nom and prenom = @prenom;
+  INSERT INTO Athlete (`Taille`, `Poids`, `Photo`, `Biographie`,`id_personne`,`id_pays`,`id_equipe`,`id_sport`)
+  VALUES (taille,poids,photo,biographie,@idp,id_pays,id_equipe,id_sport);
+END |
+DELIMITER ;
+
 
 #------------------------------------------------------------
 # Insertion table sport
@@ -313,7 +313,12 @@ INSERT INTO `sport` (`id_sport`, `Libelle_sport`, `Image_sport`, `Description_sp
         (NULL,'Golf','Golf.png','Le golf est un sport de précision se jouant en plein air, qui consiste à envoyer une balle dans un trou à l\'aide de clubs.
         Le but du jeu consiste à effectuer, sur un parcours défini, le moins de coups possible. Précision, endurance, technicité, concentration sont des qualités
         primordiales pour cette activité. Codifié en Écosse en 1754 par le Royal & Ancient Golf Club de Saint Andrews, ce sport a des origines diverses
-        dont le jeu de mail. Il fut ainsi importé des Pays-Bas où il était pratiqué sous le nom de « colf » dès le xiiie siècle.');
+        dont le jeu de mail. Il fut ainsi importé des Pays-Bas où il était pratiqué sous le nom de « colf » dès le xiiie siècle.'),
+        (NULL,'Rugby à XV','Rugby.png','Le rugby à XV, aussi appelé rugby union dans les pays anglophones, qui se joue par équipes de quinze joueurs sur le terrain avec des remplaçants,
+        est la variante la plus pratiquée du rugby, famille de sports collectifs, dont les spécificités sont les mêlées et les touches, mettant aux prises deux équipes qui se disputent
+        un ballon ovale, joué à la main et au pied. L\'objectif du jeu est de marquer plus de points que l\'adversaire, soit par des essais, soit par des buts de pénalité ou des transformations
+        d\'essais, soit encore des drops (coups de pied tombés dans le cours du jeu). De nos jours, l\'essai vaut cinq points et sept s\'il est transformé,
+        le drop et le but (de pénalité) valent trois points chacun.');
 
 
 
@@ -346,6 +351,18 @@ INSERT INTO `pays` (`id_pays`, `Libelle_pays`, `Image_pays`, `Description_pays`)
         Le Royaume-Uni couvre une superficie de 246 690 km2, faisant de lui le 80e plus grand pays du monde, et le 11e d\'Europe. Il est le 22e pays le plus peuplé du monde,
         avec une population estimée à 65,1 millions d\'habitants. Le Royaume-Uni est une monarchie constitutionnelle ; il possède un système parlementaire de gouvernance.
         Sa capitale est Londres, une ville mondiale et la première place financière au monde, mais également la plus grande aire métropolitaine de l\'Union européenne.');
+
+#------------------------------------------------------------
+# Insert athlete
+#------------------------------------------------------------
+
+call insert_athlete ('Riner','Teddy',28,'Homme',2.04,131,'Teddy_Riner.jpg','Teddy Riner, né le 7 avril 1989 aux Abymes en Guadeloupe, est un judoka français évoluant
+        dans la catégorie des plus de 100 kg (poids lourds), détenteur d\'un record de neuf titres de champion du monde,
+        champion olympique à Londres en 2012 et à Rio de Janeiro en 2016, médaillé de bronze à Pékin en 2008, quintuple champion d\'Europe.',1,NULL,1),
+('Riner','Teddy',28,'Homme',2.04,131,'Teddy_Riner.jpg','Teddy Riner, né le 7 avril 1989 aux Abymes en Guadeloupe, est un judoka français évoluant
+        dans la catégorie des plus de 100 kg (poids lourds), détenteur d\'un record de neuf titres de champion du monde,
+        champion olympique à Londres en 2012 et à Rio de Janeiro en 2016, médaillé de bronze à Pékin en 2008, quintuple champion d\'Europe.',1,NULL,1),;
+
 
 
 #------------------------------------------------------------
