@@ -1,8 +1,18 @@
-
 #titre
 {
     font-size: 25px;
     color: black;
+}
+
+#pseudo
+{
+    margin-right: 5px;
+    padding: 5px;
+}
+
+#passe
+{
+    padding: 5px;
 }
 
 
