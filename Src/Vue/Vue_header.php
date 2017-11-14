@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row" id="header">
             <div class="col-sm-4">
-                <img src="Web/Images/Profile_site/Logo_paris_2024_simple.png" id="logo">
+                <a href="index.php"><img src="Web/Images/Profile_site/Logo_paris_2024_simple.png" id="logo"></a>
             </div>
 
             <div class="col-sm-4 d-flex align-items-center justify-content-center">
@@ -36,7 +36,7 @@
                             <button type="submit" class="btn btn-success" name="connexion">Connexion</button>
                         </div>
                         <div class="col d-flex align-items-center">
-                            <a class="btn btn-light" href="#">Inscription</a>
+                            <a class="btn btn-light" href='index.php?page=1'>Inscription</a>
                         </div>
                     </div>
                 </form>

@@ -26,7 +26,25 @@ $Controleur = new Controleur()
 <body>
 <?php
 $Controleur->header();
+
+if (isset($_GET['page']))
+{
+    $page = $_GET['page'];
+}
+else
+{
+    $page = 0;
+}
+switch ($page)
+{
+    case 1:
+        $Controleur->inscription();
+        break;
+}
 ?>
 
 </body>
 </html>
+<?php
+
+?>
