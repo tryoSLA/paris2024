@@ -12,31 +12,36 @@
     <!-- css font awesome -->
     <link rel="stylesheet" href="../../Web/Css/Font_awesome/css/font-awesome.css">
 
+    <!-- css perso -->
+    <link rel="stylesheet" href="../../Web/Css/My_css/Header.css">
 </head>
 <body>
     <header>
+        <!-- div du header -->
         <div class="container-fluid">
             <div class="row" id="header">
-                <div class="col-sm-4" id="logo"></div>
-
-                <div class="col-sm-4" id="titre">
-                    <a href="#">Tout Paris 2024 !</a>
+                <div class="col-sm-4">
+                    <img src="../../Web/Images/Profile_site/Logo_paris_2024_simple.png" id="logo">
                 </div>
 
-                <div class="col-sm-4" id="connexion">
+                <div class="col-sm-4 d-flex align-items-center justify-content-center">
+                    <a href="#" id="titre">Tout Paris 2024 !</a>
+                </div>
+
+                <div class="col-sm-4 d-flex justify-content-end" id="formulaire">
                     <form>
                         <div class="row">
                             <!-- pseudo -->
-                            <div class="input-group">
+                            <div class="input-group" id="pseudo">
                                 <span class="input-group-addon">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <i class="fa fa-user fa-lg" aria-hidden="true"></i>
                                 </span>
                                 <input type="text" name="pseudo" placeholder="Pseudo">
                             </div>
                         </div>
                         <div class="row">
                             <!-- mot de passe -->
-                            <div class="input-group">
+                            <div class="input-group" id="passe">
                                 <span class="input-group-addon">
                                     <i class="fa fa-key" aria-hidden="true"></i>
                                 </span>
@@ -46,10 +51,10 @@
                         <div class="row">
                             <!-- boutons -->
                             <div class="col">
-                                <button type="submit" class="btn btn-outline-success" name="connexion">Connexion</button>
+                                <button type="submit" class="btn btn-success" name="connexion">Connexion</button>
                             </div>
-                            <div class="col">
-                                <a href="#">Inscription</a>
+                            <div class="col d-flex align-items-center">
+                                <a class="btn btn-light" href="#">Inscription</a>
                             </div>
                         </div>
                     </form>
