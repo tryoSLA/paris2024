@@ -1,4 +1,6 @@
 <?php
+
+
 class Controleur
 {
     public function header()
@@ -7,6 +9,11 @@ class Controleur
     }
 
     public function inscription()
+    {
+        include ('Src/Form/Form_inscription.php');
+    }
+
+    public function accueil()
     {
         include ('Src/Form/Form_inscription.php');
     }

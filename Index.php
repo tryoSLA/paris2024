@@ -24,21 +24,28 @@ $Controleur = new Controleur()
     <link rel="stylesheet" href="Web/Css/My_css/Header.css">
 </head>
 <body>
-
 <?php
 $Controleur->header();
+?>
 
+<div class="tab-content">
+    <div class="tab-pane" id="home" role="tabpanel">...</div>
+    <div class="tab-pane" id="profile" role="tabpanel">...</div>
+    <div class="tab-pane" id="messages" role="tabpanel">...</div>
+    <div class="tab-pane" id="settings" role="tabpanel">...</div>
+</div>
+<?php
 if (isset($_GET['page']))
 {
     $page = $_GET['page'];
 }
 else
 {
-    $page = 0;
+    $page = "NAN";
 }
 switch ($page)
 {
-    case 1:
+    case "inscription":
         $Controleur->inscription();
         break;
 }
@@ -46,6 +53,3 @@ switch ($page)
 
 </body>
 </html>
-<?php
-
-?>

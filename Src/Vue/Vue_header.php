@@ -7,7 +7,7 @@
             </div>
 
             <div class="col-sm-4 d-flex align-items-center justify-content-center">
-                <a href="#" id="titre">Tout Paris 2024 !</a>
+                <a href="index.php" id="titre">Tout Paris 2024 !</a>
             </div>
 
             <div class="col-sm-4 d-flex justify-content-end" id="formulaire">
@@ -36,32 +36,29 @@
                             <button type="submit" class="btn-sm btn-success" name="connexion">Connexion</button>
                         </div>
                         <div class="col d-flex align-items-center">
-                            <a class="btn-sm btn-light" href="#">Inscription</a>
+                            <a class="btn-sm btn-light" href="index.php?page=inscription">Inscription</a>
                         </div>
                     </div>
                 </form>
             </div>
 
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <ul class="nav nav-tabs text-white" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">Home</a>
+                    <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-controls="home">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#messages" role="tab" aria-controls="messages">Messages</a>
+                    <a class="nav-link" data-toggle="tab" href="#messages" role="tab"
+                       aria-controls="messages">Messages</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#settings" role="tab" aria-controls="settings">Settings</a>
+                    <a class="nav-link" data-toggle="tab" href="#settings" role="tab"
+                       aria-controls="settings">Settings</a>
                 </li>
             </ul>
         </div>
     </div>
 </header>
-<div class="tab-content">
-    <div class="tab-pane active" id="home" role="tabpanel">...</div>
-    <div class="tab-pane" id="profile" role="tabpanel">...</div>
-    <div class="tab-pane" id="messages" role="tabpanel">...</div>
-    <div class="tab-pane" id="settings" role="tabpanel">...</div>
-</div>
+
