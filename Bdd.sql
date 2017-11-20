@@ -213,7 +213,7 @@ CREATE TABLE Recevoir(
 # Table: inscrire
 #------------------------------------------------------------
 
-CREATE TABLE inscrire(
+CREATE TABLE Inscrire(
         dateInscription Date ,
         id_personne     Int NOT NULL ,
         id_event        Int NOT NULL ,
@@ -276,7 +276,7 @@ CREATE PROCEDURE insert_athlete (IN nom varchar(25), prenom VARCHAR(25),
   age int, genre varchar (25), taille float, poids float, photo varchar(25),
   biographie text (1000),id_pays int, id_equipe int, id_sport int)
 BEGIN
-  INSERT INTO `personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
+  INSERT INTO `Personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
   #SELECT id_personne INTO @idp FROM personne WHERE nom =@nom and prenom = @prenom;
   INSERT INTO Athlete (`Taille`, `Poids`, `Photo`, `Biographie`,`id_personne`,`id_pays`,`id_equipe`,`id_sport`)
   VALUES (taille,poids,photo,biographie,last_insert_id(),id_pays,id_equipe,id_sport);
@@ -418,16 +418,19 @@ call insert_athlete ('Leonardo','Bonucci',30,'Homme',1.90,NULL,'Leonardo_Bonucci
 #------------------------------------------------------------
 
 CREATE VIEW pays_detaille AS
-  SELECT Sport.Libelle_sport, Personne.Nom,Personne.Prenom
-  FROM Sport,Personne, Pays;
+  SELECT Pays.Libelle_pays, Pays.Description_pays, Pays.Image_pays, Sport.Libelle_sport, Personne.Nom, Personne.Prenom
+  FROM sport,personne, pays, athlete
+  WHERE Athlete.id_pays = Pays.id_pays and Athlete.id_sport = Sport.id_sport and Athlete.id_personne = Personne.id_personne;
 
 #------------------------------------------------------------
 # Vue sport detaille
 #------------------------------------------------------------
 
 CREATE VIEW sport_detaille AS
-  SELECT Pays.Libelle_pays,Personne.Nom,Personne.Prenom
-  FROM Pays, Personne, Sport;
+  SELECT Sport.Libelle_sport, Sport.Description_sport, Sport.Image_sport, Pays.Libelle_pays, Personne.Nom, Personne.Prenom
+  FROM pays, personne, sport, Athlete
+  WHERE Athlete.id_personne = Personne.id_personne AND Athlete.id_pays = Pays.id_pays AND Athlete.id_sport = Sport.id_sport;
+
 
 
 #------------------------------------------------------------
