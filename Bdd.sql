@@ -288,7 +288,7 @@ DELIMITER ;
 # Insertion table sport
 #------------------------------------------------------------
 
-INSERT INTO `sport` (`id_sport`, `Libelle_sport`, `Image_sport`, `Description_sport`) VALUES
+INSERT INTO `Sport` (`id_sport`, `Libelle_sport`, `Image_sport`, `Description_sport`) VALUES
         (NULL,'Judo','Judo.png','Le judo a été créé en tant que pédagogie physique, mentale et morale au japon par Jigorō Kanō en 1882.
         Il est généralement catégorisé comme un art martial moderne, qui a par la suite évolué en sport de combat et en sport olympique.
         Sa caractéristique la plus proéminente est son élément compétitif dont l\'objectif est soit de projeter, soit d\'amener l\'adversaire au sol,
@@ -325,7 +325,7 @@ INSERT INTO `sport` (`id_sport`, `Libelle_sport`, `Image_sport`, `Description_sp
 # Insertion table equipe
 #------------------------------------------------------------
 
-INSERT INTO `equipe` (id_equipe, Libelle_equipe, Nb_joueurs_equipe, id_sport) VALUES
+INSERT INTO `Equipe` (id_equipe, Libelle_equipe, Nb_joueurs_equipe, id_sport) VALUES
   (NULL, 'France 7',7,5), (NULL, 'Squadra Azzurra',7,5),(NULL,'Équipe du Portugal',11,6),
   (NULL,'Équipe d\'Italie',11,6),(NULL, 'Os Lobos',7,5);
 
@@ -334,7 +334,7 @@ INSERT INTO `equipe` (id_equipe, Libelle_equipe, Nb_joueurs_equipe, id_sport) VA
 # Insertion table pays
 #------------------------------------------------------------
 
-INSERT INTO `pays` (`id_pays`, `Libelle_pays`, `Image_pays`, `Description_pays`) VALUES
+INSERT INTO `Pays` (`id_pays`, `Libelle_pays`, `Image_pays`, `Description_pays`) VALUES
         (NULL, 'France', 'France.png', 'La France, en forme longue depuis 1875 la République est un État transcontinental souverain,
         dont le territoire métropolitain est situé en Europe de l\'Ouest. Il a des frontières terrestres avec la Belgique, le Luxembourg,
         l\'Allemagne, la Suisse, l\'Italie, l\'Espagne et les principautés d\'Andorre et de Monaco et dispose d\'importantes façades
@@ -419,7 +419,7 @@ call insert_athlete ('Leonardo','Bonucci',30,'Homme',1.90,NULL,'Leonardo_Bonucci
 
 CREATE VIEW pays_detaille AS
   SELECT Sport.Libelle_sport, Personne.Nom,Personne.Prenom
-  FROM sport,personne, pays;
+  FROM Sport,Personne, Pays;
 
 #------------------------------------------------------------
 # Vue sport detaille
@@ -427,7 +427,7 @@ CREATE VIEW pays_detaille AS
 
 CREATE VIEW sport_detaille AS
   SELECT Pays.Libelle_pays,Personne.Nom,Personne.Prenom
-  FROM pays, personne, sport;
+  FROM Pays, Personne, Sport;
 
 
 #------------------------------------------------------------
