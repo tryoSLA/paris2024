@@ -3,7 +3,6 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="../../Web/Css/Bootstrap/css/bootstrap.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" type="text/css" href="../../Web/Css/My_css/Menu.css.old">
 </head>
 <body>
 	<div id="banniere_haut">
