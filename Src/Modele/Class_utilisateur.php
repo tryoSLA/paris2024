@@ -7,11 +7,11 @@
 			$this->nom = "";
 			$this->prenom = "";
 			$this->age = 0;
-			$this->$genre = "";
-			$this->$email = "";
-			$this->$pseudo = "";
-			$this->$mdp = "";
-			$this->$confmdp = "";
+			$this->genre = "";
+			$this->email = "";
+			$this->pseudo = "";
+			$this->mdp = "";
+			$this->confmdp = "";
 		}
 
 		public function renseigner ($tab)
@@ -19,11 +19,11 @@
 			$this->nom = $tab["nom"];
 			$this->prenom = $tab["prenom"];
 			$this->age = $tab["age"];
-			$this->$genre = $tab["genre"];
-			$this->$email = $tab["email"];
-			$this->$pseudo = $tab["pseudo"];
-			$this->$mdp = $tab["mdp"];
-			$this->$confmdp = $tab["confmdp"];
+			$this->genre = $tab["genre"];
+			$this->email = $tab["email"];
+			$this->pseudo = $tab["pseudo"];
+			$this->mdp = $tab["mdp"];
+			$this->confmdp = $tab["confmdp"];
 		}
 
 		public function serialiser ()
@@ -32,11 +32,11 @@
 			$tab["nom"] = $this->nom;
 			$tab["prenom"] = $this->prenom;
 			$tab["age"] = $this->age;
-			$tab["genre"] = $this->$genre;
-			$tab["email"] = $this->$email;
-			$tab["pseudo"] = $this->$pseudo;
-			$tab["mdp"] = $this->$mdp;
-			$tab["confmdp"] = $this->$confmdp;
+			$tab["genre"] = $this->genre;
+			$tab["email"] = $this->email;
+			$tab["pseudo"] = $this->pseudo;
+			$tab["mdp"] = $this->mdp;
+			$tab["confmdp"] = $this->confmdp;
 			return $tab;
 
 		}
