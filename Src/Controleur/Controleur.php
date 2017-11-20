@@ -42,5 +42,11 @@ class Controleur
     {
         include ('Src/Vue/Vue_contact.php');
     }
+
+    public function rssAfficher($url)
+    {
+        $rss = new Rss();
+        $rss->rssArticle($url);
+    }
 }
 ?>
