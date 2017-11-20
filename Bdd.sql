@@ -56,9 +56,9 @@ CREATE TABLE Athlete(
         Biographie  TEXT (1000) ,
         id_personne Int NOT NULL ,
         id_pays     Int NOT NULL ,
-        id_equipe   Int NOT NULL ,
+        id_equipe   Int,
         id_sport    Int NOT NULL ,
-        PRIMARY KEY (id_personne )
+        PRIMARY KEY (id_personne)
 )ENGINE=InnoDB;
 
 
@@ -96,7 +96,7 @@ CREATE TABLE Message(
 
 CREATE TABLE FluxRSS(
         id_flux  int (11) Auto_increment  NOT NULL ,
-        Lien     TEXT (500) NOT NULL ,
+        Lien     varchar (1500) NOT NULL ,
         Titre    Varchar (250) NOT NULL ,
         id_event Int NOT NULL ,
         PRIMARY KEY (id_flux ) ,
@@ -268,23 +268,21 @@ GRANT ALL PRIVILEGES ON paris_2024.* TO 'user_paris2024'@'localhost';
 FLUSH PRIVILEGES;
 
 #------------------------------------------------------------
-# Insertion table athlete trigger
+# Procedure insertion table athlete
 #------------------------------------------------------------
-#DELIMITER |
-#create trigger avant_insertion_athlete before insert
-#  on Athlete
-#for each row
-#  begin
-#    INSERT INTO `personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,``,``,``,``);
-#  end |
-#DELIMITER ;
-#
-#
-#INSERT INTO `athlete` (`Taille`, `Poids`, `Photo`, `Biographie`,`id_personne`,`id_pays`,`id_equipe`,`id_sport`) VALUES
-#        (2.04,131,'Teddy_Riner.jpg','Teddy Riner, né le 7 avril 1989 aux Abymes en Guadeloupe, est un judoka français évoluant
-#        dans la catégorie des plus de 100 kg (poids lourds), détenteur d\'un record de neuf titres de champion du monde,
-#        champion olympique à Londres en 2012 et à Rio de Janeiro en 2016, médaillé de bronze à Pékin en 2008, quintuple champion d\'Europe.',
-#        NULL,1,NULL,1);
+
+DELIMITER |
+CREATE PROCEDURE insert_athlete (IN nom varchar(25), prenom VARCHAR(25),
+  age int, genre varchar (25), taille float, poids float, photo varchar(25),
+  biographie text (1000),id_pays int, id_equipe int, id_sport int)
+BEGIN
+  INSERT INTO `personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
+  #SELECT id_personne INTO @idp FROM personne WHERE nom =@nom and prenom = @prenom;
+  INSERT INTO Athlete (`Taille`, `Poids`, `Photo`, `Biographie`,`id_personne`,`id_pays`,`id_equipe`,`id_sport`)
+  VALUES (taille,poids,photo,biographie,last_insert_id(),id_pays,id_equipe,id_sport);
+END |
+DELIMITER ;
+
 
 #------------------------------------------------------------
 # Insertion table sport
@@ -313,8 +311,23 @@ INSERT INTO `sport` (`id_sport`, `Libelle_sport`, `Image_sport`, `Description_sp
         (NULL,'Golf','Golf.png','Le golf est un sport de précision se jouant en plein air, qui consiste à envoyer une balle dans un trou à l\'aide de clubs.
         Le but du jeu consiste à effectuer, sur un parcours défini, le moins de coups possible. Précision, endurance, technicité, concentration sont des qualités
         primordiales pour cette activité. Codifié en Écosse en 1754 par le Royal & Ancient Golf Club de Saint Andrews, ce sport a des origines diverses
-        dont le jeu de mail. Il fut ainsi importé des Pays-Bas où il était pratiqué sous le nom de « colf » dès le xiiie siècle.');
+        dont le jeu de mail. Il fut ainsi importé des Pays-Bas où il était pratiqué sous le nom de « colf » dès le xiiie siècle.'),
+        (NULL,'Rugby à XV','Rugby.png','Le rugby à XV, aussi appelé rugby union dans les pays anglophones, qui se joue par équipes de quinze joueurs sur le terrain avec des remplaçants,
+        est la variante la plus pratiquée du rugby, famille de sports collectifs, dont les spécificités sont les mêlées et les touches, mettant aux prises deux équipes qui se disputent
+        un ballon ovale, joué à la main et au pied. L\'objectif du jeu est de marquer plus de points que l\'adversaire, soit par des essais, soit par des buts de pénalité ou des transformations
+        d\'essais, soit encore des drops (coups de pied tombés dans le cours du jeu). De nos jours, l\'essai vaut cinq points et sept s\'il est transformé,
+        le drop et le but (de pénalité) valent trois points chacun.'),
+        (NULL,'Football','Football.png','Le football, ou soccer, est un sport collectif qui se joue principalement au pied avec un ballon sphérique.
+        Il oppose deux équipes de onze joueurs dans un stade, que ce soit sur un terrain gazonné ou sur un plancher.
+        L\'objectif de chaque camp est de mettre le ballon dans le but adverse, sans utiliser les bras, et de le faire plus souvent que l\'autre équipe.');
 
+#------------------------------------------------------------
+# Insertion table equipe
+#------------------------------------------------------------
+
+INSERT INTO `equipe` (id_equipe, Libelle_equipe, Nb_joueurs_equipe, id_sport) VALUES
+  (NULL, 'France 7',7,5), (NULL, 'Squadra Azzurra',7,5),(NULL,'Équipe du Portugal',11,6),
+  (NULL,'Équipe d\'Italie',11,6),(NULL, 'Os Lobos',7,5);
 
 
 #------------------------------------------------------------
@@ -347,6 +360,58 @@ INSERT INTO `pays` (`id_pays`, `Libelle_pays`, `Image_pays`, `Description_pays`)
         avec une population estimée à 65,1 millions d\'habitants. Le Royaume-Uni est une monarchie constitutionnelle ; il possède un système parlementaire de gouvernance.
         Sa capitale est Londres, une ville mondiale et la première place financière au monde, mais également la plus grande aire métropolitaine de l\'Union européenne.');
 
+#------------------------------------------------------------
+# Insert athlete
+#------------------------------------------------------------
+
+call insert_athlete ('Riner','Teddy',28,'Homme',2.04,131,'Teddy_Riner.jpg','Teddy Riner, né le 7 avril 1989 aux Abymes en Guadeloupe, est un judoka français évoluant
+        dans la catégorie des plus de 100 kg (poids lourds), détenteur d\'un record de neuf titres de champion du monde,
+        champion olympique à Londres en 2012 et à Rio de Janeiro en 2016, médaillé de bronze à Pékin en 2008, quintuple champion d\'Europe.',1,NULL,1);
+call insert_athlete ('Fabio','Basile',23,'Homme',1.60,66,'Fabio_Basile.jpg','Fabio Basile né le 7 octobre 1994 à Rivoli est un judoka italien. Il a remporté la médaille d\'or en moins de 66 kg lors
+        des Jeux olympiques de 2016 à Rio de Janeiro, ce qui représente la 200e médaille d\'or italienne.Fabio Basile avec Sergio Mattarella,
+        le Président de la République italienne. Gradé de l\'Esercito italiano, dont il fait partie du groupe sportif depuis 2013, il vante une médaille de bronze
+        aux Jeux méditerranéens de 2013 à Mersin dans la catégorie des 60 kg et le même résultat lors des Championnats d\'Europe jeunesse de Bucarest de la même année.
+        Troisième lors des Championnats d\'Europe 2016 à Kazan, il est tardivement sélectionné pour les Jeux olympiques, le directeur technique italien du judo pensant davantage
+        à lui comme un judoka pour ceux de 2020. Contre le favori An Baul, il gagne par ippon au bout de 84 s de la rencontre et remporte le premier titre olympique italien de 2016',2,NULL,1);
+call insert_athlete ('Siobhan-Marie','O\'Connor',21,'Femme',1.76,64,'Siobhan_Oconnor.jpg','Siobhan-Marie O\'Connor,est une nageuse britannique.
+        Née à Bath et s\'entraînant également à Bath, elle participe aux Jeux olympiques de 2012 à Londres, en individuel lors du 100 m brasse (éliminée en séries avec le 21e temps) et en
+        relais (huitième de la finale du 4 × 100 m quatre nages). En 2014, elle accumule un total de six médailles aux Jeux du Commonwealth
+        de 2014 dont une en or lors du 200 m quatre nages1.',4,NULL,2);
+call insert_athlete ('Laure','Manaudou',31,'Femme',1.80,69,'Laure_Manaudou.jpg','Laure Manaudou, née le 9 octobre 1986 à Villeurbanne, est une nageuse française pratiquant
+        les quatre nages (brasse, papillon, crawl, dos crawlé) ayant obtenu des résultats nationaux et internationaux dans la quasi-totalité des distances de
+        compétition : 50 m, 100 m, 200 m, 400 m, 800 m et 1500 m. Lorsqu''elle s''impose à 17 ans sur 400 m nage libre aux Jeux olympiques d\'Athènes, le 15 août 2004, elle n\'est que la
+        deuxième championne olympique française de natation après Jean Boiteux à Helsinki en 1952. Elle gagne deux autres médailles dans ces Jeux : l\'argent sur 800 m nage libre et le bronze
+        sur 100 m dos, un exploit totalement inédit pour une nageuse française aux JO, et devient immédiatement une star nationale2.',1,NULL,2);
+call insert_athlete ('Alistair','Brownlee',29,'Homme',1.84,70,'Alistair_Brownlee.jpg','Alistair Edward Brownlee, né le 23 avril 1988 à Dewsbury en Angleterre, est un triathlète professionnel anglais,
+        double champion olympique en 2012 et en 2016, double champion du monde en 2009 et 2011 et triple champion d\'Europe. Il est le frère ainé de Jonathan Brownlee triathlète professionnel,
+        médaille de bronze et d\'argent lors des mêmes Jeux olympiques.Il est nommé membre de l\'ordre de l\'Empire britannique à l\'occasion de la liste de
+        nominations honorifiques du nouvel an 2013.',4,NULL,3);
+call insert_athlete ('Vicky','Holland',31,'Femme',1.68,58,'Vicky_Holland.jpg','Vicky Holland, née le 12 janvier 1986 à Gloucester, est une
+        triathlète britannique, professionnelle depuis 2006.',4,NULL,3);
+call insert_athlete ('Grégory','Bourdy',35,'Homme',1.80,NULL,'Gregory_Bourdy.jpg','Grégory Bourdy, né le 25 avril 1982 à Bordeaux, est un golfeur français, professionnel depuis 2003.
+        Il a remporté 4 tournois sur le circuit européen. Né dans une famille de golfeurs, Grégory Bourdy avoue avoir toujours voulu devenir golfeur professionnel.
+        Ses parents domiciliés près du Golf Bordelais, l\'ont rapidement conduit sur les greens. Il passe professionnel à 21 ans en 2003.',1,NULL,4);
+call insert_athlete ('Matteo','Manassero',24,'Homme',1.83,NULL,'Matteo_Manassero.jpg','Matteo Manassero, né le 19 avril 1993 à Negrar, est un golfeur italien, professionnel depuis 2010.
+        Évoluant sur le Tour européen PGA, il a remporté 4 victoires sur le Tour européen et 2 sur l\'Asian Tour1.',2,NULL,4);
+call insert_athlete ('Jérémy','Aicardi',28,'Homme',1.78,NULL,'Jeremy_Aicardi.jpg','Jérémy Aicardi est un joueur international français de rugby à sept qui évolue au poste de centre.
+        Après être passé par la Pro D2 et la Fédérale 1, il s\'engage en 2014 avec l\'équipe de France de rugby à sept et avec la fédération française de rugby.',1,1,5);
+call insert_athlete ('Jonathan','Laugel',24,'Homme',1.94,NULL,'Jonathan_Laugel.jpg','Jonathan Laugel, né le 30 janvier 1993 à Montmorency, est un joueur français de rugby à XV,
+        où il évolue au poste de troisième ligne aile, et de rugby à sept. International de rugby à sept depuis 2012, il est en contrat avec la Fédération française de rugby
+        à XV pour disputer les compétitions de rugby à sept, notamment les World Series.',1,1,5);
+call insert_athlete ('Gonçalo','Uva',33,'Homme',2.1,NULL,'Goncalo_Uva.jpg','Gonçalo Uva, né le 3 octobre 1984, est un joueur de rugby à XV international portugais.
+        Il évolue au poste de deuxième ligne au sein de l\'effectif du Racing club de Narbonne Méditerranée.',3,5,5);
+call insert_athlete ('Marco','Bortolami',37,'Homme',1.96,NULL,'Marco_Bortolami.jpg','Marco Bortolami, né le 12 juin 1980 (37 ans) à Padoue (Italie), est un joueur italien de rugby à XV.
+        Il compte 112 sélections en équipe d\'Italie, évoluant au poste de deuxième ligne. Marco Bortolami joue dans les équipes de jeunes du club de sa ville, le Petrarca Rugby Padoue,
+        où il devient titulaire en équipe première à seulement vingt ans. Il est le capitaine de l\'équipe d\'Italie des moins de 21 ans avec laquelle il dispute le tournoi des six nations
+        dans cette catégorie. En 2001, pendant la tournée en Nouvelle-Zélande, il devient à 22 ans le plus jeune capitaine de l\'histoire du rugby italien avec l\'équipe d\'Italie.',2,5,2);
+call insert_athlete ('William','Carvalho',25,'Homme',1.87,NULL,'Wiliam_Carvalho.jpg','William Silva de Carvalho, né le 7 avril 1992 à Luanda, est un footballeur portugais évoluant au poste de milieu
+        de terrain défensif au Sporting Portugal, son club formateur depuis 2005. Sélectionné en équipe du Portugal dans chaque catégorie d\'âge depuis son adolescence, il est le capitaine de
+        la formation des moins de 21 ans lors du championnat d\'Europe espoir de 2015, où la Seleção termine sur la deuxième marche du podium et dont il fut élu meilleur joueur de la compétition.
+        C\'est en novembre 2013 que William Carvalho fait ses débuts en sélection A, dirigée par Paulo Bento, lors des matchs de barrage de la Coupe du monde 2014 face à la Suède.
+        À la suite de bonnes performances avec le Sporting Portugal, lors de la saison 2013-2014, William Carvalho devient titulaire en sélection A en phase finale de la Coupe
+        du monde 2014 au Brésil.',3,3,6);
+call insert_athlete ('Leonardo','Bonucci',30,'Homme',1.90,NULL,'Leonardo_Bonucci.jpg','Leonardo Bonucci, né le 1er mai 1987 à Viterbe, est un footballeur international italien qui évolue au
+        poste de defenseur central à l\'AC Milan.',2,4,6);
 
 #------------------------------------------------------------
 # Vue pays detaille
@@ -357,7 +422,7 @@ CREATE VIEW pays_detaille AS
   FROM sport,personne, pays;
 
 #------------------------------------------------------------
-# Vue athlete detaille
+# Vue sport detaille
 #------------------------------------------------------------
 
 CREATE VIEW sport_detaille AS
@@ -365,5 +430,13 @@ CREATE VIEW sport_detaille AS
   FROM pays, personne, sport;
 
 
+#------------------------------------------------------------
+# Vue athlete detaille
+#------------------------------------------------------------
 
+CREATE VIEW athlete_detaille AS
+  SELECT Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Pays.Libelle_pays, Athlete.Biographie, Athlete.Poids,Athlete.Taille, Sport.Libelle_sport
+  FROM Personne,Athlete, Sport, Pays
+  WHERE Sport.id_sport = Athlete.id_sport AND Pays.id_pays = Athlete.id_pays AND  Personne.id_personne = Athlete.id_personne;
 
+#SELECT * from athlete_detaille WHERE athlete_detaille.Libelle_sport = 'Judo'
