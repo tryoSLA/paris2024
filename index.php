@@ -27,6 +27,7 @@ $unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
 
     <!-- css perso -->
     <link rel="stylesheet" href="Web/Css/My_css/Header.css">
+    <link rel="stylesheet" href="Web/Css/My_css/Sport_Pays.css">
 </head>
 <body>
 

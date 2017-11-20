@@ -9,7 +9,6 @@ class Modele
        try
        {
            $this->pdo = new PDO("mysql:host=".$serveur.";dbname=".$bdd,$user,$mdp);
-           echo "Connexion a la bdd réussi";
        }
        catch(Exception $exp)
        {
