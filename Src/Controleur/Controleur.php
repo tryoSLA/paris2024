@@ -15,7 +15,32 @@ class Controleur
 
     public function accueil()
     {
-        include ('Src/Form/Form_inscription.php');
+        include ('Src/Vue/Accueil.php');
+    }
+
+    public function event()
+    {
+        include ('Src/Vue/Evenement.php');
+    }
+
+    public function pays()
+    {
+        include ('Src/Vue/Vue_pays.php');
+    }
+
+    public function sports()
+    {
+        include ('Src/Vue/Vue_sports.php');
+    }
+
+    public function galerie()
+    {
+        include ('Src/Vue/Vue_galerie.php');
+    }
+
+    public function contact()
+    {
+        include ('Src/Vue/Vue_contact.php');
     }
 }
 ?>

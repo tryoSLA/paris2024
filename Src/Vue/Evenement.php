@@ -1,3 +1,1 @@
-<?php
- include("Menu.php");
-?>
+<h1>Event</h1>

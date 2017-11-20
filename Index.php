@@ -6,7 +6,10 @@ $Controleur = new Controleur()
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Paris2024</title>
+    <title>Paris 2024</title>
+    <link rel="icon" type="image/png" href="Web/Images/Profile_site/Logo_paris_2024_simple.png" />
+    <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="favicon.ico" /><![endif]-->
+
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -27,12 +30,44 @@ $Controleur = new Controleur()
 <?php
 $Controleur->header();
 ?>
-
+<!-- css perso -->
 <div class="tab-content">
-    <div class="tab-pane" id="home" role="tabpanel">...</div>
-    <div class="tab-pane" id="profile" role="tabpanel">...</div>
-    <div class="tab-pane" id="messages" role="tabpanel">...</div>
-    <div class="tab-pane" id="settings" role="tabpanel">...</div>
+    <!-- accueil -->
+    <div class="tab-pane active" id="accueil" role="tabpanel">
+        <?php
+        $Controleur->accueil();
+        ?>
+    </div>
+    <!-- event -->
+    <div class="tab-pane" id="event" role="tabpanel">
+        <?php
+        $Controleur->event();
+        ?>
+    </div>
+    <!-- pays -->
+    <div class="tab-pane" id="pays" role="tabpanel">
+        <?php
+        $Controleur->pays();
+        ?>
+    </div>
+    <!-- sport -->
+    <div class="tab-pane" id="sports" role="tabpanel">
+        <?php
+        $Controleur->sports();
+        ?>
+    </div>
+    <!-- galerie -->
+    <div class="tab-pane" id="galerie" role="tabpanel">
+        <?php
+        $Controleur->galerie();
+        ?>
+    </div>
+    <!-- contact -->
+    <div class="tab-pane" id="contact" role="tabpanel">
+        <?php
+        $Controleur->contact();
+        ?>
+    </div>
 </div>
 <?php
 if (isset($_GET['page']))

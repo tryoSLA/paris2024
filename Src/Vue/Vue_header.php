@@ -41,21 +41,29 @@
                     </div>
                 </form>
             </div>
-
-            <ul class="nav nav-tabs text-white" id="myTab" role="tablist">
+            <!-- menu -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-controls="home">Home</a>
+                    <a class="nav-link" data-toggle="tab" href="#accueil" role="tab" aria-controls="home">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Profile</a>
+                    <a class="nav-link" data-toggle="tab" href="#event" role="tab" aria-controls="profile">Evenements</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#messages" role="tab"
-                       aria-controls="messages">Messages</a>
+                    <a class="nav-link" data-toggle="tab" href="#pays" role="tab"
+                       aria-controls="messages">Pays des JO</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#settings" role="tab"
-                       aria-controls="settings">Settings</a>
+                    <a class="nav-link" data-toggle="tab" href="#sports" role="tab"
+                       aria-controls="settings">Sports des JO</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#galerie" role="tab"
+                       aria-controls="settings">Galerie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#contact" role="tab"
+                       aria-controls="settings">Contact</a>
                 </li>
             </ul>
         </div>
