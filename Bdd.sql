@@ -419,9 +419,8 @@ call insert_athlete ('Leonardo','Bonucci',30,'Homme',1.90,NULL,'Leonardo_Bonucci
 
 CREATE VIEW pays_detaille AS
   SELECT Pays.Libelle_pays, Pays.Description_pays, Pays.Image_pays, Sport.Libelle_sport, Personne.Nom, Personne.Prenom
-  FROM sport,personne, pays, athlete
+  FROM Sport,Personne, Pays, Athlete
   WHERE Athlete.id_pays = Pays.id_pays and Athlete.id_sport = Sport.id_sport and Athlete.id_personne = Personne.id_personne;
-
 
 #------------------------------------------------------------
 # Vue sport detaille
@@ -429,8 +428,9 @@ CREATE VIEW pays_detaille AS
 
 CREATE VIEW sport_detaille AS
   SELECT Sport.Libelle_sport, Sport.Description_sport, Sport.Image_sport, Pays.Libelle_pays, Personne.Nom, Personne.Prenom
-  FROM pays, personne, sport, Athlete
+  FROM Pays, Personne, Sport, Athlete
   WHERE Athlete.id_personne = Personne.id_personne AND Athlete.id_pays = Pays.id_pays AND Athlete.id_sport = Sport.id_sport;
+
 
 
 #------------------------------------------------------------
