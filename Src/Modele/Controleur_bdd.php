@@ -1,44 +1,54 @@
 <?php
 
-include ("Modele.php");
-
-class Controleur
+class Modele
 {
-    private $uneBdd;
-    public function __construct($server,$bdd,$user,$mdp, $table)
+   private $pdo, $table;
+   public function __construct($serveur, $bdd, $user, $mdp)
+   {
+       $this->pdo = null;
+       try
+       {
+           $this->pdo = new PDO("mysql:host=".$serveur.";dbname=".$bdd,$user,$mdp);
+           echo "Connexion a la bdd réussi";
+       }
+       catch(Exception $exp)
+       {
+            echo "Erreur de connexion a la base de donnee";
+       }
+   }
+
+    public function setTable($uneTable)
     {
-        $this->uneBdd = new Bdd ($server,$bdd,$user,$mdp);
-        $this->uneBdd->setTable($table);
+        $this->table = $uneTable;
     }
 
     public function selectAll()
     {
-        return $this->uneBdd->selectAll();
-    }
-
-    public function insert($unEleve){
-        //traitement des donnée de l'élèves
-        if ($unEleve->getAge() <= 0)
+        if ($this->pdo != null)
         {
-            $unEleve->setAge(0);
+            $requete = "SELECT * FROM ".$this->table;
+            $select = $this->pdo->prepare($requete);
+            $select->execute();
+            $resultat = $select->fetchAll();
+            return $resultat;
         }
-        $tab = $unEleve->serialiser();
-        $this->uneBdd->insert($tab);
-    }
-
-    public function rechercher ($tab,$motcle)
-    {
-        return $this->uneBdd->rechercher($tab,$motcle);
-    }
-
-    public function supprimer ($tab)
-    {
-        $this->uneBdd->supprimer($tab);
+        else
+        {
+            return null;
+        }
     }
 
     public function selectChamps($tab)
     {
-        return $this->uneBdd->selectChamps($tab);
+        $champs = implode(",",$tab);
+        $requete = "select ".$champs." from ".$this->table;
+        if ($this->pdo != null)
+        {
+            $select = $this->pdo->prepare($requete);
+            $select->execute();
+            $resultat = $select->fetchAll();
+            return $resultat;
+        }
     }
 
 }
