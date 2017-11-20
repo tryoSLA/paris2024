@@ -1,6 +1,4 @@
 <?php
-
-
 class Controleur
 {
     public function header()
