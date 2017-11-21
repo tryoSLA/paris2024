@@ -1,8 +1,10 @@
 <?php
 include ('Src/Controleur/Controleur.php');
+include ('Src/Function/Rss.php');
 require ('Src/Modele/Controleur_bdd.php');
 $Controleur = new Controleur();
 $unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -34,6 +36,7 @@ $unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
 <?php
 $Controleur->header();
 ?>
+
 <!-- css perso -->
 <div class="tab-content">
     <!-- accueil -->
@@ -87,10 +90,14 @@ else
 {
     $page = "NAN";
 }
+
 switch ($page)
 {
     case "inscription":
         $Controleur->inscription();
+        break;
+    case "NAN":
+        echo " ";
         break;
 }
 ?>
