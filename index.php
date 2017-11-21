@@ -40,7 +40,7 @@ $Controleur->header();
 <!-- css perso -->
 <div class="tab-content">
     <!-- accueil -->
-    <div class="tab-pane" id="accueil" role="tabpanel">
+    <div class="tab-pane active" id="accueil" role="tabpanel">
         <?php
         $Controleur->accueil();
         ?>
