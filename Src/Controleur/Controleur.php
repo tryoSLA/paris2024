@@ -6,6 +6,11 @@ class Controleur
         include ('Src/Vue/Vue_header.php');
     }
 
+    public function header2()
+    {
+        include ('Src/Vue/Vue_header_2.php');
+    }
+
     public function inscription()
     {
         include ('Src/Form/Form_inscription.php');

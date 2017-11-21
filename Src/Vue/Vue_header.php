@@ -36,7 +36,7 @@
                             <button type="submit" class="btn-sm btn-success" name="connexion">Connexion</button>
                         </div>
                         <div class="col d-flex align-items-center">
-                            <a class="btn-sm btn-light" href="index.php?page=inscription">Inscription</a>
+                            <a class="btn-sm btn-light" href="inscription.php">Inscription</a>
                         </div>
                     </div>
                 </form>

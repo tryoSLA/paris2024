@@ -1,6 +1,5 @@
 <?php
 include ('Src/Controleur/Controleur.php');
-include ('Src/Function/Rss.php');
 $Controleur = new Controleur()
 ?>
 <!DOCTYPE html>
@@ -28,70 +27,9 @@ $Controleur = new Controleur()
     <link rel="stylesheet" href="Web/Css/My_css/Header.css">
 </head>
 <body>
-
 <?php
-$Controleur->header();
+$Controleur->header2();
+$Controleur->inscription();
 ?>
-
-<!-- css perso -->
-<div class="tab-content">
-    <!-- accueil -->
-    <div class="tab-pane" id="accueil" role="tabpanel">
-        <?php
-        $Controleur->accueil();
-        ?>
-    </div>
-    <!-- event -->
-    <div class="tab-pane" id="event" role="tabpanel">
-        <?php
-        $Controleur->event();
-        ?>
-    </div>
-    <!-- pays -->
-    <div class="tab-pane" id="pays" role="tabpanel">
-        <?php
-        $Controleur->pays();
-        ?>
-    </div>
-    <!-- sport -->
-    <div class="tab-pane" id="sports" role="tabpanel">
-        <?php
-        $Controleur->sports();
-        ?>
-    </div>
-    <!-- galerie -->
-    <div class="tab-pane" id="galerie" role="tabpanel">
-        <?php
-        $Controleur->galerie();
-        ?>
-    </div>
-    <!-- contact -->
-    <div class="tab-pane" id="contact" role="tabpanel">
-        <?php
-        $Controleur->contact();
-        ?>
-    </div>
-</div>
-<?php
-if (isset($_GET['page']))
-{
-    $page = $_GET['page'];
-}
-else
-{
-    $page = "NAN";
-}
-
-switch ($page)
-{
-    case "inscription":
-        $Controleur->inscription();
-        break;
-    case "NAN":
-        echo " ";
-        break;
-}
-?>
-
 </body>
 </html>

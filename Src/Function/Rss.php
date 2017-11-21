@@ -1,4 +1,5 @@
 <?php
+
 Class Rss
 {
     public function afficherArticle($title, $link, $date, $description)
@@ -28,6 +29,7 @@ Class Rss
             $date = date_format($datetime, 'd M Y, H\hi');
             $title = $item->title;
             $link = $item->link;
+            $auth = $item->link;
             $description = $item->description;
             $i++;
             $this->afficherArticle($title, $link, $date, $description);
