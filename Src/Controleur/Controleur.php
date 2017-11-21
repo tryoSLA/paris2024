@@ -25,6 +25,10 @@ class Controleur
     {
         include ('Src/Vue/Vue_pays.php');
     }
+    public function pays_detaille($page)
+    {
+        include ('Src/Vue/'.$page);
+    }
 
     public function sports()
     {

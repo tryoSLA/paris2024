@@ -92,6 +92,9 @@ switch ($page)
     case "inscription":
         $Controleur->inscription();
         break;
+    case stristr($page,'Pays_'):
+        $Controleur->pays_detaille($page);
+        break;
 }
 ?>
 
