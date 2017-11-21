@@ -77,11 +77,11 @@
             </div>
             <!-- boutons form -->
             <div class="row">
-                <div class="col-sm-6">
-                    <button type="submit" class="btn btn-success" id="valider">Valider</button>
-                </div>
-                <div class="col-sm-6">
-                    <button type="reset" class="btn btn-danger">Annuler</button>
+                <div class="col-sm-12">
+                    <center>
+                        <button type="reset" class="btn btn-danger">Annuler</button>
+                        <button type="submit" class="btn btn-success" id="valider">Valider</button>
+                    </center>
                 </div>
             </div>
         </form>

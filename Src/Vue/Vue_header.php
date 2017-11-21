@@ -36,7 +36,7 @@
                             <button type="submit" class="btn-sm btn-success" name="connexion">Connexion</button>
                         </div>
                         <div class="col d-flex align-items-center">
-                            <a class="btn-sm btn-light" href="index.php?page=inscription">Inscription</a>
+                            <a class="btn-sm btn-light" href="inscription.php">Inscription</a>
                         </div>
                     </div>
                 </form>
@@ -45,7 +45,7 @@
             <!-- menu -->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#accueil" role="tab" aria-controls="home">Accueil</a>
+                    <a class="nav-link active" data-toggle="tab" href="#accueil" role="tab" aria-controls="home">Accueil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#event" role="tab" aria-controls="profile">Evenements</a>
