@@ -352,13 +352,10 @@ INSERT INTO `Pays` (`id_pays`, `Libelle_pays`, `Image_pays`, `Description_pays`)
         l\'ensemble des autres pays occidentaux. Il est également membre de l’OCDE, de l\'ONU, du conseil de l\'Europe, de l’espace Schengen et
         est l\'un des pays fondateurs de la zone euro. Le Portugal entretient en outre d\'importantes relations avec l\'Espagne, la France8, l\'Allemagne, le Royaume-Uni et l\'Italie,
         qui sont ses cinq plus importants partenaires commerciaux.'),
-        (NULL,'Royaume-Uni','Royaume_uni.png','Le Royaume-Uni, en forme longue le Royaume-Uni de Grande-Bretagne et d\'Irlande du Nord est un pays d\'Europe
-        de l\'Ouest, ou selon certaines définitions, d\'Europe du Nord, dont le territoire comprend l\'île de Grande-Bretagne et la partie nord de l\'île d\'Irlande,
-        ainsi que de nombreuses petites îles autour de l\'archipel. Le territoire du Royaume-Uni partage une frontière terrestre avec la République d\'Irlande,
-        et est entouré par l\'océan Atlantique, avec la mer du Nord à l\'est, la Manche au sud, et la mer d\'Irlande à l\'ouest.
-        Le Royaume-Uni couvre une superficie de 246 690 km2, faisant de lui le 80e plus grand pays du monde, et le 11e d\'Europe. Il est le 22e pays le plus peuplé du monde,
-        avec une population estimée à 65,1 millions d\'habitants. Le Royaume-Uni est une monarchie constitutionnelle ; il possède un système parlementaire de gouvernance.
-        Sa capitale est Londres, une ville mondiale et la première place financière au monde, mais également la plus grande aire métropolitaine de l\'Union européenne.');
+        (NULL,'Grande-Bretagne','Grande-Bretagne.png','La Grande-Bretagne est une île au large du littoral nord-ouest de l\'Europe continentale. Elle représente la majorité du territoire du Royaume-Uni.
+        En son acception politique, ce toponyme désigne l\'Angleterre, le pays de Galles et l\'Écosse ainsi que la plupart des territoires insulaires contigus à l\'exclusion de
+        l\'Île de Man et des Îles Anglo-Normandes. Située à la jonction de l\'Atlantique et de la mer du Nord, elle est séparée de l\'Irlande par la mer d\'Irlande et du continent
+        par la Manche. C\'est la plus grande île et la plus peuplée du continent européen.');
 
 #------------------------------------------------------------
 # Insert athlete

@@ -1,7 +1,10 @@
 <?php
 include ('Src/Controleur/Controleur.php');
 include ('Src/Function/Rss.php');
-$Controleur = new Controleur()
+require ('Src/Modele/Controleur_bdd.php');
+$Controleur = new Controleur();
+$unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -26,6 +29,7 @@ $Controleur = new Controleur()
 
     <!-- css perso -->
     <link rel="stylesheet" href="Web/Css/My_css/Header.css">
+    <link rel="stylesheet" href="Web/Css/My_css/Sport_Pays.css">
 </head>
 <body>
 
@@ -49,8 +53,13 @@ $Controleur->header();
     </div>
     <!-- pays -->
     <div class="tab-pane" id="pays" role="tabpanel">
+
         <?php
-        $Controleur->pays();
+            $unModele->setTable("Pays"); //on pointe vers la table
+            $tab = array("Image_pays", "Libelle_pays");
+            $resultats = $unModele->selectChamps($tab);
+            include ('Src/Vue/Vue_pays.php');
+            exit();
         ?>
     </div>
     <!-- sport -->
