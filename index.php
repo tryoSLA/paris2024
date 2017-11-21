@@ -40,7 +40,7 @@ $Controleur->header();
 <!-- css perso -->
 <div class="tab-content">
     <!-- accueil -->
-    <div class="tab-pane active" id="accueil" role="tabpanel">
+    <div class="tab-pane" id="accueil" role="tabpanel">
         <?php
         $Controleur->accueil();
         ?>
@@ -55,11 +55,11 @@ $Controleur->header();
     <div class="tab-pane" id="pays" role="tabpanel">
 
         <?php
-            $unModele->setTable("Pays"); //on pointe vers la table
-            $tab = array("Image_pays", "Libelle_pays");
-            $resultats = $unModele->selectChamps($tab);
-            include ('Src/Vue/Vue_pays.php');
-            exit();
+            $Controleur->pays();
+            //$unModele->setTable("Pays"); //on pointe vers la table
+            //$tab = array("Image_pays", "Libelle_pays");
+            //$resultats = $unModele->selectChamps($tab);
+            //include ('Src/Vue/Vue_pays.php');
         ?>
     </div>
     <!-- sport -->
@@ -96,8 +96,6 @@ switch ($page)
     case "inscription":
         $Controleur->inscription();
         break;
-    case stristr($page,'Pays_'):
-        $Controleur->pays_detaille($page);
     case "NAN":
         echo " ";
         break;
