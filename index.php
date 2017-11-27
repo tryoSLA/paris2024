@@ -37,50 +37,57 @@ $unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
 $Controleur->header();
 ?>
 
-<!-- css perso -->
-<div class="tab-content">
-    <!-- accueil -->
-    <div class="tab-pane" id="accueil" role="tabpanel">
-        <?php
-        $Controleur->accueil();
-        ?>
-    </div>
-    <!-- event -->
-    <div class="tab-pane" id="event" role="tabpanel">
-        <?php
-        $Controleur->event();
-        ?>
-    </div>
-    <!-- pays -->
-    <div class="tab-pane" id="pays" role="tabpanel">
+<!-- menu bootstrap -->
+                    <!--<div class="tab-content">-->
+                    <!--    <!-- accueil -->-->
+                    <!--    <div class="tab-pane" id="accueil" role="tabpanel">-->
+                    <!---->
+                    <!--        --><?php
+                    //        $Controleur->accueil();
+                    //        ?>
+                    <!--    </div>-->
+                    <!--    <!-- event -->-->
+                    <!--    <div class="tab-pane" id="event" role="tabpanel">-->
+                    <!--        --><?php
+                    //        $Controleur->event();
+                    //        ?>
+                    <!--    </div>-->
+                    <!--    <!-- pays -->-->
+                    <!--    <div class="tab-pane" id="pays" role="tabpanel">-->
+                    <!--        --><?php
+                    //            //$Controleur->pays();
+                    ////            $unModele->setTable("Pays"); //on pointe vers la table
+                    ////            $tab = array("Image_pays", "Libelle_pays");
+                    ////            $resultats = $unModele->selectChamps($tab);
+                    ////            include ('Src/Vue/Vue_pays.php');
+                    //        ?>
+                    <!--    </div>-->
+                    <!--    <!-- sport -->-->
+                    <!--    <div class="tab-pane" id="sports" role="tabpanel">-->
+                    <!--        --><?php
+                    //            //$Controleur->sports();
+                    ////            $unModele->setTable("Sport"); //on pointe vers la table
+                    ////            $tab = array("Image_sport", "Libelle_sport");
+                    ////            $resultats = $unModele->selectChamps($tab);
+                    ////            include ('Src/Vue/Vue_sports.php');
+                    //        ?>
+                    <!--    </div>-->
+                    <!--    <!-- galerie -->-->
+                    <!--    <div class="tab-pane" id="galerie" role="tabpanel">-->
+                    <!--        --><?php
+                    //        //$Controleur->galerie();
+                    //        ?>
+                    <!--    </div>-->
+                    <!--    <!-- contact -->-->
+                    <!--    <div class="tab-pane" id="contact" role="tabpanel">-->
+                    <!--        --><?php
+                    //        //$Controleur->contact();
+                    //        ?>
+                    <!--    </div>-->
+                    <!--</div>-->
 
-        <?php
-            $Controleur->pays();
-            //$unModele->setTable("Pays"); //on pointe vers la table
-            //$tab = array("Image_pays", "Libelle_pays");
-            //$resultats = $unModele->selectChamps($tab);
-            //include ('Src/Vue/Vue_pays.php');
-        ?>
-    </div>
-    <!-- sport -->
-    <div class="tab-pane" id="sports" role="tabpanel">
-        <?php
-        $Controleur->sports();
-        ?>
-    </div>
-    <!-- galerie -->
-    <div class="tab-pane" id="galerie" role="tabpanel">
-        <?php
-        $Controleur->galerie();
-        ?>
-    </div>
-    <!-- contact -->
-    <div class="tab-pane" id="contact" role="tabpanel">
-        <?php
-        $Controleur->contact();
-        ?>
-    </div>
-</div>
+
+<!--Switch menu-->
 <?php
 if (isset($_GET['page']))
 {
@@ -95,6 +102,33 @@ switch ($page)
 {
     case "inscription":
         $Controleur->inscription();
+        break;
+    case "accueil":
+
+        $Controleur->accueil();
+        break;
+    case "event":
+        echo "event";
+        break;
+    case "pays":
+        echo "pays";
+        $unModele->setTable("Pays"); //on pointe vers la table
+        $tab = array("Image_pays", "Libelle_pays");
+        $resultats = $unModele->selectChamps($tab);
+        include ('Src/Vue/Vue_pays.php');
+        break;
+    case "sport":
+        echo "sport";
+        $unModele->setTable("Sport"); //on pointe vers la table
+        $tab = array("Image_sport", "Libelle_sport");
+        $resultats = $unModele->selectChamps($tab);
+        include ('Src/Vue/Vue_sports.php');
+        break;
+    case "galerie":
+        echo "galerie";
+        break;
+    case "contact":
+        echo "contact";
         break;
     case "NAN":
         echo " ";

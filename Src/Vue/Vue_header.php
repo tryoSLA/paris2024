@@ -43,30 +43,44 @@
             </div>
 
             <!-- menu -->
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#accueil" role="tab" aria-controls="home">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#event" role="tab" aria-controls="profile">Evenements</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#pays" role="tab"
-                       aria-controls="messages">Pays des JO</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#sports" role="tab"
-                       aria-controls="settings">Sports des JO</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#galerie" role="tab"
-                       aria-controls="settings">Galerie</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#contact" role="tab"
-                       aria-controls="settings">Contact</a>
-                </li>
-            </ul>
+
+            <nav id="menu">
+                <ul>
+                    <li><a href="index.php?page=accueil">Accueil</a></li>
+                    <li><a href="index.php?page=event">Evenements</a></li>
+                    <li><a href="index.php?page=pays">Pays des JO</a></li>
+                    <li><a href="index.php?page=sport">Sport des JO</a></li>
+                    <li><a href="index.php?page=galerie">Galerie</a></li>
+                    <li><a href="index.php?page=contact">Contact</a></li>
+                </ul>
+            </nav>
+
+
+
+<!--            <ul class="nav nav-tabs" id="myTab" role="tablist">-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link active" data-toggle="tab" href="#accueil" role="tab" aria-controls="home">Accueil</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#event" role="tab" aria-controls="profile">Evenements</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="?page=pays" role="tab"-->
+<!--                       aria-controls="messages">Pays des JO</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#sports" role="tab"-->
+<!--                       aria-controls="settings">Sports des JO</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#galerie" role="tab"-->
+<!--                       aria-controls="settings">Galerie</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#contact" role="tab"-->
+<!--                       aria-controls="settings">Contact</a>-->
+<!--                </li>-->
+<!--            </ul>-->
         </div>
     </div>
 </header>
