@@ -5,7 +5,7 @@
             <?php
             foreach ($resultats as $unResultat)
             {
-                echo "<div class='col'><a href='Vue_sport_detaille_".$unResultat['Libelle_sport']."'><img src='Web/Images/Sports/"
+                echo "<div class='col'><a href='index.php?page=Sport_".$unResultat['Libelle_sport']."'><img src='Web/Images/Sports/"
                     .$unResultat['Image_sport']."'></img></br>"
                     .$unResultat['Libelle_sport']."</a></div>";
             }

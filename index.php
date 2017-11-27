@@ -103,13 +103,15 @@ switch ($page)
     case "inscription":
         $Controleur->inscription();
         break;
-    case "accueil":
 
+    case "accueil":
         $Controleur->accueil();
         break;
+
     case "event":
         echo "event";
         break;
+
     case "pays":
         echo "pays";
         $unModele->setTable("Pays"); //on pointe vers la table
@@ -117,6 +119,7 @@ switch ($page)
         $resultats = $unModele->selectChamps($tab);
         include ('Src/Vue/Vue_pays.php');
         break;
+
     case "sport":
         echo "sport";
         $unModele->setTable("Sport"); //on pointe vers la table
@@ -124,12 +127,30 @@ switch ($page)
         $resultats = $unModele->selectChamps($tab);
         include ('Src/Vue/Vue_sports.php');
         break;
+    case strstr($page,"Pays_"):
+        echo "aaa";
+        $pays = str_replace("Pays_","",$page);
+        $champ = 'Libelle_pays';
+        $unModele->setTable("pays"); //on pointe vers la table
+        $result = $unModele->selectWhere("Libelle_pays, Image_Pays, Description_Pays",$champ,$pays);
+        $unModele->setTable("pays_detaille"); //on pointe vers la table
+        $resultats = $unModele->selectWhere("*",$champ,$pays);
+        include ('Src/Vue/Pays_detail.php');
+        break;
+
+    case strstr($page,"Sport_"):
+        $sport = str_replace("Sport_","",$page);
+        echo $sport;
+        break;
+
     case "galerie":
         echo "galerie";
         break;
+
     case "contact":
         echo "contact";
         break;
+
     case "NAN":
         echo " ";
         break;

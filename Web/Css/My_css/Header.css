@@ -57,7 +57,7 @@ a:hover
 nav li
 {
     list-style: none;
-
+    height: 10px;
 }
 ul
 {
