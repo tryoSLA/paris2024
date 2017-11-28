@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="incription.php">inscription</a>
+                    <a href="inscription.php">inscription</a>
                     <button type="submit" class="btn-sm btn-success" name="connexion">Connexion</button>
                 </div>
             </div>
