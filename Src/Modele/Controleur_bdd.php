@@ -9,6 +9,7 @@ class Modele
        try
        {
            $this->pdo = new PDO("mysql:host=".$serveur.";dbname=".$bdd,$user,$mdp);
+           $this->pdo->exec("SET CHARACTER SET utf8");
        }
        catch(Exception $exp)
        {
