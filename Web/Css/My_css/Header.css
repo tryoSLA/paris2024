@@ -28,29 +28,10 @@
     border-color: black;
 }
 
-/* formulaire connection droite */
-#pseudo
-{
-    margin-right: 5px;
-    padding: 5px;
-}
-
-#passe
-{
-    padding: 5px;
-}
-
 #formulaire
 {
     opacity: 0.7;
 }
-
-/* general */
-a:hover
-{
-    text-decoration: none;
-}
-
 
 /*--------Menu-------*/
 

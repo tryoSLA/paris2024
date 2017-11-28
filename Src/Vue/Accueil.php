@@ -9,7 +9,7 @@ $Controleur = new Controleur();
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6 journaux" >
             <center>
                 <h3 class="card-title"><u>Journaux</u></h3>
                 <h4 class="card-title"><i class="fa fa-newspaper-o" aria-hidden="true"></i></h4>
@@ -20,7 +20,7 @@ $Controleur = new Controleur();
                 ?>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 reseaux">
             <center>
                 <h3 class="card-title"><u>Réseaux Sociaux</u></h3>
                 <h4 class="card-title">
