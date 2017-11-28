@@ -51,25 +51,36 @@ a:hover
     text-decoration: none;
 }
 
-.nav-item a
+
+/*--------Menu-------*/
+
+nav li
 {
-    color: black;
+    list-style: none;
+    height: 10px;
 }
-.nav-item
+ul
 {
-    background: #D6EAF8;
-    opacity: 0.7;
-    border: 1px solid white;
-    border-radius: 5px 5px 0px 0px;
+    margin-bottom: 8px;
+}
+ul li
+{
+    display: inline-block;
 }
 
-.nav-item:hover
+ul li a
 {
+    color: black;
+    padding: 10px;
+    opacity: 0.7;
+    background: #D6EAF8;
+    border-radius: 5px 5px 0px 0px;
+    border: 2px solid white;
+}
+
+ul li a:hover
+{
+    color: black;
     opacity: 1;
     background: #AED6F1;
 }
-.nav-tabs .nav-link.active
-{
-    background: #85C1E9;
-}
-

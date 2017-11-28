@@ -1,8 +1,13 @@
-.pays
+.pays, .sport
 {
     text-align: center;
 }
-.pays a
+.pays a, .sport a
 {
     color: black;
+}
+.sport img
+{
+    width: 64px;
+    height: 64px;
 }
