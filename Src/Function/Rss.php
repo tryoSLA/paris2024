@@ -5,7 +5,7 @@ Class Rss
     public function afficherArticle($title, $link, $date, $description)
     {
         echo "
-            <div class=\"col-sm-6\">
+            <div class=\"col-sm-6\" style='margin-bottom: 10px '>
                 <div class='card card-block h-100 justify-content-center'>
                     <div class='card-block'>
                     <center>
