@@ -1,3 +1,7 @@
+body
+{
+    font-family: cursive;
+}
 .pays, .sport
 {
     text-align: center;
@@ -10,4 +14,24 @@
 {
     width: 64px;
     height: 64px;
+}
+
+.nom_prenom
+{
+    margin-left: 20px;
+}
+.image_pays, .libelle_pays, .image_sport, .libelle_sport
+{
+    text-align: center;
+}
+.image_sport img
+{
+    width: 64px;
+    height: 64px;
+    text-align: center;
+}
+.titre_details
+{
+    font-weight: bold;
+    margin: 20px 20px 20px 0px;  /*Marge haut, droite, bas, gauche*/
 }

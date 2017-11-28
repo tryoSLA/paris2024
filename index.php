@@ -35,60 +35,10 @@ $unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
 
 <?php
 $Controleur->header();
-?>
 
-<!-- menu bootstrap -->
-                    <!--<div class="tab-content">-->
-                    <!--    <!-- accueil -->-->
-                    <!--    <div class="tab-pane" id="accueil" role="tabpanel">-->
-                    <!---->
-                    <!--        --><?php
-                    //        $Controleur->accueil();
-                    //        ?>
-                    <!--    </div>-->
-                    <!--    <!-- event -->-->
-                    <!--    <div class="tab-pane" id="event" role="tabpanel">-->
-                    <!--        --><?php
-                    //        $Controleur->event();
-                    //        ?>
-                    <!--    </div>-->
-                    <!--    <!-- pays -->-->
-                    <!--    <div class="tab-pane" id="pays" role="tabpanel">-->
-                    <!--        --><?php
-                    //            //$Controleur->pays();
-                    ////            $unModele->setTable("Pays"); //on pointe vers la table
-                    ////            $tab = array("Image_pays", "Libelle_pays");
-                    ////            $resultats = $unModele->selectChamps($tab);
-                    ////            include ('Src/Vue/Vue_pays.php');
-                    //        ?>
-                    <!--    </div>-->
-                    <!--    <!-- sport -->-->
-                    <!--    <div class="tab-pane" id="sports" role="tabpanel">-->
-                    <!--        --><?php
-                    //            //$Controleur->sports();
-                    ////            $unModele->setTable("Sport"); //on pointe vers la table
-                    ////            $tab = array("Image_sport", "Libelle_sport");
-                    ////            $resultats = $unModele->selectChamps($tab);
-                    ////            include ('Src/Vue/Vue_sports.php');
-                    //        ?>
-                    <!--    </div>-->
-                    <!--    <!-- galerie -->-->
-                    <!--    <div class="tab-pane" id="galerie" role="tabpanel">-->
-                    <!--        --><?php
-                    //        //$Controleur->galerie();
-                    //        ?>
-                    <!--    </div>-->
-                    <!--    <!-- contact -->-->
-                    <!--    <div class="tab-pane" id="contact" role="tabpanel">-->
-                    <!--        --><?php
-                    //        //$Controleur->contact();
-                    //        ?>
-                    <!--    </div>-->
-                    <!--</div>-->
+//Switch menu
 
 
-<!--Switch menu-->
-<?php
 if (isset($_GET['page']))
 {
     $page = $_GET['page'];
@@ -121,14 +71,12 @@ switch ($page)
         break;
 
     case "sport":
-        echo "sport";
         $unModele->setTable("Sport"); //on pointe vers la table
         $tab = array("Image_sport", "Libelle_sport");
         $resultats = $unModele->selectChamps($tab);
         include ('Src/Vue/Vue_sports.php');
         break;
     case strstr($page,"Pays_"):
-        echo "aaa";
         $pays = str_replace("Pays_","",$page);
         $champ = 'Libelle_pays';
         $unModele->setTable("pays"); //on pointe vers la table
@@ -140,7 +88,20 @@ switch ($page)
 
     case strstr($page,"Sport_"):
         $sport = str_replace("Sport_","",$page);
-        echo $sport;
+        $champ = 'Libelle_sport';
+        $unModele->setTable("sport"); //on pointe vers la table
+        $result = $unModele->selectWhere("Libelle_sport, Image_sport, Description_sport",$champ,$sport);
+        $unModele->setTable("sport_detaille"); //on pointe vers la table
+        $resultats = $unModele->selectWhere("*",$champ,$sport);
+        include ('Src/Vue/Sport_detail.php');
+        break;
+
+    case strstr($page,"Athlete_"):
+        $athlete = str_replace("Athlete_","",$page);
+        $champ = 'Libelle_sport';
+        $unModele->setTable("sport_detaille"); //on pointe vers la table
+        $resultats = $unModele->selectWhere("*",$champ,$sport);
+        include ('Src/Vue/Sport_detail.php');
         break;
 
     case "galerie":
