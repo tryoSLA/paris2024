@@ -77,13 +77,7 @@ switch ($page)
         break;
 
     case strstr($page,"Athlete_"):
-        $athlete = str_replace("Athlete_","",$page);//split
-        $tableau = explode("_", $athlete);
-        //echo $tableau[0]."__".$tableau[1];
-        $where = " WHERE prenom = '".$tableau[0]."' AND nom = '".$tableau[1]."'";
-        $unModele->setTable("athlete_detaille"); //on pointe vers la table
-        $resultats = $unModele->selectWhere("*",$where);
-        include ('Src/Vue/Athlete_detail.php');
+        $Controleur->details_athlete($unModele, $page);
         break;
 
     case "galerie":
