@@ -16,7 +16,7 @@ body
     height: 64px;
 }
 
-.nom_prenom
+.nom_prenom, .info_compl
 {
     margin-left: 20px;
 }
@@ -34,4 +34,21 @@ body
 {
     font-weight: bold;
     margin: 20px 20px 20px 0px;  /*Marge haut, droite, bas, gauche*/
+}
+.photo
+{
+    height: 230px;
+}
+.nom_prenom_athlete
+{
+    text-align: center;
+}
+.sport a:hover, .nom_prenom a, .pays a:hover
+{
+    color: black;
+}
+a:hover, .sport a, .nom_prenom a:hover, .pays a
+{
+    color: #54BBCF;
+    text-decoration: none;
 }

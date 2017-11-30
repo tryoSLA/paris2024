@@ -58,49 +58,32 @@ switch ($page)
         break;
 
     case "event":
-        echo "event";
         break;
 
     case "pays":
-        echo "pays";
-        $unModele->setTable("Pays"); //on pointe vers la table
-        $tab = array("Image_pays", "Libelle_pays");
-        $resultats = $unModele->selectChamps($tab);
-        include ('Src/Vue/Vue_pays.php');
+        $Controleur->pays($unModele);
         break;
 
     case "sport":
-        $unModele->setTable("Sport"); //on pointe vers la table
-        $tab = array("Image_sport", "Libelle_sport");
-        $resultats = $unModele->selectChamps($tab);
-        include ('Src/Vue/Vue_sports.php');
+        $Controleur->sports($unModele);
         break;
+
     case strstr($page,"Pays_"):
-        $pays = str_replace("Pays_","",$page);
-        $champ = 'Libelle_pays';
-        $unModele->setTable("pays"); //on pointe vers la table
-        $result = $unModele->selectWhere("Libelle_pays, Image_Pays, Description_Pays",$champ,$pays);
-        $unModele->setTable("pays_detaille"); //on pointe vers la table
-        $resultats = $unModele->selectWhere("*",$champ,$pays);
-        include ('Src/Vue/Pays_detail.php');
+        $Controleur->details_pays($unModele, $page);
         break;
 
     case strstr($page,"Sport_"):
-        $sport = str_replace("Sport_","",$page);
-        $champ = 'Libelle_sport';
-        $unModele->setTable("sport"); //on pointe vers la table
-        $result = $unModele->selectWhere("Libelle_sport, Image_sport, Description_sport",$champ,$sport);
-        $unModele->setTable("sport_detaille"); //on pointe vers la table
-        $resultats = $unModele->selectWhere("*",$champ,$sport);
-        include ('Src/Vue/Sport_detail.php');
+        $Controleur->details_sport($unModele, $page);
         break;
 
     case strstr($page,"Athlete_"):
-        $athlete = str_replace("Athlete_","",$page);
-        $champ = 'Libelle_sport';
-        $unModele->setTable("sport_detaille"); //on pointe vers la table
-        $resultats = $unModele->selectWhere("*",$champ,$sport);
-        include ('Src/Vue/Sport_detail.php');
+        $athlete = str_replace("Athlete_","",$page);//split
+        $tableau = explode("_", $athlete);
+        //echo $tableau[0]."__".$tableau[1];
+        $where = " WHERE prenom = '".$tableau[0]."' AND nom = '".$tableau[1]."'";
+        $unModele->setTable("athlete_detaille"); //on pointe vers la table
+        $resultats = $unModele->selectWhere("*",$where);
+        include ('Src/Vue/Athlete_detail.php');
         break;
 
     case "galerie":
