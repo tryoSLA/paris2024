@@ -27,16 +27,16 @@
                 if ($unResultat['Libelle_sport'] == $ancien_sport)
                 {
                     echo "<div class='row'>
-                            <div class='nom_prenom'>" .$unResultat['Prenom']." ".$unResultat['Nom']."</div>
+                            <div class='nom_prenom'><a href='index.php?page=Athlete_".$unResultat['Prenom']."_".$unResultat['Nom']."'>".$unResultat['Prenom']." ".$unResultat['Nom']."</a></div>
                         </div>";
                 }
                 else
                 {
-                    echo "<div class='row'><a href='index.php?page=Sport_".
+                    echo "<div class='row sport'><a href='index.php?page=Sport_".
                             $unResultat['Libelle_sport']. "'>".$unResultat['Libelle_sport']."</a>
                           </div>
                           <div class='row'>
-                            <div class='nom_prenom'>" .$unResultat['Prenom']." ".$unResultat['Nom']. "</div>
+                            <div class='nom_prenom'><a href='index.php?page=Athlete_".$unResultat['Prenom']."_".$unResultat['Nom']."'>".$unResultat['Prenom']." ".$unResultat['Nom']."</a></div>
                         </div>";
                 }
                 $ancien_sport = $unResultat['Libelle_sport'];

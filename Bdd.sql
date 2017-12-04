@@ -71,8 +71,9 @@ CREATE TABLE Evenement(
         Titre_event         Varchar (25) ,
         Description_event         TEXT (2500) NOT NULL ,
         Date_evenement      Date NOT NULL ,
+        Photo_evenement         VARCHAR(25),
         id_ville            Int NOT NULL ,
-        id_event_Type_event Int NOT NULL ,
+        id_type_event       Int NOT NULL ,
         PRIMARY KEY (id_event ) ,
         UNIQUE (Titre_event )
 )ENGINE=InnoDB;
@@ -167,9 +168,9 @@ CREATE TABLE Ville(
 #------------------------------------------------------------
 
 CREATE TABLE Type_event(
-        id_event int (11) Auto_increment  NOT NULL ,
+        id_type_event int (11) Auto_increment  NOT NULL ,
         Libelle_event  Varchar (25) NOT NULL ,
-        PRIMARY KEY (id_event )
+        PRIMARY KEY (id_type_event)
 )ENGINE=InnoDB;
 
 
@@ -240,7 +241,7 @@ ALTER TABLE Athlete ADD CONSTRAINT FK_Athlete_id_pays FOREIGN KEY (id_pays) REFE
 ALTER TABLE Athlete ADD CONSTRAINT FK_Athlete_id_equipe FOREIGN KEY (id_equipe) REFERENCES Equipe(id_equipe);
 ALTER TABLE Athlete ADD CONSTRAINT FK_Athlete_id_sport FOREIGN KEY (id_sport) REFERENCES Sport(id_sport);
 ALTER TABLE Evenement ADD CONSTRAINT FK_Evenement_id_ville FOREIGN KEY (id_ville) REFERENCES Ville(id_ville);
-ALTER TABLE Evenement ADD CONSTRAINT FK_Evenement_id_event_Type_event FOREIGN KEY (id_event_Type_event) REFERENCES Type_event(id_event);
+ALTER TABLE Evenement ADD CONSTRAINT FK_Evenement_id_type_event FOREIGN KEY (id_type_event) REFERENCES Type_event(id_type_event);
 ALTER TABLE Message ADD CONSTRAINT FK_Message_id_personne FOREIGN KEY (id_personne) REFERENCES Personne(id_personne);
 ALTER TABLE FluxRSS ADD CONSTRAINT FK_FluxRSS_id_event FOREIGN KEY (id_event) REFERENCES Evenement(id_event);
 ALTER TABLE Equipe ADD CONSTRAINT FK_Equipe_id_sport FOREIGN KEY (id_sport) REFERENCES Sport(id_sport);
@@ -411,6 +412,42 @@ call insert_athlete ('Leonardo','Bonucci',30,'Homme',1.90,NULL,'Leonardo_Bonucci
         poste de defenseur central à l\'AC Milan.',2,4,6);
 
 #------------------------------------------------------------
+# Insertion table lieu
+#------------------------------------------------------------
+
+insert into `Lieu`(`id_lieu`,`Libelle_lieu`) VALUES
+        (NULL,'Stade de France'), (NULL, 'Le Bourget'),(NULL, 'Tour Eiffel');
+
+#------------------------------------------------------------
+# Insertion table ville
+#------------------------------------------------------------
+
+insert into `Ville`(`id_ville`,`Libelle_ville`) VALUES
+        (NULL,'Saint-Denis'), (NULL, 'Paris'),(NULL, 'Le Bourget');
+
+
+
+#------------------------------------------------------------
+# Insertion table event
+#------------------------------------------------------------
+
+insert into `Type_event`(`id_type_event`, `Libelle_event`) VALUES
+        (NULL,'Sportif'), (NULL, 'Administratif'),(NULL, 'Presentatif');
+
+#------------------------------------------------------------
+# Insertion table event
+#------------------------------------------------------------
+
+insert into `Evenement`(`id_event`, `Titre_event`, `Description_event`, `Date_evenement`, `Photo_evenement`,`id_ville`, `id_type_event`) VALUES
+        (NULL,'Presentation des amenagements', 'À proximité du village olympique sera construit le centre aquatique.
+        Relié au Stade de France par une passerelle, il pourra accueillir jusqu''à 15 000 spectateurs durant la période olympique.
+        À la fin de la compétition, cela restera une piscine pour les habitants des quartiers environnements et les écolier', '2018-03-18', 'photo_event_1.jpg',2,3),
+        (NULL, 'Cérémonie d\'ouverture des JO', 'La cérémonie d\'ouverture des JO aura lieu le 2 août au stade de France','2024-08-02', 'photo_event_2.jpg',1,3);
+
+
+
+
+#------------------------------------------------------------
 # Vue pays detaille
 #------------------------------------------------------------
 
@@ -435,8 +472,6 @@ CREATE VIEW sport_detaille AS
 #------------------------------------------------------------
 
 CREATE VIEW athlete_detaille AS
-  SELECT Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Pays.Libelle_pays, Athlete.Biographie, Athlete.Poids,Athlete.Taille, Sport.Libelle_sport
+  SELECT Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Pays.Libelle_pays, Athlete.Photo, Athlete.Biographie, Athlete.Poids,Athlete.Taille, Sport.Libelle_sport
   FROM Personne,Athlete, Sport, Pays
   WHERE Sport.id_sport = Athlete.id_sport AND Pays.id_pays = Athlete.id_pays AND  Personne.id_personne = Athlete.id_personne;
-
-#SELECT * from athlete_detaille WHERE athlete_detaille.Libelle_sport = 'Judo'
