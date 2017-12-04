@@ -49,10 +49,6 @@ else
 
 switch ($page)
 {
-    case "inscription":
-        $Controleur->inscription();
-        break;
-
     case "accueil":
         $Controleur->accueil();
         break;

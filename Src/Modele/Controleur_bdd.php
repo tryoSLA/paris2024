@@ -66,6 +66,20 @@ class Modele
             return null;
         }
     }
+    public function insertOne($selection,$tab)
+    {
+        if ($this->pdo != null)
+        {
+            $champs = implode("\",\"",$tab);
+            $requete = "INSERT INTO ".$selection." VALUES (NULL,".$champs." )";
+            $select = $this->pdo->prepare($requete);
+            $select->execute();
+        }
+        else
+        {
+            return null;
+        }
+    }
 
 }
 
