@@ -14,18 +14,6 @@ class Controleur
     public function inscription()
     {
         include ('Src/Form/Form_inscription.php');
-
-        if (isset($_POST['connexion'])) {
-            $firstName = $_POST["firstName"];
-            $lastName = $_POST["lastName"];
-            $age = $_POST["age"];
-            $mail = $_POST["mail"];
-            $pseudo = $_POST["pseudo"];
-            $password1 = $_POST["password1"];
-            $password2 = $_POST["password2"];
-
-            inscription($mail, $password1,$password2, $firstName, $age, $pseudo, $lastName);
-        }
     }
 
     public function accueil()

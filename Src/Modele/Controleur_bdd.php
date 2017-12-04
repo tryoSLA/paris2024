@@ -66,14 +66,15 @@ class Modele
             return null;
         }
     }
-    public function insertOne($selection,$tab)
+
+    public function insertOne($tab)
     {
         if ($this->pdo != null)
         {
-            $champs = implode("\",\"",$tab);
-            $requete = "INSERT INTO ".$selection." VALUES (NULL,".$champs." )";
+            $requete = "call insert_user (".$tab.");";
             $select = $this->pdo->prepare($requete);
             $select->execute();
+            echo $requete;
         }
         else
         {

@@ -1,11 +1,14 @@
 <!-- formulaire d'inscription -->
-<inscription>
-    <div class="container-fluid">
-        <div class="row d-flex align-items-center justify-content-center">
-            <h2>Inscription</h2>
+<div class="container-fluid">
+    <br>
+    <div class="card">
+        <div class="card-block">
+            <center>
+                <h2>Inscription</h2>
+            </center>
         </div>
         <br>
-        <form>
+        <form method="POST" action="inscription.php">
             <!-- entrees form -->
             <div class="row">
                 <!-- premiere colonne du form -->
@@ -32,18 +35,20 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <center>
+                        <label class="col-sm-3" for="age">Genre</label>
+                        <div class="col-sm-8">
                             <div class="form-group">
 
-                                <select class="form-control" id="exampleSelect1">
-                                    <option>Homme</option>
-                                    <option>Femme</option>
+                                <select class="form-control" id="exampleSelect1" name="genre">
+                                    <option value="Homme">Homme</option>
+                                    <option value="Homme">Femme</option>
                                     <i class="fa fa-male" aria-hidden="true"></i>
                                     <i class="fa fa-female" aria-hidden="true"></i>
                                 </select>
                             </div>
+                        </div>
                     </div>
-                    </center>
+
                 </div>
                 <!-- deuxieme colonne du form -->
                 <div class="col-sm-6">
@@ -77,6 +82,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- boutons form -->
             <div class="row">
                 <div class="col-sm-12">
@@ -86,10 +92,7 @@
                     </center>
                 </div>
             </div>
+            <br>
         </form>
     </div>
-</inscription>
-
-<?php
-
-?>
+</div>

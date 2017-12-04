@@ -1,6 +1,8 @@
 <?php
 include ('Src/Controleur/Controleur.php');
-$Controleur = new Controleur()
+$Controleur = new Controleur();
+include ('Src/Modele/Controleur_bdd.php');
+$unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -30,6 +32,38 @@ $Controleur = new Controleur()
 <?php
 $Controleur->header2();
 $Controleur->inscription();
+
+if (isset($_POST['inscription'])) {
+    $firstName = $_POST["firstName"];
+    $lastName = $_POST["lastName"];
+    $age = $_POST["age"];
+    $genre = $_POST["genre"];
+    $mail = $_POST["mail"];
+    $pseudo = $_POST["pseudo"];
+    $password1 = $_POST["password1"];
+    $password2 = $_POST["password2"];
+
+    $verifMail = $unModele->selectWhere("email", $mail);
+    if ($password1 == $password2 && strlen($password2) <= 8){
+        if ($verifMail = null){
+            $tab = "'".$firstName."','".$lastName."',".$age.",'".$genre."','".$mail."','".$pseudo."','".md5($password1)."'";
+            $unModele->insertOne($tab);
+        }
+        echo "<br><div class=\"alert alert-danger\" role=\"alert\">
+<center>
+  <strong>Erreur !</strong> Email déjà utilisé
+  </center>
+</div>";
+    }
+    else{
+        echo "<br><div class=\"alert alert-danger\" role=\"alert\">
+<center>
+  <strong>Erreur !</strong> Le mots de passe est invalide ou n'est pas identique.
+  </center>
+</div>";
+    }
+
+}
 ?>
 </body>
 </html>
