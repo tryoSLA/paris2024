@@ -21,8 +21,11 @@ class Controleur
         include ('Src/Vue/Accueil.php');
     }
 
-    public function event()
+    public function event($unModele)
     {
+        $unModele->setTable("evenement");
+        $tab = array("Titre_event","Description_event","Date_evenement","Photo_evenement","id_ville", "id_type_event");
+        $resultats = $unModele->selectChamps($tab);
         include ('Src/Vue/Evenement.php');
     }
 
