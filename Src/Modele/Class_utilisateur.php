@@ -40,7 +40,16 @@
 			return $tab;
 
 		}
+
+        public function inscription($mail, $password1, $nom, $prenom, $pseudo, $db_connection)
+        {
+
+
+
+        }
+
 		//Getter__setter
+
 		public function getNom()
 		{
 			return $this->nom;

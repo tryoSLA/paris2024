@@ -67,6 +67,21 @@ class Modele
         }
     }
 
+    public function insertOne($tab)
+    {
+        if ($this->pdo != null)
+        {
+            $requete = "call insert_user (".$tab.");";
+            $select = $this->pdo->prepare($requete);
+            $select->execute();
+            echo $requete;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
 }
 
 

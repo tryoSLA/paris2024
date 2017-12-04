@@ -1,7 +1,7 @@
 <?php
 include ('Src/Controleur/Controleur.php');
 include ('Src/Function/Rss.php');
-require ('Src/Modele/Controleur_bdd.php');
+include ('Src/Modele/Controleur_bdd.php');
 $Controleur = new Controleur();
 $unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
 
@@ -13,9 +13,6 @@ $unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
     <title>Paris 2024</title>
     <link rel="icon" type="image/png" href="Web/Images/Profile_site/Logo_paris_2024_simple.png" />
     <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="favicon.ico" /><![endif]-->
-
-
-
 
     <!--css bootstrap -->
     <link rel="stylesheet" href="Web/Css/Bootstrap/css/bootstrap.css">
@@ -49,10 +46,6 @@ else
 
 switch ($page)
 {
-    case "inscription":
-        $Controleur->inscription();
-        break;
-
     case "accueil":
         $Controleur->accueil();
         break;
@@ -90,7 +83,7 @@ switch ($page)
         break;
 
     case "NAN":
-        echo " ";
+        $Controleur->accueil();
         break;
 }
 ?>

@@ -9,9 +9,9 @@ USE paris_2024;
 #------------------------------------------------------------
 
 CREATE TABLE Utilisateur(
-        Email       Varchar (25) NOT NULL ,
-        Pseudo      Varchar (25) NOT NULL ,
-        Mot_passe   Varchar (25) NOT NULL ,
+        email       Varchar (255) NOT NULL ,
+        pseudo      Varchar (25) NOT NULL ,
+        mot_de_passe   Varchar (255) NOT NULL ,
         id_personne Int NOT NULL ,
         PRIMARY KEY (id_personne )
 )ENGINE=InnoDB;
@@ -284,6 +284,21 @@ BEGIN
 END |
 DELIMITER ;
 
+#------------------------------------------------------------
+# Procedure insertion table utilisateur
+#------------------------------------------------------------
+
+DELIMITER |
+CREATE PROCEDURE insert_user (IN nom varchar(25), prenom VARCHAR(25),
+                                    Age int, genre varchar (25), email varchar (255), pseudo varchar (25), mot_de_passe varchar (255))
+
+        BEGIN
+                INSERT INTO `Personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
+                #SELECT id_personne INTO @idp FROM personne WHERE nom =@nom and prenom = @prenom;
+                INSERT INTO `Utilisateur` (`email`, `pseudo`, `mot_de_passe`, `id_personne`)
+                VALUES (email, pseudo, mot_de_passe, last_insert_id());
+        END |
+DELIMITER ;
 
 #------------------------------------------------------------
 # Insertion table sport
