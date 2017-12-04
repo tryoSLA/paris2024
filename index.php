@@ -51,6 +51,7 @@ switch ($page)
         break;
 
     case "event":
+        $Controleur->event($unModele);
         break;
 
     case "pays":

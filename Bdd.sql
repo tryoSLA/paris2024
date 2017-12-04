@@ -68,7 +68,7 @@ CREATE TABLE Athlete(
 
 CREATE TABLE Evenement(
         id_event            int (11) Auto_increment  NOT NULL ,
-        Titre_event         Varchar (25) ,
+        Titre_event         Varchar (250) ,
         Description_event         TEXT (2500) NOT NULL ,
         Date_evenement      Date NOT NULL ,
         Photo_evenement         VARCHAR(25),
@@ -427,19 +427,19 @@ call insert_athlete ('Leonardo','Bonucci',30,'Homme',1.90,NULL,'Leonardo_Bonucci
         poste de defenseur central à l\'AC Milan.',2,4,6);
 
 #------------------------------------------------------------
-# Insertion table lieu
-#------------------------------------------------------------
-
-insert into `Lieu`(`id_lieu`,`Libelle_lieu`) VALUES
-        (NULL,'Stade de France'), (NULL, 'Le Bourget'),(NULL, 'Tour Eiffel');
-
-#------------------------------------------------------------
 # Insertion table ville
 #------------------------------------------------------------
 
 insert into `Ville`(`id_ville`,`Libelle_ville`) VALUES
         (NULL,'Saint-Denis'), (NULL, 'Paris'),(NULL, 'Le Bourget');
 
+
+#------------------------------------------------------------
+# Insertion table lieu
+#------------------------------------------------------------
+
+insert into `Lieu`(`id_lieu`,`Libelle_lieu`, `id_ville`) VALUES
+        (NULL,'Stade de France',1), (NULL, 'Le Bourget',3),(NULL, 'Tour Eiffel',2);
 
 
 #------------------------------------------------------------
