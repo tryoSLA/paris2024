@@ -13,7 +13,7 @@
             <div class="col-sm-2 align-items-center justify-content-center">
                 <div class="btn-group">
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Connexion">
-                        Connexion
+                        Connexion <i class="fa fa-sign-in" aria-hidden="true"></i>
                     </button>
                     <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="sr-only">Toggle Dropdown</span>
@@ -53,15 +53,15 @@
                 <div class="modal-body">
                     <div class="input-group margin-bottom-sm">
                         <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-                        <input class="form-control" type="text" placeholder="Email address">
+                        <input class="form-control" type="text" placeholder="E-mail">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
-                        <input class="form-control" type="password" placeholder="Password">
+                        <input class="form-control" type="password" placeholder="Mot de passe">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="inscription.php">inscription</a>
+                    <a href="inscription.php">Inscription</a>
                     <button type="submit" class="btn-sm btn-success" name="connexion">Connexion</button>
                 </div>
             </div>
