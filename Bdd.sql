@@ -435,7 +435,7 @@ CREATE VIEW sport_detaille AS
 #------------------------------------------------------------
 
 CREATE VIEW athlete_detaille AS
-  SELECT Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Pays.Libelle_pays, Athlete.Biographie, Athlete.Poids,Athlete.Taille, Sport.Libelle_sport
+  SELECT Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Pays.Libelle_pays, Athlete.Photo, Athlete.Biographie, Athlete.Poids,Athlete.Taille, Sport.Libelle_sport
   FROM Personne,Athlete, Sport, Pays
   WHERE Sport.id_sport = Athlete.id_sport AND Pays.id_pays = Athlete.id_pays AND  Personne.id_personne = Athlete.id_personne;
 
