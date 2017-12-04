@@ -43,10 +43,9 @@
 
         public function inscription($mail, $password1, $nom, $prenom, $pseudo, $db_connection)
         {
-            $requete = "INSERT INTO utilisateur VALUES (NULL, '" . $nom . "', '"  . $prenom .  "', '"  . $pseudo .  "', '"  .  $mail .  "', '" . md5($password1) . "' );";
-            // execution de la requte avec des résultats
-            $req = mysqli_query($db_connection, $requete) or die('Erreur SQL !<br />' . $requete . '<br />' . mysqli_error($db_connection));
-            header('Location:index.php');
+
+
+
         }
 
 		//Getter__setter
