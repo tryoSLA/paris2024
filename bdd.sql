@@ -85,11 +85,13 @@ CREATE TABLE Evenement(
 
 CREATE TABLE FluxRSS(
         id_flux  int (11) Auto_increment  NOT NULL ,
-        Lien     varchar (1500) NOT NULL ,
-        Titre    Varchar (250) NOT NULL ,
-        id_event Int NOT NULL ,
+        Rss     TEXT (1255)  ,
+        Lien     VARCHAR (255) ,
+        Titre    TEXT (1255) ,
+        Description    TEXT (2550),
+        Date    DATETIME NOT NULL ,
         PRIMARY KEY (id_flux ) ,
-        UNIQUE (Lien ,Titre )
+        UNIQUE (Lien)
 )ENGINE=InnoDB;
 
 
@@ -184,7 +186,6 @@ ALTER TABLE Athlete ADD CONSTRAINT FK_Athlete_id_equipe FOREIGN KEY (id_equipe) 
 ALTER TABLE Athlete ADD CONSTRAINT FK_Athlete_id_sport FOREIGN KEY (id_sport) REFERENCES Sport(id_sport);
 ALTER TABLE Evenement ADD CONSTRAINT FK_Evenement_id_ville FOREIGN KEY (id_ville) REFERENCES Ville(id_ville);
 ALTER TABLE Evenement ADD CONSTRAINT FK_Evenement_id_type_event FOREIGN KEY (id_type_event) REFERENCES Type_event(id_type_event);
-ALTER TABLE FluxRSS ADD CONSTRAINT FK_FluxRSS_id_event FOREIGN KEY (id_event) REFERENCES Evenement(id_event);
 ALTER TABLE Equipe ADD CONSTRAINT FK_Equipe_id_sport FOREIGN KEY (id_sport) REFERENCES Sport(id_sport);
 ALTER TABLE Lieu ADD CONSTRAINT FK_Lieu_id_ville FOREIGN KEY (id_ville) REFERENCES Ville(id_ville);
 ALTER TABLE Avoir_lieu ADD CONSTRAINT FK_Avoir_lieu_id_sport FOREIGN KEY (id_sport) REFERENCES Sport(id_sport);
@@ -334,7 +335,11 @@ INSERT INTO `Pays` (`id_pays`, `Libelle_pays`, `Image_pays`, `Description_pays`)
         En son acception politique, ce toponyme désigne l\'Angleterre, le pays de Galles et l\'Écosse ainsi que la plupart des territoires insulaires contigus à l\'exclusion de
         l\'Île de Man et des Îles Anglo-Normandes. Située à la jonction de l\'Atlantique et de la mer du Nord, elle est séparée de l\'Irlande par la mer d\'Irlande et du continent
         par la Manche. C\'est la plus grande île et la plus peuplée du continent européen.');
+#------------------------------------------------------------
+# Insert athlete
+#------------------------------------------------------------
 
+call insert_user ('demo','demo',19,'Homme','demo','demo','fe01ce2a7fbac8fafaed7c982a04e229');
 #------------------------------------------------------------
 # Insert athlete
 #------------------------------------------------------------

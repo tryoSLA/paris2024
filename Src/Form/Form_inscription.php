@@ -8,7 +8,7 @@
             </center>
         </div>
         <br>
-        <form method="POST" action="inscription.php">
+        <form method="POST" action="index.php">
             <!-- entrees form -->
             <div class="row">
                 <!-- premiere colonne du form -->

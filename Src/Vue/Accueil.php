@@ -1,34 +1,35 @@
 <?php
 $Controleur = new Controleur();
+$unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
 ?>
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-5">News</h1>
-        <p class="lead">Retrouvez toute l'actualité sur les jeux de 2024.</p>
-    </div>
-</div>
+<nav class="navbar sticky-top navbar-inverse justify-content-center" style="background-color: #3e3e88;">
+    <a class="navbar-brand" href="" style="color:white">
+        <i class="fa fa-newspaper-o" aria-hidden="true"></i> News <i class="fa fa-twitter-square" aria-hidden="true"></i>
+    </a>
+</nav>
+<br>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6 journaux" >
             <center>
                 <h3 class="card-title"><u>Journaux</u></h3>
-                <h4 class="card-title"><i class="fa fa-newspaper-o" aria-hidden="true"></i></h4>
             </center>
             <div class="row">
                 <?php
-                $Controleur->rssAfficher("https://news.google.com/news/rss/search/section/q/paris%202024/paris%202024?hl=fr&gl=FR&ned=fr");
+//                $Controleur->rssAfficher("https://news.google.com/news/rss/search/section/q/paris%202024/paris%202024?hl=fr&gl=FR&ned=fr");
+                $Controleur->afficherArticle($unModele, "https://news.google.com/news/rss/search/section/q/paris%202024/paris%202024?hl=fr&gl=FR&ned=fr");
+
                 ?>
             </div>
         </div>
         <div class="col-sm-6 reseaux">
             <center>
-                <h3 class="card-title"><u>Réseaux Sociaux</u></h3>
-                <h4 class="card-title">
-                    <i class="fa fa-twitter-square" aria-hidden="true"></i></h4>
+                <h3 class="card-title"><u>Twitter</u></h3>
             </center>
             <div class="row">
                 <?php
-                $Controleur->rssAfficher("https://queryfeed.net/twitter?q=%23paris2024&title-type=tweet-text-full&geocode=");
+//                $Controleur->rssAfficher("https://queryfeed.net/twitter?q=%23paris2024&title-type=tweet-text-full&geocode=");
+                $Controleur->afficherArticle($unModele, "https://queryfeed.net/twitter?q=%23paris2024&title-type=tweet-text-full&geocode=");
                 ?>
             </div>
         </div>

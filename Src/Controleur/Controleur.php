@@ -125,5 +125,53 @@ class Controleur
             echo $erreur;
         }
     }
+
+    public function saveArticle($urlJournal, $unModele, $con)
+    {
+        $unModele->setTable("FluxRSS");
+        $url = $urlJournal;
+        $rss = simplexml_load_file($url);
+        $i = 0;
+        foreach ($rss->channel->item as $item) {
+            $datetime = date_create($item->pubDate);
+            $date = date_format($datetime, "Y/m/d H:i:s");
+            $title = $item->title;
+            $link = $item->link;
+            $description = $item->description;
+            $desc = mysqli_real_escape_string($con, $description);
+            $titre = mysqli_real_escape_string($con, $title);
+            $i++;
+            $value = 'NULL, "'.$urlJournal.'", "'.$link.'", "'.$titre.'", "'.$desc.'", "'.$date.'"';
+            $unModele->insert($value);
+        }
+    }
+
+    public function afficherArticle($unModele, $rss)
+    {
+        $where = " WHERE rss = '".$rss."'";
+        $unModele->setTable("fluxrss"); //on pointe vers la table
+        $resultat = $unModele->selectWhere("Lien, Titre, Description, Date",$where);
+
+        foreach ($resultat as $unResultat)
+        {
+            $link = $unResultat['Lien'];
+            echo "
+            <div class=\"col-sm-12\" style='margin-bottom: 10px '>
+                <div class='card card-block h-100 justify-content-center'>
+                    <div class='card-block'>
+                    <center>
+                    <br>
+                        <h5 class='card-title'><a href='$link'>" .$unResultat['Description']  . "</a></h5>
+                        " . $unResultat['Date'] . "<a href='$link'>
+                        <br>
+                        <small>Lien</small></a><br>
+                        <br>
+                     </center>
+                    </div>
+                </div>
+            </div>
+            ";
+        }
+    }
 }
 ?>
