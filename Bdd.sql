@@ -78,19 +78,6 @@ CREATE TABLE Evenement(
         UNIQUE (Titre_event )
 )ENGINE=InnoDB;
 
-
-#------------------------------------------------------------
-# Table: Message
-#------------------------------------------------------------
-
-CREATE TABLE Message(
-        id_message  int (11) Auto_increment  NOT NULL ,
-        Message     TEXT (500) NOT NULL ,
-        id_personne Int NOT NULL ,
-        PRIMARY KEY (id_message )
-)ENGINE=InnoDB;
-
-
 #------------------------------------------------------------
 # Table: FluxRSS
 #------------------------------------------------------------
@@ -116,29 +103,6 @@ CREATE TABLE Equipe(
         id_sport          Int NOT NULL ,
         PRIMARY KEY (id_equipe )
 )ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table: Collectif
-#------------------------------------------------------------
-
-CREATE TABLE Collectif(
-        Nb_equipe Int NOT NULL ,
-        id_sport  Int NOT NULL ,
-        PRIMARY KEY (id_sport )
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table: Individuel
-#------------------------------------------------------------
-
-CREATE TABLE Individuel(
-        Nb_joueur Int ,
-        id_sport  Int NOT NULL ,
-        PRIMARY KEY (id_sport )
-)ENGINE=InnoDB;
-
 
 #------------------------------------------------------------
 # Table: Lieu
@@ -200,17 +164,6 @@ CREATE TABLE Avoir_lieu(
 
 
 #------------------------------------------------------------
-# Table: Recevoir
-#------------------------------------------------------------
-
-CREATE TABLE Recevoir(
-        id_message  Int NOT NULL ,
-        id_personne Int NOT NULL ,
-        PRIMARY KEY (id_message ,id_personne )
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
 # Table: inscrire
 #------------------------------------------------------------
 
@@ -222,19 +175,6 @@ CREATE TABLE Inscrire(
 )ENGINE=InnoDB;
 
 
-#------------------------------------------------------------
-# Table: Commenter
-#------------------------------------------------------------
-
-CREATE TABLE Commenter(
-        dateComment Date ,
-        contenu     Varchar (200) ,
-        note        Int ,
-        id_event    Int NOT NULL ,
-        id_personne Int NOT NULL ,
-        PRIMARY KEY (id_event ,id_personne )
-)ENGINE=InnoDB;
-
 ALTER TABLE Utilisateur ADD CONSTRAINT FK_Utilisateur_id_personne FOREIGN KEY (id_personne) REFERENCES Personne(id_personne);
 ALTER TABLE Athlete ADD CONSTRAINT FK_Athlete_id_personne FOREIGN KEY (id_personne) REFERENCES Personne(id_personne);
 ALTER TABLE Athlete ADD CONSTRAINT FK_Athlete_id_pays FOREIGN KEY (id_pays) REFERENCES Pays(id_pays);
@@ -242,20 +182,13 @@ ALTER TABLE Athlete ADD CONSTRAINT FK_Athlete_id_equipe FOREIGN KEY (id_equipe) 
 ALTER TABLE Athlete ADD CONSTRAINT FK_Athlete_id_sport FOREIGN KEY (id_sport) REFERENCES Sport(id_sport);
 ALTER TABLE Evenement ADD CONSTRAINT FK_Evenement_id_ville FOREIGN KEY (id_ville) REFERENCES Ville(id_ville);
 ALTER TABLE Evenement ADD CONSTRAINT FK_Evenement_id_type_event FOREIGN KEY (id_type_event) REFERENCES Type_event(id_type_event);
-ALTER TABLE Message ADD CONSTRAINT FK_Message_id_personne FOREIGN KEY (id_personne) REFERENCES Personne(id_personne);
 ALTER TABLE FluxRSS ADD CONSTRAINT FK_FluxRSS_id_event FOREIGN KEY (id_event) REFERENCES Evenement(id_event);
 ALTER TABLE Equipe ADD CONSTRAINT FK_Equipe_id_sport FOREIGN KEY (id_sport) REFERENCES Sport(id_sport);
-ALTER TABLE Collectif ADD CONSTRAINT FK_Collectif_id_sport FOREIGN KEY (id_sport) REFERENCES Sport(id_sport);
-ALTER TABLE Individuel ADD CONSTRAINT FK_Individuel_id_sport FOREIGN KEY (id_sport) REFERENCES Sport(id_sport);
 ALTER TABLE Lieu ADD CONSTRAINT FK_Lieu_id_ville FOREIGN KEY (id_ville) REFERENCES Ville(id_ville);
 ALTER TABLE Avoir_lieu ADD CONSTRAINT FK_Avoir_lieu_id_sport FOREIGN KEY (id_sport) REFERENCES Sport(id_sport);
 ALTER TABLE Avoir_lieu ADD CONSTRAINT FK_Avoir_lieu_id_lieu FOREIGN KEY (id_lieu) REFERENCES Lieu(id_lieu);
-ALTER TABLE Recevoir ADD CONSTRAINT FK_Recevoir_id_message FOREIGN KEY (id_message) REFERENCES Message(id_message);
-ALTER TABLE Recevoir ADD CONSTRAINT FK_Recevoir_id_personne FOREIGN KEY (id_personne) REFERENCES Personne(id_personne);
 ALTER TABLE inscrire ADD CONSTRAINT FK_inscrire_id_personne FOREIGN KEY (id_personne) REFERENCES Personne(id_personne);
 ALTER TABLE inscrire ADD CONSTRAINT FK_inscrire_id_event FOREIGN KEY (id_event) REFERENCES Evenement(id_event);
-ALTER TABLE Commenter ADD CONSTRAINT FK_Commenter_id_event FOREIGN KEY (id_event) REFERENCES Evenement(id_event);
-ALTER TABLE Commenter ADD CONSTRAINT FK_Commenter_id_personne FOREIGN KEY (id_personne) REFERENCES Personne(id_personne);
 
 #------------------------------------------------------------
 # Creation de l'utilisateur
@@ -278,7 +211,6 @@ CREATE PROCEDURE insert_athlete (IN nom varchar(25), prenom VARCHAR(25),
   biographie text (1000),id_pays int, id_equipe int, id_sport int)
 BEGIN
   INSERT INTO `Personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
-  #SELECT id_personne INTO @idp FROM personne WHERE nom =@nom and prenom = @prenom;
   INSERT INTO Athlete (`Taille`, `Poids`, `Photo`, `Biographie`,`id_personne`,`id_pays`,`id_equipe`,`id_sport`)
   VALUES (taille,poids,photo,biographie,last_insert_id(),id_pays,id_equipe,id_sport);
 END |
@@ -289,15 +221,12 @@ DELIMITER ;
 #------------------------------------------------------------
 
 DELIMITER |
-CREATE PROCEDURE insert_user (IN nom varchar(25), prenom VARCHAR(25),
-                                    Age int, genre varchar (25), email varchar (255), pseudo varchar (25), mot_de_passe varchar (255))
-
-        BEGIN
-                INSERT INTO `Personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
-                #SELECT id_personne INTO @idp FROM personne WHERE nom =@nom and prenom = @prenom;
-                INSERT INTO `Utilisateur` (`email`, `pseudo`, `mot_de_passe`, `id_personne`)
-                VALUES (email, pseudo, mot_de_passe, last_insert_id());
-        END |
+CREATE PROCEDURE insert_user (IN nom varchar(25), prenom VARCHAR(25), Age int, genre varchar (25), email varchar (255), pseudo varchar (25), mot_de_passe varchar (255))
+BEGIN
+        INSERT INTO `Personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
+        INSERT INTO `Utilisateur` (`email`, `pseudo`, `mot_de_passe`, `id_personne`)
+        VALUES (email, pseudo, mot_de_passe, last_insert_id());
+END |
 DELIMITER ;
 
 #------------------------------------------------------------
@@ -457,7 +386,8 @@ insert into `Evenement`(`id_event`, `Titre_event`, `Description_event`, `Date_ev
         (NULL,'Presentation des amenagements', 'À proximité du village olympique sera construit le centre aquatique.
         Relié au Stade de France par une passerelle, il pourra accueillir jusqu''à 15 000 spectateurs durant la période olympique.
         À la fin de la compétition, cela restera une piscine pour les habitants des quartiers environnements et les écolier', '2018-03-18', 'photo_event_1.jpg',2,3),
-        (NULL, 'Cérémonie d\'ouverture des JO', 'La cérémonie d\'ouverture des JO aura lieu le 2 août au stade de France','2024-08-02', 'photo_event_2.jpg',1,3);
+        (NULL, 'Cérémonie d\'ouverture des JO', 'La cérémonie d\'ouverture des JO aura lieu le 2 août au stade de France','2024-08-02', 'photo_event_2.jpg',1,3),
+        (NULL, 'Célébration des JO', 'Célébration des JO - Descritpion à venir ..','2024-08-02', 'photo_event_3.jpg',1,3);
 
 
 
