@@ -4,7 +4,7 @@ include ('Src/Function/Rss.php');
 include ('Src/Modele/Controleur_bdd.php');
 $Controleur = new Controleur();
 $unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
-
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -31,10 +31,17 @@ $unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
 
 <?php
 $Controleur->header();
+//if (isset($_SESSION['nom'])) {
+//    echo $_SESSION['nom'];
+//}
+
+if (isset($_POST['connexion'])) {
+    $mail = $_POST["mail"];
+    $password = $_POST["pass"];
+    $Controleur->connexion($mail, $password, $unModele);
+}
 
 //Switch menu
-
-
 if (isset($_GET['page']))
 {
     $page = $_GET['page'];
@@ -86,6 +93,8 @@ switch ($page)
         $Controleur->accueil();
         break;
 }
+
+
 ?>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -9,21 +9,29 @@
             <div class="col-sm-8 d-flex align-items-center justify-content-center">
                 <a href="index.php" id="titre">Tout Paris 2024 !</a>
             </div>
-
-            <div class="col-sm-2 align-items-center justify-content-center">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Connexion">
-                        Connexion <i class="fa fa-sign-in" aria-hidden="true"></i>
+            <?php
+            if (!isset($_SESSION['nom'])) {
+                echo "<div class=\"col-sm-2 align-items-center justify-content-center\">
+                <div class=\"btn-group\">
+                    <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#Connexion\">
+                        Connexion <i class=\"fa fa-sign-in\" aria-hidden=\"true\"></i>
                     </button>
-                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
+                    <button type=\"button\" class=\"btn btn-danger dropdown-toggle dropdown-toggle-split\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
+                        <span class=\"sr-only\">Toggle Dropdown</span>
                     </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="inscription.php">Inscription</a>
+                    <div class=\"dropdown-menu\">
+                        <a class=\"dropdown-item\" href=\"inscription.php\">Inscription</a>
 
                     </div>
                 </div>
-            </div>
+            </div>";
+            }else{
+                echo "<a href=\"deconnexion.php\">
+                    <button class=\"btn btn-danger\"><i class=\"fa fa-sign-out\" aria-hidden=\"true\"></i></button>
+                </a>";
+            }
+                ?>
+
             <!-- menu -->
             <nav id="menu">
                 <ul>
@@ -40,8 +48,7 @@
 </header>
 <div class="modal fade" id="Connexion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
      aria-hidden="true">
-    <form>
-
+    <form method="POST" action="index.php">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -53,11 +60,11 @@
                 <div class="modal-body">
                     <div class="input-group margin-bottom-sm">
                         <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-                        <input class="form-control" type="text" placeholder="E-mail">
+                        <input class="form-control" name="mail" type="text" placeholder="E-mail">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
-                        <input class="form-control" type="password" placeholder="Mot de passe">
+                        <input class="form-control" name="pass" type="password" placeholder="Mot de passe">
                     </div>
                 </div>
                 <div class="modal-footer">
