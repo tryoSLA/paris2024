@@ -197,27 +197,27 @@ ALTER TABLE Inscrire ADD CONSTRAINT FK_Inscrire_id_event FOREIGN KEY (id_event) 
 #------------------------------------------------------------
 
 CREATE VIEW pays_detaille AS
-  SELECT Pays.Libelle_pays, Pays.Description_pays, Pays.Image_pays, Sport.Libelle_sport, Personne.Nom, Personne.Prenom
-  FROM Sport,Personne, Pays, Athlete
-  WHERE Athlete.id_pays = Pays.id_pays and Athlete.id_sport = Sport.id_sport and Athlete.id_personne = Personne.id_personne;
+        SELECT Pays.Libelle_pays, Pays.Description_pays, Pays.Image_pays, Sport.Libelle_sport, Personne.Nom, Personne.Prenom
+        FROM Sport,Personne, Pays, Athlete
+        WHERE Athlete.id_pays = Pays.id_pays and Athlete.id_sport = Sport.id_sport and Athlete.id_personne = Personne.id_personne;
 
 #------------------------------------------------------------
 # Vue sport detaille
 #------------------------------------------------------------
 
 CREATE VIEW sport_detaille AS
-  SELECT Sport.Libelle_sport, Sport.Description_sport, Sport.Image_sport, Pays.Libelle_pays, Personne.Nom, Personne.Prenom
-  FROM Pays, Personne, Sport, Athlete
-  WHERE Athlete.id_personne = Personne.id_personne AND Athlete.id_pays = Pays.id_pays AND Athlete.id_sport = Sport.id_sport;
+        SELECT Sport.Libelle_sport, Sport.Description_sport, Sport.Image_sport, Pays.Libelle_pays, Personne.Nom, Personne.Prenom
+        FROM Pays, Personne, Sport, Athlete
+        WHERE Athlete.id_personne = Personne.id_personne AND Athlete.id_pays = Pays.id_pays AND Athlete.id_sport = Sport.id_sport;
 
 #------------------------------------------------------------
 # Vue athlete detaille
 #------------------------------------------------------------
 
 CREATE VIEW athlete_detaille AS
-  SELECT Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Pays.Libelle_pays, Athlete.Photo, Athlete.Biographie, Athlete.Poids,Athlete.Taille, Sport.Libelle_sport
-  FROM Personne,Athlete, Sport, Pays
-  WHERE Sport.id_sport = Athlete.id_sport AND Pays.id_pays = Athlete.id_pays AND  Personne.id_personne = Athlete.id_personne;
+        SELECT Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Pays.Libelle_pays, Athlete.Photo, Athlete.Biographie, Athlete.Poids,Athlete.Taille, Sport.Libelle_sport
+        FROM Personne,Athlete, Sport, Pays
+        WHERE Sport.id_sport = Athlete.id_sport AND Pays.id_pays = Athlete.id_pays AND  Personne.id_personne = Athlete.id_personne;
 
 #------------------------------------------------------------
 # Creation de l'utilisateur
@@ -229,6 +229,38 @@ CREATE USER 'user_paris2024'@'localhost' IDENTIFIED BY '123';
 use paris_2024;
 GRANT ALL PRIVILEGES ON paris_2024.* TO 'user_paris2024'@'localhost';
 FLUSH PRIVILEGES;
+
+#------------------------------------------------------------
+# Procedure insertion table athlete
+#------------------------------------------------------------
+
+DELIMITER |
+CREATE PROCEDURE insert_athlete (IN nom varchar(25), prenom VARCHAR(25),
+                                    age int, genre varchar (25), taille float, poids float, photo varchar(25),
+                                    biographie text (1000),id_pays int, id_equipe int, id_sport int)
+        BEGIN
+                INSERT INTO `Personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
+                #SELECT id_personne INTO @idp FROM personne WHERE nom =@nom and prenom = @prenom;
+                INSERT INTO Athlete (`Taille`, `Poids`, `Photo`, `Biographie`,`id_personne`,`id_pays`,`id_equipe`,`id_sport`)
+                VALUES (taille,poids,photo,biographie,last_insert_id(),id_pays,id_equipe,id_sport);
+        END |
+DELIMITER ;
+
+#------------------------------------------------------------
+# Procedure insertion table utilisateur
+#------------------------------------------------------------
+
+DELIMITER |
+CREATE PROCEDURE insert_user (IN nom varchar(25), prenom VARCHAR(25),
+                                 Age int, genre varchar (25), email varchar (255), pseudo varchar (25), mot_de_passe varchar (255))
+
+        BEGIN
+                INSERT INTO `Personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
+                #SELECT id_personne INTO @idp FROM personne WHERE nom =@nom and prenom = @prenom;
+                INSERT INTO `Utilisateur` (`email`, `pseudo`, `mot_de_passe`, `id_personne`)
+                VALUES (email, pseudo, mot_de_passe, last_insert_id());
+        END |
+DELIMITER ;
 
 #------------------------------------------------------------
 # Insertion table sport
@@ -389,34 +421,6 @@ insert into `Evenement`(`id_event`, `Titre_event`, `Description_event`, `Date_ev
         À la fin de la compétition, cela restera une piscine pour les habitants des quartiers environnements et les écolier', '2018-03-18', 'photo_event_1.jpg',2,3),
         (NULL, 'Cérémonie d\'ouverture des JO', 'La cérémonie d\'ouverture des JO aura lieu le 2 août au stade de France','2024-08-02', 'photo_event_2.jpg',1,3);
 
-#------------------------------------------------------------
-# Procedure insertion table athlete
-#------------------------------------------------------------
 
-DELIMITER |
-CREATE PROCEDURE insert_athlete (IN nom varchar(25), prenom VARCHAR(25),
-                                    age int, genre varchar (25), taille float, poids float, photo varchar(25),
-                                    biographie text (1000),id_pays int, id_equipe int, id_sport int)
-        BEGIN
-                INSERT INTO `Personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
-                #SELECT id_personne INTO @idp FROM personne WHERE nom =@nom and prenom = @prenom;
-                INSERT INTO Athlete (`Taille`, `Poids`, `Photo`, `Biographie`,`id_personne`,`id_pays`,`id_equipe`,`id_sport`)
-                VALUES (taille,poids,photo,biographie,last_insert_id(),id_pays,id_equipe,id_sport);
-        END |
-DELIMITER ;
 
-#------------------------------------------------------------
-# Procedure insertion table utilisateur
-#------------------------------------------------------------
 
-DELIMITER |
-CREATE PROCEDURE insert_user (IN nom varchar(25), prenom VARCHAR(25),
-                                 Age int, genre varchar (25), email varchar (255), pseudo varchar (25), mot_de_passe varchar (255))
-
-        BEGIN
-                INSERT INTO `Personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
-                #SELECT id_personne INTO @idp FROM personne WHERE nom =@nom and prenom = @prenom;
-                INSERT INTO `Utilisateur` (`email`, `pseudo`, `mot_de_passe`, `id_personne`)
-                VALUES (email, pseudo, mot_de_passe, last_insert_id());
-        END |
-DELIMITER ;

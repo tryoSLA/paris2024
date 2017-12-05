@@ -98,8 +98,8 @@ class Controleur
     {
         $unModele->setTable("Utilisateur");
         $recherche = 'email="'.$mail.'" AND mot_de_passe="'.md5($password).'" ';
-        $resultat = $unModele->selectWhere("count(*) as nb, pseudo, id_personne ",$recherche, " where " );
-        if ($resultat["0"]["nb"] == 1) {
+        $resultat = $unModele->selectWhere("count(*) as nb, pseudo, id_personne ",$recherche, " where ", " group by id_personne ");
+        if ($resultat[0]["nb"] == 1) {
             $_SESSION['mail'] = $mail;
             $_SESSION['pseudo'] = $resultat["0"]["pseudo"];
             $_SESSION['id'] = $resultat["0"]["id_personne"];
