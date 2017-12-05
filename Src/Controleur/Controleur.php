@@ -154,7 +154,23 @@ class Controleur
 
         foreach ($resultat as $unResultat)
         {
-            echo $unResultat['Titre'];
+            $link = $unResultat['Lien'];
+            echo "
+            <div class=\"col-sm-12\" style='margin-bottom: 10px '>
+                <div class='card card-block h-100 justify-content-center'>
+                    <div class='card-block'>
+                    <center>
+                    <br>
+                        <h5 class='card-title'><a href='$link'>" .$unResultat['Description']  . "</a></h5>
+                        " . $unResultat['Date'] . "<a href='$link'>
+                        <br>
+                        <small>Lien</small></a><br>
+                        <br>
+                     </center>
+                    </div>
+                </div>
+            </div>
+            ";
         }
     }
 }

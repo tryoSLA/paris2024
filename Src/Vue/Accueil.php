@@ -11,7 +11,9 @@ $unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6 journaux" >
+            <center>
                 <h3 class="card-title"><u>Journaux</u></h3>
+            </center>
             <div class="row">
                 <?php
 //                $Controleur->rssAfficher("https://news.google.com/news/rss/search/section/q/paris%202024/paris%202024?hl=fr&gl=FR&ned=fr");
@@ -27,6 +29,7 @@ $unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
             <div class="row">
                 <?php
 //                $Controleur->rssAfficher("https://queryfeed.net/twitter?q=%23paris2024&title-type=tweet-text-full&geocode=");
+                $Controleur->afficherArticle($unModele, "https://queryfeed.net/twitter?q=%23paris2024&title-type=tweet-text-full&geocode=");
                 ?>
             </div>
         </div>
