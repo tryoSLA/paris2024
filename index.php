@@ -3,8 +3,12 @@ include ('Src/Controleur/Controleur.php');
 include ('Src/Function/Rss.php');
 include ('Src/Modele/Controleur_bdd.php');
 $Controleur = new Controleur();
+$con=mysqli_connect('localhost', 'user_paris2024', '123', 'paris_2024');
 $unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
 session_start();
+
+$Controleur->saveArticle("https://news.google.com/news/rss/search/section/q/paris%202024/paris%202024?hl=fr&gl=FR&ned=fr",$unModele, $con);
+$Controleur->saveArticle("https://queryfeed.net/twitter?q=%23paris2024&title-type=tweet-text-full&geocode=",$unModele, $con);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -31,6 +35,7 @@ session_start();
 
 <?php
 $Controleur->header();
+
 //if (isset($_SESSION['nom'])) {
 //    echo $_SESSION['nom'];
 //}
@@ -82,11 +87,11 @@ switch ($page)
         break;
 
     case "galerie":
-        echo "galerie";
+        $Controleur->galerie();
         break;
 
     case "contact":
-        echo "contact";
+        $Controleur->contact();
         break;
 
     case "NAN":

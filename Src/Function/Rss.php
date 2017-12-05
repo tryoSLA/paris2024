@@ -50,11 +50,9 @@ Class Rss
             $desc = mysqli_real_escape_string($db_connection, $description);
             $titre = mysqli_real_escape_string($db_connection, $title);
             $i++;
+            $value = 'NULL, "'.$link.'", "'.$titre.'", "'.$desc.'", "'.$date.'"';
 
-            $requete = "INSERT INTO article VALUES (NULL, '" . $link . "', '" . $titre . "', '" . $desc . "', '" . $date . "');";
-            // execution de la requte avec des résultats
-            $req = mysqli_query($db_connection, $requete) or die();
-
+            //$requete = "INSERT INTO article VALUES (NULL, '" . $link . "', '" . $titre . "', '" . $desc . "', '" . $date . "');";
         }
     }
 }

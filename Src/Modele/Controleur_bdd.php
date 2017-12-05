@@ -58,9 +58,8 @@ class Modele
             $requete = "SELECT ".$selection." FROM ".$this->table."   ". $chaine."  ".$where;
             $select = $this->pdo->prepare($requete);
             $select->execute();
-            $resultat = $select->fetchAll();
-            return $resultat;
-
+            $resultats = $select->fetchAll();
+            return $resultats;
         }
         else
         {
@@ -73,6 +72,20 @@ class Modele
         if ($this->pdo != null)
         {
             $requete = "call insert_user (".$tab.");";
+            $select = $this->pdo->prepare($requete);
+            $select->execute();
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public function insert($value)
+    {
+        if ($this->pdo != null)
+        {
+            $requete = "INSERT INTO ".$this->table." VALUES (".$value.");";
             $select = $this->pdo->prepare($requete);
             $select->execute();
         }

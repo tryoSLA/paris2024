@@ -125,5 +125,37 @@ class Controleur
             echo $erreur;
         }
     }
+
+    public function saveArticle($urlJournal, $unModele, $con)
+    {
+        $unModele->setTable("FluxRSS");
+        $url = $urlJournal;
+        $rss = simplexml_load_file($url);
+        $i = 0;
+        foreach ($rss->channel->item as $item) {
+            $datetime = date_create($item->pubDate);
+            $date = date_format($datetime, "Y/m/d H:i:s");
+            $title = $item->title;
+            $link = $item->link;
+            $description = $item->description;
+            $desc = mysqli_real_escape_string($con, $description);
+            $titre = mysqli_real_escape_string($con, $title);
+            $i++;
+            $value = 'NULL, "'.$urlJournal.'", "'.$link.'", "'.$titre.'", "'.$desc.'", "'.$date.'"';
+            $unModele->insert($value);
+        }
+    }
+
+    public function afficherArticle($unModele, $rss)
+    {
+        $where = " WHERE rss = '".$rss."'";
+        $unModele->setTable("fluxrss"); //on pointe vers la table
+        $resultat = $unModele->selectWhere("Lien, Titre, Description, Date",$where);
+
+        foreach ($resultat as $unResultat)
+        {
+            echo $unResultat['Titre'];
+        }
+    }
 }
 ?>
