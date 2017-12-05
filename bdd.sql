@@ -80,18 +80,6 @@ CREATE TABLE Evenement(
 
 
 #------------------------------------------------------------
-# Table: Message
-#------------------------------------------------------------
-
-CREATE TABLE Message(
-        id_message  int (11) Auto_increment  NOT NULL ,
-        Message     TEXT (500) NOT NULL ,
-        id_personne Int NOT NULL ,
-        PRIMARY KEY (id_message )
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
 # Table: FluxRSS
 #------------------------------------------------------------
 
@@ -117,28 +105,6 @@ CREATE TABLE Equipe(
         Nb_joueurs_equipe Int NOT NULL ,
         id_sport          Int NOT NULL ,
         PRIMARY KEY (id_equipe )
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table: Collectif
-#------------------------------------------------------------
-
-CREATE TABLE Collectif(
-        Nb_equipe Int NOT NULL ,
-        id_sport  Int NOT NULL ,
-        PRIMARY KEY (id_sport )
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table: Individuel
-#------------------------------------------------------------
-
-CREATE TABLE Individuel(
-        Nb_joueur Int ,
-        id_sport  Int NOT NULL ,
-        PRIMARY KEY (id_sport )
 )ENGINE=InnoDB;
 
 
@@ -202,17 +168,6 @@ CREATE TABLE Avoir_lieu(
 
 
 #------------------------------------------------------------
-# Table: Recevoir
-#------------------------------------------------------------
-
-CREATE TABLE Recevoir(
-        id_message  Int NOT NULL ,
-        id_personne Int NOT NULL ,
-        PRIMARY KEY (id_message ,id_personne )
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
 # Table: inscrire
 #------------------------------------------------------------
 
@@ -224,19 +179,6 @@ CREATE TABLE Inscrire(
 )ENGINE=InnoDB;
 
 
-#------------------------------------------------------------
-# Table: Commenter
-#------------------------------------------------------------
-
-CREATE TABLE Commenter(
-        dateComment Date ,
-        contenu     Varchar (200) ,
-        note        Int ,
-        id_event    Int NOT NULL ,
-        id_personne Int NOT NULL ,
-        PRIMARY KEY (id_event ,id_personne )
-)ENGINE=InnoDB;
-
 ALTER TABLE Utilisateur ADD CONSTRAINT FK_Utilisateur_id_personne FOREIGN KEY (id_personne) REFERENCES Personne(id_personne);
 ALTER TABLE Athlete ADD CONSTRAINT FK_Athlete_id_personne FOREIGN KEY (id_personne) REFERENCES Personne(id_personne);
 ALTER TABLE Athlete ADD CONSTRAINT FK_Athlete_id_pays FOREIGN KEY (id_pays) REFERENCES Pays(id_pays);
@@ -244,19 +186,39 @@ ALTER TABLE Athlete ADD CONSTRAINT FK_Athlete_id_equipe FOREIGN KEY (id_equipe) 
 ALTER TABLE Athlete ADD CONSTRAINT FK_Athlete_id_sport FOREIGN KEY (id_sport) REFERENCES Sport(id_sport);
 ALTER TABLE Evenement ADD CONSTRAINT FK_Evenement_id_ville FOREIGN KEY (id_ville) REFERENCES Ville(id_ville);
 ALTER TABLE Evenement ADD CONSTRAINT FK_Evenement_id_type_event FOREIGN KEY (id_type_event) REFERENCES Type_event(id_type_event);
-ALTER TABLE Message ADD CONSTRAINT FK_Message_id_personne FOREIGN KEY (id_personne) REFERENCES Personne(id_personne);
 ALTER TABLE Equipe ADD CONSTRAINT FK_Equipe_id_sport FOREIGN KEY (id_sport) REFERENCES Sport(id_sport);
-ALTER TABLE Collectif ADD CONSTRAINT FK_Collectif_id_sport FOREIGN KEY (id_sport) REFERENCES Sport(id_sport);
-ALTER TABLE Individuel ADD CONSTRAINT FK_Individuel_id_sport FOREIGN KEY (id_sport) REFERENCES Sport(id_sport);
 ALTER TABLE Lieu ADD CONSTRAINT FK_Lieu_id_ville FOREIGN KEY (id_ville) REFERENCES Ville(id_ville);
 ALTER TABLE Avoir_lieu ADD CONSTRAINT FK_Avoir_lieu_id_sport FOREIGN KEY (id_sport) REFERENCES Sport(id_sport);
 ALTER TABLE Avoir_lieu ADD CONSTRAINT FK_Avoir_lieu_id_lieu FOREIGN KEY (id_lieu) REFERENCES Lieu(id_lieu);
-ALTER TABLE Recevoir ADD CONSTRAINT FK_Recevoir_id_message FOREIGN KEY (id_message) REFERENCES Message(id_message);
-ALTER TABLE Recevoir ADD CONSTRAINT FK_Recevoir_id_personne FOREIGN KEY (id_personne) REFERENCES Personne(id_personne);
-ALTER TABLE inscrire ADD CONSTRAINT FK_inscrire_id_personne FOREIGN KEY (id_personne) REFERENCES Personne(id_personne);
-ALTER TABLE inscrire ADD CONSTRAINT FK_inscrire_id_event FOREIGN KEY (id_event) REFERENCES Evenement(id_event);
-ALTER TABLE Commenter ADD CONSTRAINT FK_Commenter_id_event FOREIGN KEY (id_event) REFERENCES Evenement(id_event);
-ALTER TABLE Commenter ADD CONSTRAINT FK_Commenter_id_personne FOREIGN KEY (id_personne) REFERENCES Personne(id_personne);
+ALTER TABLE Inscrire ADD CONSTRAINT FK_Inscrire_id_personne FOREIGN KEY (id_personne) REFERENCES Personne(id_personne);
+ALTER TABLE Inscrire ADD CONSTRAINT FK_Inscrire_id_event FOREIGN KEY (id_event) REFERENCES Evenement(id_event);
+
+#------------------------------------------------------------
+# Vue pays detaille
+#------------------------------------------------------------
+
+CREATE VIEW pays_detaille AS
+        SELECT Pays.Libelle_pays, Pays.Description_pays, Pays.Image_pays, Sport.Libelle_sport, Personne.Nom, Personne.Prenom
+        FROM Sport,Personne, Pays, Athlete
+        WHERE Athlete.id_pays = Pays.id_pays and Athlete.id_sport = Sport.id_sport and Athlete.id_personne = Personne.id_personne;
+
+#------------------------------------------------------------
+# Vue sport detaille
+#------------------------------------------------------------
+
+CREATE VIEW sport_detaille AS
+        SELECT Sport.Libelle_sport, Sport.Description_sport, Sport.Image_sport, Pays.Libelle_pays, Personne.Nom, Personne.Prenom
+        FROM Pays, Personne, Sport, Athlete
+        WHERE Athlete.id_personne = Personne.id_personne AND Athlete.id_pays = Pays.id_pays AND Athlete.id_sport = Sport.id_sport;
+
+#------------------------------------------------------------
+# Vue athlete detaille
+#------------------------------------------------------------
+
+CREATE VIEW athlete_detaille AS
+        SELECT Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Pays.Libelle_pays, Athlete.Photo, Athlete.Biographie, Athlete.Poids,Athlete.Taille, Sport.Libelle_sport
+        FROM Personne,Athlete, Sport, Pays
+        WHERE Sport.id_sport = Athlete.id_sport AND Pays.id_pays = Athlete.id_pays AND  Personne.id_personne = Athlete.id_personne;
 
 #------------------------------------------------------------
 # Creation de l'utilisateur
@@ -275,14 +237,14 @@ FLUSH PRIVILEGES;
 
 DELIMITER |
 CREATE PROCEDURE insert_athlete (IN nom varchar(25), prenom VARCHAR(25),
-  age int, genre varchar (25), taille float, poids float, photo varchar(25),
-  biographie text (1000),id_pays int, id_equipe int, id_sport int)
-BEGIN
-  INSERT INTO `Personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
-  #SELECT id_personne INTO @idp FROM personne WHERE nom =@nom and prenom = @prenom;
-  INSERT INTO Athlete (`Taille`, `Poids`, `Photo`, `Biographie`,`id_personne`,`id_pays`,`id_equipe`,`id_sport`)
-  VALUES (taille,poids,photo,biographie,last_insert_id(),id_pays,id_equipe,id_sport);
-END |
+                                    age int, genre varchar (25), taille float, poids float, photo varchar(25),
+                                    biographie text (1000),id_pays int, id_equipe int, id_sport int)
+        BEGIN
+                INSERT INTO `Personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
+                #SELECT id_personne INTO @idp FROM personne WHERE nom =@nom and prenom = @prenom;
+                INSERT INTO Athlete (`Taille`, `Poids`, `Photo`, `Biographie`,`id_personne`,`id_pays`,`id_equipe`,`id_sport`)
+                VALUES (taille,poids,photo,biographie,last_insert_id(),id_pays,id_equipe,id_sport);
+        END |
 DELIMITER ;
 
 #------------------------------------------------------------
@@ -291,7 +253,7 @@ DELIMITER ;
 
 DELIMITER |
 CREATE PROCEDURE insert_user (IN nom varchar(25), prenom VARCHAR(25),
-                                    Age int, genre varchar (25), email varchar (255), pseudo varchar (25), mot_de_passe varchar (255))
+                                 Age int, genre varchar (25), email varchar (255), pseudo varchar (25), mot_de_passe varchar (255))
 
         BEGIN
                 INSERT INTO `Personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
@@ -306,7 +268,7 @@ DELIMITER ;
 #------------------------------------------------------------
 
 INSERT INTO `Sport` (`id_sport`, `Libelle_sport`, `Image_sport`, `Description_sport`) VALUES
-        (NULL,'Judo','Judo.png','Le judo a été créé en tant que pédagogie physique, mentale et morale au japon par Jigorō Kanō en 1882.
+        (NULL,'Judo','Judo.png','Le judo a été créé en tant que pédagogie physique, mentale et morale au japon par Jigoro Kano en 1882.
         Il est généralement catégorisé comme un art martial moderne, qui a par la suite évolué en sport de combat et en sport olympique.
         Sa caractéristique la plus proéminente est son élément compétitif dont l\'objectif est soit de projeter, soit d\'amener l\'adversaire au sol,
         de l\'immobiliser (Techniques de maîtrise), ou de l\'obliger à abandonner à l\'aide de clés articulaires et d''étranglements.
@@ -343,8 +305,8 @@ INSERT INTO `Sport` (`id_sport`, `Libelle_sport`, `Image_sport`, `Description_sp
 #------------------------------------------------------------
 
 INSERT INTO `Equipe` (id_equipe, Libelle_equipe, Nb_joueurs_equipe, id_sport) VALUES
-  (NULL, 'France 7',7,5), (NULL, 'Squadra Azzurra',7,5),(NULL,'Équipe du Portugal',11,6),
-  (NULL,'Équipe d\'Italie',11,6),(NULL, 'Os Lobos',7,5);
+        (NULL, 'France 7',7,5), (NULL, 'Squadra Azzurra',7,5),(NULL,'Équipe du Portugal',11,6),
+        (NULL,'Équipe d\'Italie',11,6),(NULL, 'Os Lobos',7,5);
 
 
 #------------------------------------------------------------
@@ -467,31 +429,3 @@ insert into `Evenement`(`id_event`, `Titre_event`, `Description_event`, `Date_ev
 
 
 
-#------------------------------------------------------------
-# Vue pays detaille
-#------------------------------------------------------------
-
-CREATE VIEW pays_detaille AS
-  SELECT Pays.Libelle_pays, Pays.Description_pays, Pays.Image_pays, Sport.Libelle_sport, Personne.Nom, Personne.Prenom
-  FROM Sport,Personne, Pays, Athlete
-  WHERE Athlete.id_pays = Pays.id_pays and Athlete.id_sport = Sport.id_sport and Athlete.id_personne = Personne.id_personne;
-
-#------------------------------------------------------------
-# Vue sport detaille
-#------------------------------------------------------------
-
-CREATE VIEW sport_detaille AS
-  SELECT Sport.Libelle_sport, Sport.Description_sport, Sport.Image_sport, Pays.Libelle_pays, Personne.Nom, Personne.Prenom
-  FROM Pays, Personne, Sport, Athlete
-  WHERE Athlete.id_personne = Personne.id_personne AND Athlete.id_pays = Pays.id_pays AND Athlete.id_sport = Sport.id_sport;
-
-
-
-#------------------------------------------------------------
-# Vue athlete detaille
-#------------------------------------------------------------
-
-CREATE VIEW athlete_detaille AS
-  SELECT Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Pays.Libelle_pays, Athlete.Photo, Athlete.Biographie, Athlete.Poids,Athlete.Taille, Sport.Libelle_sport
-  FROM Personne,Athlete, Sport, Pays
-  WHERE Sport.id_sport = Athlete.id_sport AND Pays.id_pays = Athlete.id_pays AND  Personne.id_personne = Athlete.id_personne;

@@ -51,11 +51,11 @@ class Modele
         }
     }
 
-    public function selectWhere($selection,$where , $chaine="")
+    public function selectWhere($selection,$where , $chaine="", $group="")
     {
         if ($this->pdo != null)
         {
-            $requete = "SELECT ".$selection." FROM ".$this->table."   ". $chaine."  ".$where;
+            $requete = "SELECT ".$selection." FROM ".$this->table."   ". $chaine."  ".$where." ".$group;
             $select = $this->pdo->prepare($requete);
             $select->execute();
             $resultats = $select->fetchAll();

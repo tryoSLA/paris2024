@@ -8,7 +8,7 @@
     <div class="pays">
         <div class="row">
             <?php
-                foreach ($resultat as $unResultat)
+                foreach ($resultats as $unResultat)
                 {
                     echo "<div class='col'><a href='index.php?page=Pays_".$unResultat['Libelle_pays']."'><img src='Web/Images/Pays/"
                         .$unResultat['Image_pays']."'></img></br>"

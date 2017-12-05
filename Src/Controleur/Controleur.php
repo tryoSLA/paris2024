@@ -41,7 +41,7 @@ class Controleur
     {
         $pays = str_replace("Pays_","",$page);
         $where = " WHERE Libelle_pays = '".$pays."'";
-        $unModele->setTable("pays"); //on pointe vers la table
+        $unModele->setTable("Pays"); //on pointe vers la table
         $result = $unModele->selectWhere("Libelle_pays, Image_Pays, Description_Pays",$where);
         $unModele->setTable("pays_detaille"); //on pointe vers la table
         $resultats = $unModele->selectWhere("*",$where);
@@ -52,7 +52,7 @@ class Controleur
     {
         $sport = str_replace("Sport_","",$page);
         $where = " WHERE Libelle_sport = '".$sport."'";
-        $unModele->setTable("sport"); //on pointe vers la table
+        $unModele->setTable("Sport"); //on pointe vers la table
         $result = $unModele->selectWhere("Libelle_sport, Image_sport, Description_sport",$where);
         $unModele->setTable("sport_detaille"); //on pointe vers la table
         $resultats = $unModele->selectWhere("*",$where);
@@ -98,8 +98,8 @@ class Controleur
     {
         $unModele->setTable("Utilisateur");
         $recherche = 'email="'.$mail.'" AND mot_de_passe="'.md5($password).'" ';
-        $resultat = $unModele->selectWhere("count(*) as nb, pseudo, id_personne ",$recherche, " where " );
-        if ($resultat["0"]["nb"] == 1) {
+        $resultat = $unModele->selectWhere("count(*) as nb, pseudo, id_personne ",$recherche, " where ", " group by id_personne ");
+        if ($resultat[0]["nb"] == 1) {
             $_SESSION['mail'] = $mail;
             $_SESSION['pseudo'] = $resultat["0"]["pseudo"];
             $_SESSION['id'] = $resultat["0"]["id_personne"];
