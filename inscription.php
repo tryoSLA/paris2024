@@ -45,15 +45,16 @@ if (isset($_POST['inscription'])) {
 
     $verifMail = $unModele->selectWhere("email", $mail);
     if ($password1 == $password2 && strlen($password2) <= 8){
-        if ($verifMail = null){
+        if (empty($verifMail)){
             $tab = "'".$firstName."','".$lastName."',".$age.",'".$genre."','".$mail."','".$pseudo."','".md5($password1)."'";
             $unModele->insertOne($tab);
+        }else {
+            echo "<br><div class=\"alert alert-danger\" role=\"alert\">
+                    <center>
+                      <strong>Erreur !</strong> Email déjà utilisé
+                      </center>
+                    </div>";
         }
-        echo "<br><div class=\"alert alert-danger\" role=\"alert\">
-<center>
-  <strong>Erreur !</strong> Email déjà utilisé
-  </center>
-</div>";
     }
     else{
         echo "<br><div class=\"alert alert-danger\" role=\"alert\">

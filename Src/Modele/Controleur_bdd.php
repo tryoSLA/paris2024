@@ -60,6 +60,7 @@ class Modele
             $select->execute();
             $resultat = $select->fetchAll();
             return $resultat;
+
         }
         else
         {
@@ -74,7 +75,6 @@ class Modele
             $requete = "call insert_user (".$tab.");";
             $select = $this->pdo->prepare($requete);
             $select->execute();
-            echo $requete;
         }
         else
         {
