@@ -221,6 +221,15 @@ CREATE VIEW athlete_detaille AS
         WHERE Sport.id_sport = Athlete.id_sport AND Pays.id_pays = Athlete.id_pays AND  Personne.id_personne = Athlete.id_personne;
 
 #------------------------------------------------------------
+# Vue FluxRss
+#------------------------------------------------------------
+
+CREATE VIEW vue_rss AS
+        SELECT Rss, Lien, Titre, Description, Date
+        FROM FluxRSS
+        ORDER BY date DESC;
+
+#------------------------------------------------------------
 # Creation de l'utilisateur
 #------------------------------------------------------------
 

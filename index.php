@@ -2,11 +2,11 @@
 include ('Src/Controleur/Controleur.php');
 include ('Src/Function/Rss.php');
 include ('Src/Modele/Controleur_bdd.php');
+include ('bdd/database.php');
 $Controleur = new Controleur();
-$con=mysqli_connect('localhost', 'user_paris2024', '123', 'paris_2024');
-$unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
-session_start();
 
+session_start();
+//----------------Appel de la sauvegarde des flux en BDDD-------------------
 $Controleur->saveArticle("https://news.google.com/news/rss/search/section/q/paris%202024/paris%202024?hl=fr&gl=FR&ned=fr",$unModele, $con);
 $Controleur->saveArticle("https://queryfeed.net/twitter?q=%23paris2024&title-type=tweet-text-full&geocode=",$unModele, $con);
 ?>
@@ -40,19 +40,20 @@ $Controleur->saveArticle("https://queryfeed.net/twitter?q=%23paris2024&title-typ
 <body>
 
 <?php
+//------------------Appel du Header/menu----------------------
 $Controleur->header();
 
-//if (isset($_SESSION['nom'])) {
-//    echo $_SESSION['nom'];
-//}
+//-----------------Gestion de l'inscription-------------------
+$Controleur->inscription($unModele);
 
+//------------------------Gestion de la Connexion-------------
 if (isset($_POST['connexion'])) {
     $mail = $_POST["mail"];
     $password = $_POST["pass"];
     $Controleur->connexion($mail, $password, $unModele);
 }
 
-//Switch menu
+//------------------------------Switch menu-------------------
 if (isset($_GET['page']))
 {
     $page = $_GET['page'];
@@ -104,8 +105,6 @@ switch ($page)
         $Controleur->accueil();
         break;
 }
-
-
 ?>
 </body>
 </html>
