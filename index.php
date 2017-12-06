@@ -44,7 +44,7 @@ $Controleur->saveArticle("https://queryfeed.net/twitter?q=%23paris2024&title-typ
 $Controleur->header();
 
 //-----------------Gestion de l'inscription-------------------
-$Controleur->inscription($unModele);
+$Controleur->inscriptionBdd($unModele);
 
 //------------------------Gestion de la Connexion-------------
 if (isset($_POST['connexion'])) {
