@@ -340,6 +340,7 @@ INSERT INTO `Pays` (`id_pays`, `Libelle_pays`, `Image_pays`, `Description_pays`)
 #------------------------------------------------------------
 
 call insert_user ('demo','demo',19,'Homme','demo','demo','fe01ce2a7fbac8fafaed7c982a04e229');
+call insert_user ('demo2','demo2',19,'Femme','demo2','demo2','1066726e7160bd9c987c9968e0cc275a');
 #------------------------------------------------------------
 # Insert athlete
 #------------------------------------------------------------
@@ -424,7 +425,8 @@ insert into `Evenement`(`id_event`, `Titre_event`, `Description_event`, `Date_ev
         (NULL,'Presentation des amenagements', 'À proximité du village olympique sera construit le centre aquatique.
         Relié au Stade de France par une passerelle, il pourra accueillir jusqu''à 15 000 spectateurs durant la période olympique.
         À la fin de la compétition, cela restera une piscine pour les habitants des quartiers environnements et les écolier', '2018-03-18', 'photo_event_1.jpg',2,3),
-        (NULL, 'Cérémonie d\'ouverture des JO', 'La cérémonie d\'ouverture des JO aura lieu le 2 août au stade de France','2024-08-02', 'photo_event_2.jpg',1,3);
+        (NULL, 'Cérémonie d\'ouverture des JO', 'La cérémonie d\'ouverture des JO aura lieu le 2 août au stade de France','2024-08-02', 'photo_event_2.jpg',1,3),
+        (NULL, 'Presentations générale de l\'organisation','Description à venir ...','2024-08-02', 'photo_event_2.jpg',1,3);
 
 
 
