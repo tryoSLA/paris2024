@@ -35,12 +35,12 @@
             <!-- menu -->
             <nav id="menu">
                 <ul>
-                    <li><a href="index.php?page=accueil">Accueil</a></li>
-                    <li><a href="index.php?page=event">Evenements</a></li>
-                    <li><a href="index.php?page=pays">Pays des JO</a></li>
-                    <li><a href="index.php?page=sport">Sport des JO</a></li>
-                    <li><a href="index.php?page=galerie">Galerie</a></li>
-                    <li><a href="index.php?page=contact">Contact</a></li>
+                    <a href="index.php?page=accueil"><li>Accueil</li></a>
+                    <a href="index.php?page=event"><li>Evenements</li></a>
+                    <a href="index.php?page=pays"><li>Pays des JO</li></a>
+                    <a href="index.php?page=sport"><li>Sport des JO</li></a>
+                    <a href="index.php?page=galerie"><li>Galerie</li></a>
+                    <a href="index.php?page=contact"><li>Contact</li></a>
                 </ul>
             </nav>
         </div>

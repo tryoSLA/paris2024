@@ -148,7 +148,8 @@ class Controleur
 
     public function afficherArticle($unModele, $rss)
     {
-        $where = " WHERE rss = '".$rss."'";
+        $order = " ORDER BY date DESC";
+        $where = " WHERE rss = '".$rss."'".$order." ";
         $unModele->setTable("FluxRSS"); //on pointe vers la table
         $resultat = $unModele->selectWhere("Lien, Titre, Description, Date",$where);
 
