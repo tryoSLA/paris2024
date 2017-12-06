@@ -42,6 +42,7 @@ class Modele
     {
         $champs = implode(",",$tab);
         $requete = "select ".$champs." from ".$this->table;
+        var_dump($requete);
         if ($this->pdo != null)
         {
             $select = $this->pdo->prepare($requete);
@@ -60,6 +61,7 @@ class Modele
             $select->execute();
             $resultats = $select->fetchAll();
             return $resultats;
+
         }
         else
         {

@@ -23,7 +23,7 @@ class Controleur
 
     public function event($unModele)
     {
-        $unModele->setTable("evenement");
+        $unModele->setTable("Evenement");
         $tab = array("Titre_event","Description_event","Date_evenement","Photo_evenement","id_ville", "id_type_event");
         $resultats = $unModele->selectChamps($tab);
         include ('Src/Vue/Evenement.php');
@@ -149,7 +149,7 @@ class Controleur
     public function afficherArticle($unModele, $rss)
     {
         $where = " WHERE rss = '".$rss."'";
-        $unModele->setTable("fluxrss"); //on pointe vers la table
+        $unModele->setTable("FluxRSS"); //on pointe vers la table
         $resultat = $unModele->selectWhere("Lien, Titre, Description, Date",$where);
 
         foreach ($resultat as $unResultat)
