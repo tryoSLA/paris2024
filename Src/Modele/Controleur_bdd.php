@@ -60,7 +60,6 @@ class Modele
             $select->execute();
             $resultats = $select->fetchAll();
             return $resultats;
-
         }
         else
         {
