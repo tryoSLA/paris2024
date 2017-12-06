@@ -54,9 +54,13 @@ class Controleur
     public function event($unModele)
     {
         $unModele->setTable("Evenement");
-        $tab = array("Titre_event","Description_event","Date_evenement","Photo_evenement","id_ville", "id_type_event");
+        $tab = array("id_event","Titre_event","Description_event","Date_evenement","Photo_evenement","id_ville", "id_type_event");
         $resultats = $unModele->selectChamps($tab);
         include ('Src/Vue/Evenement.php');
+        if (isset($_POST['participe']))
+        {
+            echo $_SESSION['id'];
+        }
     }
 
     public function pays($unModele)
