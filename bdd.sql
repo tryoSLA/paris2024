@@ -230,6 +230,15 @@ CREATE VIEW my_events AS
         WHERE Inscrire.id_event = Evenement.id_event AND Evenement.id_ville = Ville.id_ville AND Lieu.id_ville = Ville.id_ville;
 
 
+#------------------------------------------------------------
+# Vue FluxRss
+#------------------------------------------------------------
+
+CREATE VIEW vue_rss AS
+        SELECT Rss, Lien, Titre, Description, Date
+        FROM FluxRSS
+        ORDER BY date DESC;
+
 
 #------------------------------------------------------------
 # Creation de l'utilisateur

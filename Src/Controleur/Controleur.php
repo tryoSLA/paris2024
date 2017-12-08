@@ -10,10 +10,42 @@ class Controleur
     {
         include ('Src/Vue/Vue_header_2.php');
     }
-
-    public function inscription()
-    {
+    public function inscription(){
         include ('Src/Form/Form_inscription.php');
+    }
+    public function inscriptionBdd($unModele)
+    {
+        if (isset($_POST['inscription'])) {
+            $firstName = $_POST["firstName"];
+            $lastName = $_POST["lastName"];
+            $age = $_POST["age"];
+            $genre = $_POST["genre"];
+            $mail = $_POST["mail"];
+            $pseudo = $_POST["pseudo"];
+            $password1 = $_POST["password1"];
+            $password2 = $_POST["password2"];
+
+            $verifMail = $unModele->selectWhere("email", $mail);
+            if ($password1 == $password2 && strlen($password2) <= 8){
+                if (empty($verifMail)){
+                    $tab = "'".$firstName."','".$lastName."',".$age.",'".$genre."','".$mail."','".$pseudo."','".md5($password1)."'";
+                    $unModele->insertOne($tab);
+                }else {
+                    echo "<br><div class=\"alert alert-danger\" role=\"alert\">
+                    <center>
+                      <strong>Erreur !</strong> Email déjà utilisé
+                      </center>
+                    </div>";
+                }
+            }
+            else{
+                echo "<br><div class=\"alert alert-danger\" role=\"alert\">
+<center>
+  <strong>Erreur !</strong> Le mots de passe est invalide ou n'est pas identique.
+  </center>
+</div>";
+            }
+        }
     }
 
     public function accueil()
@@ -175,10 +207,18 @@ class Controleur
 
     public function afficherArticle($unModele, $rss)
     {
-        $order = " ORDER BY date DESC";
-        $where = " WHERE rss = '".$rss."'".$order." ";
-        $unModele->setTable("FluxRSS"); //on pointe vers la table
-        $resultat = $unModele->selectWhere("Lien, Titre, Description, Date",$where);
+        $limit = 10;
+        if (isset($_GET["news"])) {
+            $news  = $_GET["news"];
+        } else {
+            $news=1;
+        };
+
+        $where = " WHERE rss = '".$rss."'";
+        $order = " LIMIT 10";
+
+        $unModele->setTable("vue_rss"); //on pointe vers la table
+        $resultat = $unModele->selectWhere("Lien, Titre, Description, Date",$order, $where );
 
         foreach ($resultat as $unResultat)
         {

@@ -51,6 +51,7 @@ class Modele
         }
     }
 
+
     public function selectCount($where)
     {
         if ($this->pdo != null)
@@ -67,11 +68,12 @@ class Modele
         }
     }
 
-    public function selectWhere($selection, $where, $chaine="", $group="", $order="")
+    public function selectWhere($selection, $where="" , $chaine="", $group="", $order="")
+
     {
         if ($this->pdo != null)
         {
-            $requete = "SELECT ".$selection." FROM ".$this->table."   ". $chaine."  ".$where." ".$group." ".$order;
+            $requete = "SELECT ".$selection." FROM ".$this->table." ". $chaine."  ".$where." ".$group." ".$order;
             $select = $this->pdo->prepare($requete);
             $select->execute();
             $resultats = $select->fetchAll();
@@ -125,6 +127,5 @@ class Modele
         }
     }
 }
-
 
 ?>
