@@ -51,6 +51,22 @@ class Modele
         }
     }
 
+    public function selectCount($where)
+    {
+        if ($this->pdo != null)
+        {
+            $requete = "SELECT COUNT(*) as nb FROM ".$this->table." ".$where;
+            $select = $this->pdo->prepare($requete);
+            $select->execute();
+            $result = $select->fetch();
+            return $result;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public function selectWhere($selection,$where , $chaine="", $group="", $order="")
     {
         if ($this->pdo != null)
@@ -95,6 +111,19 @@ class Modele
         }
     }
 
+    public function delete($value)
+    {
+        if ($this->pdo != null)
+        {
+            $requete = "DELETE FROM ".$this->table.$value.";";
+            $select = $this->pdo->prepare($requete);
+            $select->execute();
+        }
+        else
+        {
+            return null;
+        }
+    }
 }
 
 

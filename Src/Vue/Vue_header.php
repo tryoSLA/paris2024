@@ -36,9 +36,15 @@
             <nav id="menu">
                 <ul>
                     <a href="index.php?page=accueil"><li>Accueil</li></a>
-                    <a href="index.php?page=event"><li>Evenements</li></a>
+                    <a href="index.php?page=event"><li>Événements</li></a>
                     <a href="index.php?page=pays"><li>Pays des JO</li></a>
                     <a href="index.php?page=sport"><li>Sport des JO</li></a>
+                    <?php
+                    if (isset($_SESSION['id']))
+                    {
+                        echo "<a href=\"index.php?page=my_events\"><li>Mes événements</li></a>";
+                    }
+                    ?>
                     <a href="index.php?page=galerie"><li>Galerie</li></a>
                     <a href="index.php?page=contact"><li>Contact</li></a>
                 </ul>

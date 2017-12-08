@@ -26,10 +26,25 @@ class Controleur
         $unModele->setTable("Evenement");
         $tab = array("id_event","Titre_event","Description_event","Date_evenement","Photo_evenement","id_ville", "id_type_event");
         $resultats = $unModele->selectChamps($tab);
+
         include ('Src/Vue/Evenement.php');
         if (isset($_POST['participe']))
         {
-            echo $_SESSION['id'];
+            $id_event = $_POST['participe'];
+            $id_personne =  $_SESSION['id'];
+            $unModele->setTable("Inscrire"); //on pointe vers la table
+            $tab = "'".Date("Y-m-d")."',$id_personne, $id_event";
+            $unModele->insert($tab);
+            echo("<meta http-equiv='refresh' content='0'>"); //Permet de rafraichir la page en auto
+        }
+        if (isset($_POST['non_participe']))
+        {
+            $id_event = $_POST['non_participe'];
+            $id_personne =  $_SESSION['id'];
+            $unModele->setTable("Inscrire"); //on pointe vers la table
+            $where = " WHERE id_personne = ".$id_personne." AND id_event = ".$id_event;
+            $unModele->delete($where);
+            echo("<meta http-equiv='refresh' content='0'>"); //Permet de rafraichir la page en auto
         }
     }
 
@@ -82,6 +97,14 @@ class Controleur
         include ('Src/Vue/Athlete_detail.php');
     }
 
+    public function my_events($unModele)
+    {
+        $unModele->setTable("my_events"); //on pointe vers la table
+        $where = " WHERE id_personne = ".$_SESSION['id'];
+        $resultats = $unModele->selectWhere(" * ",$where);
+        include ('Src/Vue/Mes_evenements.php');
+    }
+
     public function galerie()
     {
         include ('Src/Vue/Vue_galerie.php');
@@ -120,12 +143,12 @@ class Controleur
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        Compte non reconnu.
+                        Compte inconnu !!
                     </div>';
             echo $erreur;
         } // sinon, alors la, il y a un gros problème :)
         else {
-            $erreur = 'Probème dans la base de données : plusieurs membres ont les mêmes identifiants de connexion.';
+            $erreur = 'Problème dans la base de données : plusieurs membres ont les mêmes identifiants de connexion.';
             echo $erreur;
         }
     }

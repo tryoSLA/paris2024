@@ -92,6 +92,10 @@ switch ($page)
         $Controleur->details_athlete($unModele, $page);
         break;
 
+    case "my_events":
+            $Controleur->my_events($unModele);
+        break;
+
     case "galerie":
         $Controleur->galerie();
         break;

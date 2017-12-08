@@ -10,6 +10,11 @@
         $ancienne_date = "";
         $i = 0;
         foreach ($resultats as $unResultat) {
+            if (isset($_SESSION['id'])) {
+                $unModele->setTable("Inscrire");
+                $where = " WHERE id_personne = ".$_SESSION['id']." AND id_event = ".$unResultat['id_event'];
+                $result = $unModele->selectCount($where);
+            }
             if ($unResultat['Date_evenement'] == $ancienne_date) {
                 echo "
                         <div class='card'><div class='card-block'>
@@ -17,21 +22,30 @@
                                 <div class='col'><li>" . $unResultat['Titre_event'] . "</li></br></div>
                             </div>
                             <div class='row'>
-                                <div class='col-2'><img src='Web/Images/Evenements/" . $unResultat['Photo_evenement'] . "'></div>
-                                <div class='col-10'>" . $unResultat['Description_event'] . "</div></br>
+                                <div class='col-4 text-center'><img class='photo' src='Web/Images/Evenements/" . $unResultat['Photo_evenement'] . "'></div>
+                                <div class='col-8 align-self-center text-center'>" . $unResultat['Description_event'] . "</div></br>
                             </div>
-                        </div>
+                        </div>";
+                if (isset($_SESSION['nom'])) {
+                    echo "
                         <div class='row'>
                             <div class='col'>
                                 <form method='post'>
-                                    <div class=\"text-center\">
-                                        <button name='participe' value='".$unResultat['id_event']."' type='submit' class='btn btn-outline-success'><i class=\"fa fa-check fa-2x\" aria-hidden=\"true\"></i></button>
-                                        <button name='non_participe' value='".$unResultat['id_event']."' type='submit' class='btn btn-outline-danger'><i class=\"fa fa-times fa-2x\" aria-hidden=\"true\"></i></button>
-                                    </div>
+                                    <div class=\"text-center\">";
+                                        if ($result['nb'] == 0)
+                                        {
+                                            echo "<button name='participe' value='" . $unResultat['id_event'] . "' type='submit' class='btn btn-outline-success'><i class=\"fa fa-calendar-plus-o fa-2x\" aria-hidden=\"true\"></i></button>";
+                                        }
+                                        elseif ($result['nb'] >= 1)
+                                        {
+                                            echo "<button name='non_participe' value='" . $unResultat['id_event'] . "' type='submit' class='btn btn-outline-danger'><i class=\"fa fa-calendar-minus-o fa-2x\" aria-hidden=\"true\"></i></button>";
+                                        }
+                                    echo "</div>
                                 </form>
                             </div>
-                        </div>
-                </div>";
+                        </div>";
+                }
+                //echo "</div>";
             } else {
                 echo "
                     <div class='row'>
@@ -47,8 +61,8 @@
                            <div class='col'><li>" . $unResultat['Titre_event'] . "</li></br></div>
                         </div>
                         <div class='row'>
-                            <div class='col-2'><img src='Web/Images/Evenements/" . $unResultat['Photo_evenement'] . "'></div>
-                            <div class='col-10'>" . $unResultat['Description_event'] . "</div>  
+                            <div class='col-4 text-center'><img class='photo' src='Web/Images/Evenements/" . $unResultat['Photo_evenement'] . "'></div>
+                            <div class='col-8 align-self-center text-center'>" . $unResultat['Description_event'] . "</div>  
                         </div>
                     </div>";
                 if (isset($_SESSION['nom'])){
@@ -56,10 +70,15 @@
                     <div class='row'>
                         <div class='col'>
                             <form method='post'>
-                                <div class=\"text-center\">"."
-                                    <button name='participe' value='".$unResultat['id_event']."' type='submit' class='btn btn-outline-success'><i class=\"fa fa-check fa-2x\" aria-hidden=\"true\"></i></button>
-                                    <button name='non_participe' value='".$unResultat['id_event']."' type='submit' class='btn btn-outline-danger'><i class=\"fa fa-times fa-2x\" aria-hidden=\"true\"></i></button>
-                                </div>
+                                <div class=\"text-center\">";
+                                    if ($result['nb'] == 0) {
+                                        echo "<button name='participe' value='" . $unResultat['id_event'] . "' type='submit' class='btn btn-outline-success'><i class=\"fa fa-calendar-plus-o fa-2x\" aria-hidden=\"true\"></i></button>";
+                                    }
+                                    else if ($result['nb'] >= 1)
+                                    {
+                                        echo "<button name='non_participe' value='" . $unResultat['id_event'] . "' type='submit' class='btn btn-outline-danger'><i class=\"fa fa-calendar-minus-o fa-2x\" aria-hidden=\"true\"></i></button>";
+                                    }
+                                echo "</div>
                             </form>
                         </div>
                     </div>";
