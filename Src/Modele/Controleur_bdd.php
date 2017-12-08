@@ -67,7 +67,7 @@ class Modele
         }
     }
 
-    public function selectWhere($selection,$where , $chaine="", $group="", $order="")
+    public function selectWhere($selection, $where, $chaine="", $group="", $order="")
     {
         if ($this->pdo != null)
         {
