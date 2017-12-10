@@ -10,6 +10,7 @@ session_start();
 $Controleur->saveArticle("https://news.google.com/news/rss/search/section/q/paris%202024/paris%202024?hl=fr&gl=FR&ned=fr",$unModele, $con);
 $Controleur->saveArticle("https://queryfeed.net/twitter?q=%23paris2024&title-type=tweet-text-full&geocode=",$unModele, $con);
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -30,12 +31,19 @@ $Controleur->saveArticle("https://queryfeed.net/twitter?q=%23paris2024&title-typ
     <link rel="stylesheet" href="Web/Css/My_css/Header.css">
     <link rel="stylesheet" href="Web/Css/My_css/accueil.css">
     <link rel="stylesheet" href="Web/Css/My_css/Sport_Pays.css">
+    <link rel="stylesheet" href="Web/Css/My_css/galerie.css">
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+    <!-- Optional JavaScript local -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="Web/js/jquery.js"></script>
+    <script src="Web/js/popper.js"></script>
+    <script src="Web/Css/Bootstrap/js/bootstrap.js"></script>
 </head>
 <body>
 
