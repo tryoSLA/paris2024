@@ -221,6 +221,26 @@ CREATE VIEW athlete_detaille AS
         WHERE Sport.id_sport = Athlete.id_sport AND Pays.id_pays = Athlete.id_pays AND  Personne.id_personne = Athlete.id_personne;
 
 #------------------------------------------------------------
+# Vue mes evenements
+#------------------------------------------------------------
+
+CREATE VIEW my_events AS
+        SELECT Evenement.Photo_evenement, Evenement.Date_evenement, Evenement.Titre_event, Evenement.Description_event, Evenement.id_ville, Ville.Libelle_ville, Lieu.Libelle_lieu, Inscrire.dateInscription, Inscrire.id_personne
+        FROM Evenement, Inscrire,Ville, Lieu
+        WHERE Inscrire.id_event = Evenement.id_event AND Evenement.id_ville = Ville.id_ville AND Lieu.id_ville = Ville.id_ville;
+
+
+#------------------------------------------------------------
+# Vue FluxRss
+#------------------------------------------------------------
+
+CREATE VIEW vue_rss AS
+        SELECT Rss, Lien, Titre, Description, Date
+        FROM FluxRSS
+        ORDER BY date DESC;
+
+
+#------------------------------------------------------------
 # Creation de l'utilisateur
 #------------------------------------------------------------
 
@@ -340,6 +360,7 @@ INSERT INTO `Pays` (`id_pays`, `Libelle_pays`, `Image_pays`, `Description_pays`)
 #------------------------------------------------------------
 
 call insert_user ('demo','demo',19,'Homme','demo','demo','fe01ce2a7fbac8fafaed7c982a04e229');
+call insert_user ('demo2','demo2',19,'Femme','demo2','demo2','1066726e7160bd9c987c9968e0cc275a');
 #------------------------------------------------------------
 # Insert athlete
 #------------------------------------------------------------
@@ -424,7 +445,8 @@ insert into `Evenement`(`id_event`, `Titre_event`, `Description_event`, `Date_ev
         (NULL,'Presentation des amenagements', 'À proximité du village olympique sera construit le centre aquatique.
         Relié au Stade de France par une passerelle, il pourra accueillir jusqu''à 15 000 spectateurs durant la période olympique.
         À la fin de la compétition, cela restera une piscine pour les habitants des quartiers environnements et les écolier', '2018-03-18', 'photo_event_1.jpg',2,3),
-        (NULL, 'Cérémonie d\'ouverture des JO', 'La cérémonie d\'ouverture des JO aura lieu le 2 août au stade de France','2024-08-02', 'photo_event_2.jpg',1,3);
+        (NULL, 'Cérémonie d\'ouverture des JO', 'La cérémonie d\'ouverture des JO aura lieu le 2 août au stade de France','2024-08-02', 'photo_event_2.jpg',1,3),
+        (NULL, 'Presentations générale de l\'organisation financière','Description à venir ...','2024-08-02', 'photo_event_3.jpg',1,3);
 
 
 

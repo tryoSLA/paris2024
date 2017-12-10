@@ -10,10 +10,42 @@ class Controleur
     {
         include ('Src/Vue/Vue_header_2.php');
     }
-
-    public function inscription()
-    {
+    public function inscription(){
         include ('Src/Form/Form_inscription.php');
+    }
+    public function inscriptionBdd($unModele)
+    {
+        if (isset($_POST['inscription'])) {
+            $firstName = $_POST["firstName"];
+            $lastName = $_POST["lastName"];
+            $age = $_POST["age"];
+            $genre = $_POST["genre"];
+            $mail = $_POST["mail"];
+            $pseudo = $_POST["pseudo"];
+            $password1 = $_POST["password1"];
+            $password2 = $_POST["password2"];
+
+            $verifMail = $unModele->selectWhere("email", $mail);
+            if ($password1 == $password2 && strlen($password2) <= 8){
+                if (empty($verifMail)){
+                    $tab = "'".$firstName."','".$lastName."',".$age.",'".$genre."','".$mail."','".$pseudo."','".md5($password1)."'";
+                    $unModele->insertOne($tab);
+                }else {
+                    echo "<br><div class=\"alert alert-danger\" role=\"alert\">
+                    <center>
+                      <strong>Erreur !</strong> Email déjà utilisé
+                      </center>
+                    </div>";
+                }
+            }
+            else{
+                echo "<br><div class=\"alert alert-danger\" role=\"alert\">
+<center>
+  <strong>Erreur !</strong> Le mots de passe est invalide ou n'est pas identique.
+  </center>
+</div>";
+            }
+        }
     }
 
     public function accueil()
@@ -24,9 +56,28 @@ class Controleur
     public function event($unModele)
     {
         $unModele->setTable("Evenement");
-        $tab = array("Titre_event","Description_event","Date_evenement","Photo_evenement","id_ville", "id_type_event");
+        $tab = array("id_event","Titre_event","Description_event","Date_evenement","Photo_evenement","id_ville", "id_type_event");
         $resultats = $unModele->selectChamps($tab);
+
         include ('Src/Vue/Evenement.php');
+        if (isset($_POST['participe']))
+        {
+            $id_event = $_POST['participe'];
+            $id_personne =  $_SESSION['id'];
+            $unModele->setTable("Inscrire"); //on pointe vers la table
+            $tab = "'".Date("Y-m-d")."',$id_personne, $id_event";
+            $unModele->insert($tab);
+            echo("<meta http-equiv='refresh' content='0'>"); //Permet de rafraichir la page en auto
+        }
+        if (isset($_POST['non_participe']))
+        {
+            $id_event = $_POST['non_participe'];
+            $id_personne =  $_SESSION['id'];
+            $unModele->setTable("Inscrire"); //on pointe vers la table
+            $where = " WHERE id_personne = ".$id_personne." AND id_event = ".$id_event;
+            $unModele->delete($where);
+            echo("<meta http-equiv='refresh' content='0'>"); //Permet de rafraichir la page en auto
+        }
     }
 
     public function pays($unModele)
@@ -78,6 +129,14 @@ class Controleur
         include ('Src/Vue/Athlete_detail.php');
     }
 
+    public function my_events($unModele)
+    {
+        $unModele->setTable("my_events"); //on pointe vers la table
+        $where = " WHERE id_personne = ".$_SESSION['id'];
+        $resultats = $unModele->selectWhere(" * ",$where);
+        include ('Src/Vue/Mes_evenements.php');
+    }
+
     public function galerie()
     {
         include ('Src/Vue/Vue_galerie.php');
@@ -116,12 +175,12 @@ class Controleur
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        Compte non reconnu.
+                        Compte inconnu !!
                     </div>';
             echo $erreur;
         } // sinon, alors la, il y a un gros problème :)
         else {
-            $erreur = 'Probème dans la base de données : plusieurs membres ont les mêmes identifiants de connexion.';
+            $erreur = 'Problème dans la base de données : plusieurs membres ont les mêmes identifiants de connexion.';
             echo $erreur;
         }
     }
@@ -148,10 +207,18 @@ class Controleur
 
     public function afficherArticle($unModele, $rss)
     {
-        $order = " ORDER BY date DESC";
-        $where = " WHERE rss = '".$rss."'".$order." ";
-        $unModele->setTable("FluxRSS"); //on pointe vers la table
-        $resultat = $unModele->selectWhere("Lien, Titre, Description, Date",$where);
+        $limit = 10;
+        if (isset($_GET["news"])) {
+            $news  = $_GET["news"];
+        } else {
+            $news=1;
+        };
+
+        $where = " WHERE rss = '".$rss."'";
+        $order = " LIMIT 10";
+
+        $unModele->setTable("vue_rss"); //on pointe vers la table
+        $resultat = $unModele->selectWhere("Lien, Titre, Description, Date",$order, $where );
 
         foreach ($resultat as $unResultat)
         {
