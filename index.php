@@ -109,9 +109,9 @@ switch ($page)
         $Controleur->galerie();
         break;
 
-    case "contact":
-        $Controleur->contact();
-        break;
+//    case "contact":
+//        $Controleur->contact();
+//        break;
 
     case "NAN":
         $Controleur->accueil();
