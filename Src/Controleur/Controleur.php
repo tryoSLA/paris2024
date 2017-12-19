@@ -48,6 +48,44 @@ class Controleur
         }
     }
 
+    public function Recherche($unModele){
+        if (isset($_POST['recherche'])) {
+            $unModele->setTable("filtre_events");
+
+            $ville = $_POST["ville"];
+            $sport = $_POST["sport"];
+            $date = $_POST["date"];
+            $clef = $_POST["clef"];
+
+            $tab = array("Libelle_ville REGEXP '".$ville."'","Titre_event REGEXP '".$sport."'","Date_evenement='".$date."'","Description_event REGEXP '".$clef."'");
+
+            //Libelle_ville
+            //Titre_event
+            //Date_evenement
+            //Description_event
+
+            $where = array("Photo_evenement","Libelle_ville","Titre_event","Date_evenement","Description_event");
+            $resultats = $unModele->selectOr($tab, $where);
+            foreach ($resultats as $unResultat) {
+                echo "
+                            
+                            
+                            <div class='row'>
+                                <div class='col-4 text-center'>
+                                " . $unResultat['Titre_event'] . "
+                                    <img class='photo' src='Web/Images/Evenements/" . $unResultat['Photo_evenement'] . "'>
+                                </div>
+                                <div class='col-8 align-self-center text-center'>" . $unResultat['Description_event'] . "
+                                    <br>
+                                        " . $unResultat['Date_evenement'] . "
+                                    <br>
+                                        " . $unResultat['Libelle_ville'] . "
+                                </div>
+                            ";
+            }
+        }
+    }
+
     public function accueil()
     {
         include ('Src/Vue/Accueil.php');

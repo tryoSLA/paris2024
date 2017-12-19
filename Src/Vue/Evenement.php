@@ -1,3 +1,7 @@
+<?php
+$Controleur = new Controleur();
+$unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
+?>
 <nav class="navbar sticky-top navbar-inverse justify-content-center" style="background-color: #3e3e88;">
     <a class="navbar-brand" href="" style="color:white">
         <i class="fa fa-calendar" aria-hidden="true"></i> Evenement <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -6,7 +10,44 @@
 <br>
 <div class="container">
     <div class="pays_detail">
+        <div class='card'>
+            <div class='card-block'>
+                <form method="POST">
+                <!--Ville -->
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-2 col-form-label">Ville</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" name="ville" value="" id="example-text-input">
+                    </div>
+                </div>
+                <!--Sport -->
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-2 col-form-label">Sport</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" name="sport" value="" id="example-text-input">
+                    </div>
+                </div>
+                <!--Date -->
+                <div class="form-group row">
+                    <label for="example-date-input" class="col-2 col-form-label">Date</label>
+                    <div class="col-10">
+                        <input class="form-control" type="date" name="date" value="2011-08-19" id="example-date-input">
+                    </div>
+                </div>
+                <!--Description -->
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-2 col-form-label">Mots clefs</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" name="clef" value="" id="example-text-input">
+                    </div>
+                </div>
+                <button type="submit" name="recherche" class="btn btn-primary">Rechercher</button>
+                </form>
+            </div>
+        </div>
         <?php
+        $Controleur->Recherche($unModele);
+
         $ancienne_date = "";
         $i = 0;
         foreach ($resultats as $unResultat) {

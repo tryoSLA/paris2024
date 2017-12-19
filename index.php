@@ -79,6 +79,7 @@ switch ($page)
 
     case "event":
         $Controleur->event($unModele);
+        $Controleur->Recherche($unModele);
         break;
 
     case "pays":
