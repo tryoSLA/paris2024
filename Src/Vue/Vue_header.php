@@ -46,7 +46,7 @@
                     }
                     ?>
                     <a href="index.php?page=galerie"><li>Galerie</li></a>
-                    <a href="index.php?page=contact"><li>Contact</li></a>
+<!--                    <a href="index.php?page=contact"><li>Contact</li></a>-->
                 </ul>
             </nav>
         </div>
