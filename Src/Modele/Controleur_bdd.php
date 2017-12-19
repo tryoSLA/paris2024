@@ -49,6 +49,24 @@ class Modele
             $resultat = $select->fetchAll();
             return $resultat;
         }
+
+    }
+
+    public function selectOr($tab, $where="")
+    {
+        $where1 = implode(" , ",$where);
+        $champs = implode(" OR ",$tab);
+
+        $requete = "SELECT ".$where1." from ".$this->table." WHERE ".$champs;
+        if ($this->pdo != null)
+        {
+            $select = $this->pdo->prepare($requete);
+            $select->execute();
+            $resultats = $select->fetchAll();
+            echo $requete;
+            return $resultats;
+        }
+
     }
 
 

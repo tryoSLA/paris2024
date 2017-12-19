@@ -229,6 +229,14 @@ CREATE VIEW my_events AS
         FROM Evenement, Inscrire,Ville, Lieu
         WHERE Inscrire.id_event = Evenement.id_event AND Evenement.id_ville = Ville.id_ville AND Lieu.id_ville = Ville.id_ville;
 
+#------------------------------------------------------------
+# Vue mes evenements
+#------------------------------------------------------------
+
+CREATE VIEW filtre_events AS
+        SELECT Evenement.Photo_evenement, Evenement.Date_evenement, Evenement.Titre_event, Evenement.Description_event, Evenement.id_ville, Ville.Libelle_ville, Lieu.Libelle_lieu
+        FROM Evenement, Ville, Lieu
+        WHERE Evenement.id_ville = Ville.id_ville AND Lieu.id_ville = Ville.id_ville;
 
 #------------------------------------------------------------
 # Vue FluxRss
