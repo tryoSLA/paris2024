@@ -40,49 +40,56 @@ class Controleur
             }
             else{
                 echo "<br><div class=\"alert alert-danger\" role=\"alert\">
-<center>
-  <strong>Erreur !</strong> Le mots de passe est invalide ou n'est pas identique.
-  </center>
-</div>";
+                <center>
+                  <strong>Erreur !</strong> Le mots de passe est invalide ou n'est pas identique.
+                  </center>
+                </div>";
             }
         }
     }
+
+    public function Affichage_ville($unModele)
+    {
+        $resultat = $unModele->selectDistinctVille();
+        foreach ($resultat as $unRes)
+        {
+            echo " <option value='".$unRes['libelle_ville']."'>".$unRes['libelle_ville']."</option>";
+        }
+    }
+
 
     public function Recherche($unModele){
         if (isset($_POST['recherche'])) {
             $unModele->setTable("filtre_events");
 
             $ville = $_POST["ville"];
-            $sport = $_POST["sport"];
+            //$sport = $_POST["type_event"];
             $date = $_POST["date"];
             $clef = $_POST["clef"];
 
-            $tab = array("Libelle_ville REGEXP '".$ville."'","Titre_event REGEXP '".$sport."'","Date_evenement='".$date."'","Description_event REGEXP '".$clef."'");
-
-            //Libelle_ville
-            //Titre_event
-            //Date_evenement
-            //Description_event
-
-            $where = array("Photo_evenement","Libelle_ville","Titre_event","Date_evenement","Description_event");
-            $resultats = $unModele->selectOr($tab, $where);
-            foreach ($resultats as $unResultat) {
-                echo "
-                            
-                            
-                            <div class='row'>
-                                <div class='col-4 text-center'>
-                                " . $unResultat['Titre_event'] . "
-                                    <img class='photo' src='Web/Images/Evenements/" . $unResultat['Photo_evenement'] . "'>
-                                </div>
-                                <div class='col-8 align-self-center text-center'>" . $unResultat['Description_event'] . "
-                                    <br>
-                                        " . $unResultat['Date_evenement'] . "
-                                    <br>
-                                        " . $unResultat['Libelle_ville'] . "
-                                </div>
-                            ";
+            $tab = array();
+            if(isset($ville) AND $ville <> "%")
+            {
+                array_push($tab,"Libelle_ville LIKE '".$ville."'" );
             }
+//            if(isset($sport))
+//            {
+//                $tab += array("Libelle_ville LIKE '".$ville."'");
+//            }
+            if($date <> "")
+            {
+                array_push($tab,"Date_evenement='".$date."'");
+            }
+            if($clef <> "")
+            {
+                array_push($tab,"Description_event LIKE '%".$clef."%'");
+            }
+
+            $champs = array("Photo_evenement","Libelle_ville","Titre_event","Date_evenement","Description_event");
+            $resultats = $unModele->selectOr($tab, $champs);
+
+            return $resultats;
+
         }
     }
 

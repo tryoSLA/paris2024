@@ -37,6 +37,17 @@ class Modele
             return null;
         }
     }
+    public function selectDistinctVille()
+    {
+        $requete = "SELECT DISTINCT libelle_ville FROM ville, evenement WHERE ville.id_ville = evenement.id_ville";
+        if ($this->pdo != null)
+        {
+            $select = $this->pdo->prepare($requete);
+            $select->execute();
+            $resultat = $select->fetchAll();
+            return $resultat;
+        }
+    }
 
     public function selectChamps($tab)
     {
@@ -52,18 +63,21 @@ class Modele
 
     }
 
-    public function selectOr($tab, $where="")
+    public function selectOr($tab, $champs="")
     {
-        $where1 = implode(" , ",$where);
-        $champs = implode(" OR ",$tab);
-
-        $requete = "SELECT ".$where1." from ".$this->table." WHERE ".$champs;
+        $champs = implode(" , ",$champs);
+        $champ_where = implode(" OR ",$tab);
+        $where = "";
+        if ($champ_where <> "")
+        {
+            $where = " WHERE ";
+        }
+        $requete = "SELECT ".$champs." from ".$this->table." ".$where."".$champ_where;
         if ($this->pdo != null)
         {
             $select = $this->pdo->prepare($requete);
             $select->execute();
             $resultats = $select->fetchAll();
-            echo $requete;
             return $resultats;
         }
 

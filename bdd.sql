@@ -12,7 +12,8 @@ CREATE TABLE Utilisateur(
         email       Varchar (255) NOT NULL ,
         pseudo      Varchar (25) NOT NULL ,
         mot_de_passe   Varchar (255) NOT NULL ,
-        id_personne Int NOT NULL ,
+        role        VARCHAR(100) NOT NULL,
+        id_personne int AUTO_INCREMENT NOT NULL ,
         PRIMARY KEY (id_personne )
 )ENGINE=InnoDB;
 
@@ -281,13 +282,13 @@ DELIMITER ;
 
 DELIMITER |
 CREATE PROCEDURE insert_user (IN nom varchar(25), prenom VARCHAR(25),
-                                 Age int, genre varchar (25), email varchar (255), pseudo varchar (25), mot_de_passe varchar (255))
+                                 Age int, genre varchar (25), email varchar (255), pseudo varchar (25), mot_de_passe varchar (255), role VARCHAR(100))
 
         BEGIN
                 INSERT INTO `Personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
                 #SELECT id_personne INTO @idp FROM personne WHERE nom =@nom and prenom = @prenom;
-                INSERT INTO `Utilisateur` (`email`, `pseudo`, `mot_de_passe`, `id_personne`)
-                VALUES (email, pseudo, mot_de_passe, last_insert_id());
+                INSERT INTO `Utilisateur` (`email`, `pseudo`, `mot_de_passe`, `role`,`id_personne`)
+                VALUES (email, pseudo, mot_de_passe, role,last_insert_id());
         END |
 DELIMITER ;
 
@@ -367,8 +368,9 @@ INSERT INTO `Pays` (`id_pays`, `Libelle_pays`, `Image_pays`, `Description_pays`)
 # Insert athlete
 #------------------------------------------------------------
 
-call insert_user ('demo','demo',19,'Homme','demo','demo','fe01ce2a7fbac8fafaed7c982a04e229');
-call insert_user ('demo2','demo2',19,'Femme','demo2','demo2','1066726e7160bd9c987c9968e0cc275a');
+call insert_user ('demo','demo',19,'Homme','demo','demo','fe01ce2a7fbac8fafaed7c982a04e229', 'Admin');
+call insert_user ('demo2','demo2',19,'Femme','demo2','demo2','1066726e7160bd9c987c9968e0cc275a', 'User');
+
 #------------------------------------------------------------
 # Insert athlete
 #------------------------------------------------------------
