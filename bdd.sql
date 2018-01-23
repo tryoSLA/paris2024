@@ -222,6 +222,15 @@ CREATE VIEW athlete_detaille AS
         WHERE Sport.id_sport = Athlete.id_sport AND Pays.id_pays = Athlete.id_pays AND  Personne.id_personne = Athlete.id_personne;
 
 #------------------------------------------------------------
+# Vue athlete java
+#-----------------------------------------------------------
+
+CREATE VIEW athletes_java AS
+        SELECT Personne.id_personne, Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Pays.Libelle_pays,Athlete.Photo, Athlete.Biographie, Athlete.Poids,Athlete.Taille , Athlete.id_sport , Pays.id_pays, Equipe.id_equipe
+        FROM athlete, personne , pays, sport, equipe
+        WHERE Sport.id_sport = Athlete.id_sport AND Pays.id_pays = Athlete.id_pays AND Athlete.id_equipe = Equipe.id_equipe AND Personne.id_personne = Athlete.id_personne;
+
+#------------------------------------------------------------
 # Vue mes evenements
 #------------------------------------------------------------
 
