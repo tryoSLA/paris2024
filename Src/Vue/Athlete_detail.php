@@ -21,6 +21,7 @@
                             Poids : ".$unResultat['Poids']." kga</br>
                             Pays : ".$unResultat['Libelle_pays']."</br>
                             Sport : ".$unResultat['Libelle_sport']."</br>
+                            
                             </div>
                         </div>";
 
