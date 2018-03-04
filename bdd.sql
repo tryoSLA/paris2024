@@ -1,9 +1,11 @@
 #------------------------------------------------------------
 #        Script MySQL.
 #------------------------------------------------------------
+
 DROP DATABASE if exists paris_2024;
 CREATE DATABASE paris_2024;
 USE paris_2024;
+
 #------------------------------------------------------------
 # Table: Utilisateur
 #------------------------------------------------------------
@@ -226,10 +228,11 @@ CREATE VIEW athlete_detaille AS
 #-----------------------------------------------------------
 
 CREATE VIEW athletes_java AS
-        SELECT Personne.id_personne, Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Pays.Libelle_pays,Athlete.Photo, Athlete.Biographie, Athlete.Poids,Athlete.Taille , Athlete.id_sport , Pays.id_pays, Equipe.id_equipe
-        FROM athlete, personne , pays, sport, equipe
-        WHERE Sport.id_sport = Athlete.id_sport AND Pays.id_pays = Athlete.id_pays AND Athlete.id_equipe = Equipe.id_equipe AND Personne.id_personne = Athlete.id_personne;
-
+        SELECT Personne.id_personne, Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Athlete.Photo, Athlete.Biographie, Athlete.Poids,Athlete.Taille , Athlete.id_sport , Pays.id_pays, Equipe.id_equipe
+        FROM athlete JOIN personne ON (Personne.id_personne = Athlete.id_personne)
+                JOIN pays ON (Pays.id_pays = Athlete.id_pays)
+                JOIN sport ON (Sport.id_sport = Athlete.id_sport)
+                LEFT JOIN equipe ON (Athlete.id_equipe = Equipe.id_equipe);
 #------------------------------------------------------------
 # Vue mes evenements
 #------------------------------------------------------------
@@ -268,6 +271,24 @@ CREATE USER 'user_paris2024'@'localhost' IDENTIFIED BY '123';
 use paris_2024;
 GRANT ALL PRIVILEGES ON paris_2024.* TO 'user_paris2024'@'localhost';
 FLUSH PRIVILEGES;
+
+#------------------------------------------------------------
+# Procedure modification table athlete personne
+#------------------------------------------------------------
+
+DELIMITER |
+CREATE PROCEDURE update_athlete (IN id int,nom varchar(25), prenom VARCHAR(25),
+                                    age int, genre varchar (25), taille float, poids float, photo varchar(25),
+                                    biographie text (1000),id_pays int, id_equipe int, id_sport int)
+        BEGIN
+                UPDATE `Personne` SET `nom` = nom,`prenom` = prenom,`age` = age,`genre` = genre WHERE `id_personne` = id;
+                #SELECT id_personne INTO @idp FROM personne WHERE nom =@nom and prenom = @prenom;
+                UPDATE `Athlete` SET `taille` = taille,`poids` = poids,`photo` = photo,`biographie` = biographie,`id_pays` = id_pays,`id_equipe`= id_equipe,`id_sport` = id_sport
+                WHERE `id_personne` = id;
+        END |
+DELIMITER ;
+
+
 
 #------------------------------------------------------------
 # Procedure insertion table athlete
