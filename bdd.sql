@@ -222,6 +222,17 @@ CREATE VIEW athlete_detaille AS
         WHERE Sport.id_sport = Athlete.id_sport AND Pays.id_pays = Athlete.id_pays AND  Personne.id_personne = Athlete.id_personne;
 
 #------------------------------------------------------------
+# Vue utilisateur detaille
+#------------------------------------------------------------
+
+CREATE VIEW utilisateur_detaille AS
+  SELECT Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Utilisateur.email,Utilisateur.mot_de_passe,Utilisateur.pseudo,Utilisateur.role, Utilisateur.id_personne
+  FROM Personne,Utilisateur
+  WHERE Personne.id_personne = Utilisateur.id_personne;
+
+
+
+#------------------------------------------------------------
 # Vue mes evenements
 #------------------------------------------------------------
 
@@ -261,6 +272,22 @@ GRANT ALL PRIVILEGES ON paris_2024.* TO 'user_paris2024'@'localhost';
 FLUSH PRIVILEGES;
 
 #------------------------------------------------------------
+# Procedure modification table athlete personne
+#------------------------------------------------------------
+
+DELIMITER |
+CREATE PROCEDURE update_athlete (IN id int,nom varchar(25), prenom VARCHAR(25),
+                                    age int, genre varchar (25), taille float, poids float, photo varchar(25),
+                                    biographie text (1000),id_pays int, id_equipe int, id_sport int)
+  BEGIN
+    UPDATE `Personne` SET `nom` = nom,`prenom` = prenom,`age` = age,`genre` = genre WHERE `id_personne` = id;
+    UPDATE `Athlete` SET `taille` = taille,`poids` = poids,`photo` = photo,`biographie` = biographie,`id_pays` = id_pays,`id_equipe`= id_equipe,`id_sport` = id_sport
+    WHERE `id_personne` = id;
+  END |
+DELIMITER ;
+
+
+#------------------------------------------------------------
 # Procedure insertion table athlete
 #------------------------------------------------------------
 
@@ -290,6 +317,20 @@ CREATE PROCEDURE insert_user (IN nom varchar(25), prenom VARCHAR(25),
                 INSERT INTO `Utilisateur` (`email`, `pseudo`, `mot_de_passe`, `role`,`id_personne`)
                 VALUES (email, pseudo, mot_de_passe, role,last_insert_id());
         END |
+DELIMITER ;
+
+#------------------------------------------------------------
+# Procedure modification table utilisateur personne
+#------------------------------------------------------------
+
+DELIMITER |
+CREATE PROCEDURE update_user (IN id int,nom varchar(25), prenom VARCHAR(25),Age int, genre varchar (25),
+                                email varchar (255), pseudo varchar (25), mot_de_passe varchar (255), role VARCHAR(100))
+  BEGIN
+    UPDATE `Personne` SET `nom` = nom,`prenom` = prenom,`age` = age,`genre` = genre WHERE `id_personne` = id;
+    UPDATE `Utilisateur` SET `email` = email,`pseudo` = pseudo,`mot_de_passe` = mot_de_passe,`role` = role
+    WHERE `id_personne` = id;
+  END |
 DELIMITER ;
 
 #------------------------------------------------------------
