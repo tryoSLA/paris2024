@@ -213,6 +213,17 @@ CREATE VIEW sport_detaille AS
         WHERE Athlete.id_personne = Personne.id_personne AND Athlete.id_pays = Pays.id_pays AND Athlete.id_sport = Sport.id_sport;
 
 #------------------------------------------------------------
+# Vue athlete java
+#-----------------------------------------------------------
+
+CREATE VIEW athletes_java AS
+        SELECT Personne.id_personne, Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Athlete.Photo, Athlete.Biographie, Athlete.Poids,Athlete.Taille , Athlete.id_sport , Pays.id_pays, Equipe.id_equipe
+        FROM athlete JOIN personne ON (Personne.id_personne = Athlete.id_personne)
+                JOIN pays ON (Pays.id_pays = Athlete.id_pays)
+                JOIN sport ON (Sport.id_sport = Athlete.id_sport)
+                LEFT JOIN equipe ON (Athlete.id_equipe = Equipe.id_equipe);
+
+#------------------------------------------------------------
 # Vue athlete detaille
 #------------------------------------------------------------
 
