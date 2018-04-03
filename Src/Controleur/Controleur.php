@@ -28,13 +28,11 @@ class Controleur
             $verifMail = $unModele->selectWhere("email", $mail);
             if ($password1 == $password2 && strlen($password2) <= 8){
                 if (empty($verifMail)){
-                    $tab = "'".$firstName."','".$lastName."',".$age.",'".$genre."','".$mail."','".$pseudo."','".md5($password1)."'";
+                    $tab = "'".$firstName."','".$lastName."',".$age.",'".$genre."','".$mail."','".$pseudo."','".md5($password1)."','User'";
                     $unModele->insertOne($tab);
                 }else {
                     echo "<br><div class=\"alert alert-danger\" role=\"alert\">
-                    <center>
                       <strong>Erreur !</strong> Email déjà utilisé
-                      </center>
                     </div>";
                 }
             }
@@ -63,8 +61,7 @@ class Controleur
             $unModele->setTable("filtre_events");
 
             $ville = $_POST["ville"];
-            //$sport = $_POST["type_event"];
-            $date = $_POST["date"];
+            $type_event = $_POST["type_event"];
             $clef = $_POST["clef"];
 
             $tab = array();
@@ -72,20 +69,16 @@ class Controleur
             {
                 array_push($tab,"Libelle_ville LIKE '".$ville."'" );
             }
-//            if(isset($sport))
-//            {
-//                $tab += array("Libelle_ville LIKE '".$ville."'");
-//            }
-            if($date <> "")
+            if(isset($type_event))
             {
-                array_push($tab,"Date_evenement='".$date."'");
+                $tab += array("Libelle_event LIKE '".$type_event."'");
             }
             if($clef <> "")
             {
                 array_push($tab,"Description_event LIKE '%".$clef."%'");
             }
 
-            $champs = array("Photo_evenement","Libelle_ville","Titre_event","Date_evenement","Description_event");
+            $champs = array("id_event","Photo_evenement","Libelle_ville","Titre_event","Date_evenement","Description_event","id_type_event");
             $resultats = $unModele->selectOr($tab, $champs);
 
             return $resultats;
