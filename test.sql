@@ -13,6 +13,7 @@ CREATE TABLE Utilisateur(
         pseudo      Varchar (25) NOT NULL ,
         mot_de_passe   Varchar (255) NOT NULL ,
         role        VARCHAR(100) NOT NULL,
+        image           VARCHAR(100) NOT NULL,
         id_personne int AUTO_INCREMENT NOT NULL ,
         PRIMARY KEY (id_personne )
 )ENGINE=InnoDB;
@@ -213,17 +214,6 @@ CREATE VIEW sport_detaille AS
         WHERE Athlete.id_personne = Personne.id_personne AND Athlete.id_pays = Pays.id_pays AND Athlete.id_sport = Sport.id_sport;
 
 #------------------------------------------------------------
-# Vue athlete java
-#-----------------------------------------------------------
-
-CREATE VIEW athletes_java AS
-        SELECT Personne.id_personne, Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Athlete.Photo, Athlete.Biographie, Athlete.Poids,Athlete.Taille , Athlete.id_sport , Pays.id_pays, Equipe.id_equipe
-        FROM athlete JOIN personne ON (Personne.id_personne = Athlete.id_personne)
-                JOIN pays ON (Pays.id_pays = Athlete.id_pays)
-                JOIN sport ON (Sport.id_sport = Athlete.id_sport)
-                LEFT JOIN equipe ON (Athlete.id_equipe = Equipe.id_equipe);
-
-#------------------------------------------------------------
 # Vue athlete detaille
 #------------------------------------------------------------
 
@@ -237,7 +227,7 @@ CREATE VIEW athlete_detaille AS
 #------------------------------------------------------------
 
 CREATE VIEW utilisateur_detaille AS
-  SELECT Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Utilisateur.email,Utilisateur.mot_de_passe,Utilisateur.pseudo,Utilisateur.role, Utilisateur.id_personne
+  SELECT Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Utilisateur.email,Utilisateur.mot_de_passe,Utilisateur.pseudo,Utilisateur.role,Utilisateur.image, Utilisateur.id_personne
   FROM Personne,Utilisateur
   WHERE Personne.id_personne = Utilisateur.id_personne;
 
@@ -257,9 +247,9 @@ CREATE VIEW my_events AS
 #------------------------------------------------------------
 
 CREATE VIEW filtre_events AS
-        SELECT Evenement.id_event,Evenement.Photo_evenement, Evenement.Date_evenement, Evenement.Titre_event, Evenement.Description_event, Evenement.id_ville, Ville.Libelle_ville, Lieu.Libelle_lieu, Type_event.Libelle_event, Type_event.id_type_event
-        FROM Evenement, Ville, Lieu, Type_event
-        WHERE Evenement.id_ville = Ville.id_ville AND Lieu.id_ville = Ville.id_ville AND Evenement.id_type_event = Type_event.id_type_event;
+        SELECT Evenement.Photo_evenement, Evenement.Date_evenement, Evenement.Titre_event, Evenement.Description_event, Evenement.id_ville, Ville.Libelle_ville, Lieu.Libelle_lieu
+        FROM Evenement, Ville, Lieu
+        WHERE Evenement.id_ville = Ville.id_ville AND Lieu.id_ville = Ville.id_ville;
 
 #------------------------------------------------------------
 # Vue FluxRss
@@ -320,13 +310,13 @@ DELIMITER ;
 
 DELIMITER |
 CREATE PROCEDURE insert_user (IN nom varchar(25), prenom VARCHAR(25),
-                                 Age int, genre varchar (25), email varchar (255), pseudo varchar (25), mot_de_passe varchar (255), role VARCHAR(100))
+                                 Age int, genre varchar (25), email varchar (255), pseudo varchar (25), mot_de_passe varchar (255), role VARCHAR(100),image VARCHAR(100))
 
         BEGIN
                 INSERT INTO `Personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
                 #SELECT id_personne INTO @idp FROM personne WHERE nom =@nom and prenom = @prenom;
-                INSERT INTO `Utilisateur` (`email`, `pseudo`, `mot_de_passe`, `role`,`id_personne`)
-                VALUES (email, pseudo, mot_de_passe, role,last_insert_id());
+                INSERT INTO `Utilisateur` (`email`, `pseudo`, `mot_de_passe`, `role`,`image`,`id_personne`)
+                VALUES (email, pseudo, mot_de_passe, role,image,last_insert_id());
         END |
 DELIMITER ;
 
@@ -417,12 +407,12 @@ INSERT INTO `Pays` (`id_pays`, `Libelle_pays`, `Image_pays`, `Description_pays`)
         l\'Île de Man et des Îles Anglo-Normandes. Située à la jonction de l\'Atlantique et de la mer du Nord, elle est séparée de l\'Irlande par la mer d\'Irlande et du continent
         par la Manche. C\'est la plus grande île et la plus peuplée du continent européen.');
 #------------------------------------------------------------
-# Insert athlete
+# Insert user
 #------------------------------------------------------------
 
-call insert_user ('demo','demo',19,'Homme','demo','demo','fe01ce2a7fbac8fafaed7c982a04e229', 'Admin');
-call insert_user ('demo2','demo2',19,'Femme','demo2','demo2','1066726e7160bd9c987c9968e0cc275a', 'User');
-call insert_user ('Admin','Admin',19,'Femme','Admin','Admin','Admin', 'Admin');
+call insert_user ('demo','demo',19,'Homme','demo','demo','fe01ce2a7fbac8fafaed7c982a04e229', 'Admin','Italie.png');
+call insert_user ('demo2','demo2',19,'Femme','demo2','demo2','1066726e7160bd9c987c9968e0cc275a', 'User','Portugal.png');
+call insert_user ('Admin','Admin',19,'Femme','Admin','Admin','Admin', 'Admin', 'France.png');
 
 #------------------------------------------------------------
 # Insert athlete

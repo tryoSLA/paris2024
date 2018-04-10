@@ -72,7 +72,7 @@ class Modele
         {
             $where = " WHERE ";
         }
-        $requete = "SELECT ".$champs." from ".$this->table." ".$where."".$champ_where;
+        $requete = "SELECT ".$champs." FROM ".$this->table." ".$where."".$champ_where;
         if ($this->pdo != null)
         {
             $select = $this->pdo->prepare($requete);
@@ -122,6 +122,7 @@ class Modele
         if ($this->pdo != null)
         {
             $requete = "call insert_user (".$tab.");";
+            echo $requete;
             $select = $this->pdo->prepare($requete);
             $select->execute();
         }

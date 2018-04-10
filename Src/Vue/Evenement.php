@@ -38,13 +38,6 @@ $unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
 
                     </div>
                 </div>
-                <!--Date -->
-                <div class="form-group row">
-                    <label for="example-date-input" class="col-2 col-form-label">Date</label>
-                    <div class="col-10">
-                        <input class="form-control" type="date" name="date" value="" id="example-date-input">
-                    </div>
-                </div>
                 <!--Description -->
                 <div class="form-group row">
                     <label for="example-text-input" class="col-2 col-form-label">Mots clefs</label>
@@ -66,7 +59,15 @@ $unModele = new Modele('localhost', 'paris_2024', 'user_paris2024', '123');
             foreach ($aa as $unResultat) {
                 if (isset($_SESSION['id'])) {
                     $unModele->setTable("Inscrire");
-                    $where = " WHERE id_personne = " . $_SESSION['id'] . " AND id_event = " . $unResultat['id_event'];
+                    if ($unResultat['id_type_event'] == "")
+                    {
+                        $where = " WHERE id_personne = " . $_SESSION['id'];
+                    }
+                    else
+                    {
+                        $where = " WHERE id_personne = " . $_SESSION['id'] . " AND id_event = " . $unResultat['id_type_event'];
+                    }
+
                     $result = $unModele->selectCount($where);
                 }
                 if ($unResultat['Date_evenement'] == $ancienne_date) {
