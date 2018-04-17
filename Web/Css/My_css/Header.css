@@ -21,7 +21,7 @@
 {
     font-size: 40px;
     font-weight: bold;
-    font-family: cursive;
+    font-family: Arial;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-image: -webkit-linear-gradient(left, #29abe2, #fcee21, #39b54a, #ff0000);
