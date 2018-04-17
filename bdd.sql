@@ -422,7 +422,7 @@ INSERT INTO `Pays` (`id_pays`, `Libelle_pays`, `Image_pays`, `Description_pays`)
 
 call insert_user ('demo','demo',19,'Homme','demo','demo','fe01ce2a7fbac8fafaed7c982a04e229', 'Admin');
 call insert_user ('demo2','demo2',19,'Femme','demo2','demo2','1066726e7160bd9c987c9968e0cc275a', 'User');
-call insert_user ('Admin','Admin',19,'Femme','Admin','Admin','Admin', 'Admin');
+call insert_user ('Admin','Admin',19,'Femme','Admin','Admin','21232f297a57a5a743894a0e4a801fc3', 'Admin');
 
 #------------------------------------------------------------
 # Insert athlete
