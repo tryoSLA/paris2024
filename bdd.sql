@@ -218,10 +218,10 @@ CREATE VIEW sport_detaille AS
 
 CREATE VIEW athletes_java AS
         SELECT Personne.id_personne, Personne.Nom, Personne.Prenom, Personne.Age, Personne.Genre, Athlete.Photo, Athlete.Biographie, Athlete.Poids,Athlete.Taille , Athlete.id_sport , Pays.id_pays, Equipe.id_equipe
-        FROM athlete JOIN personne ON (Personne.id_personne = Athlete.id_personne)
-                JOIN pays ON (Pays.id_pays = Athlete.id_pays)
-                JOIN sport ON (Sport.id_sport = Athlete.id_sport)
-                LEFT JOIN equipe ON (Athlete.id_equipe = Equipe.id_equipe);
+        FROM Athlete JOIN Personne ON (Personne.id_personne = Athlete.id_personne)
+                JOIN Pays ON (Pays.id_pays = Athlete.id_pays)
+                JOIN Sport ON (Sport.id_sport = Athlete.id_sport)
+                LEFT JOIN Equipe ON (Athlete.id_equipe = Equipe.id_equipe);
 
 #------------------------------------------------------------
 # Vue athlete detaille
@@ -422,7 +422,7 @@ INSERT INTO `Pays` (`id_pays`, `Libelle_pays`, `Image_pays`, `Description_pays`)
 
 call insert_user ('demo','demo',19,'Homme','demo','demo','fe01ce2a7fbac8fafaed7c982a04e229', 'Admin');
 call insert_user ('demo2','demo2',19,'Femme','demo2','demo2','1066726e7160bd9c987c9968e0cc275a', 'User');
-call insert_user ('Admin','Admin',19,'Femme','Admin','Admin','Admin', 'Admin');
+call insert_user ('Admin','Admin',19,'Femme','Admin','Admin','21232f297a57a5a743894a0e4a801fc3', 'Admin');
 
 #------------------------------------------------------------
 # Insert athlete
