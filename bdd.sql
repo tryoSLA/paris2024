@@ -242,6 +242,16 @@ CREATE VIEW utilisateur_detaille AS
   WHERE Personne.id_personne = Utilisateur.id_personne;
 
 
+#------------------------------------------------------------
+# Vue les evenements
+#------------------------------------------------------------
+
+CREATE VIEW lesEvents AS
+        SELECT `id_event`, `Titre_event`, `Description_event`, `Date_evenement`, `Photo_evenement`, `libelle_ville`
+        FROM Evenement, Ville
+        WHERE Evenement.id_ville = Ville.id_ville;
+
+
 
 #------------------------------------------------------------
 # Vue mes evenements
