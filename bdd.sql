@@ -9,9 +9,9 @@ USE paris_2024;
 #------------------------------------------------------------
 
 CREATE TABLE Utilisateur(
-        email       Varchar (255) NOT NULL ,
+        email       Varchar (191) NOT NULL ,
         pseudo      Varchar (25) NOT NULL ,
-        mot_de_passe   Varchar (255) NOT NULL ,
+        mot_de_passe   Varchar (191) NOT NULL ,
         role        VARCHAR(100) NOT NULL,
         id_personne int AUTO_INCREMENT NOT NULL ,
         PRIMARY KEY (id_personne )
@@ -69,13 +69,13 @@ CREATE TABLE Athlete(
 
 CREATE TABLE Evenement(
         id_event            int (11) Auto_increment  NOT NULL ,
-        Titre_event         Varchar (250) ,
-        Description_event         TEXT (2500) NOT NULL ,
+        Titre_event         Varchar (191) ,
+        Description_event         TEXT NOT NULL ,
         Date_evenement      Date NOT NULL ,
         Photo_evenement         VARCHAR(25),
         id_ville            Int NOT NULL ,
         id_type_event       Int NOT NULL ,
-        PRIMARY KEY (id_event ) ,
+        PRIMARY KEY (id_event) ,
         UNIQUE (Titre_event )
 )ENGINE=InnoDB;
 
@@ -87,7 +87,7 @@ CREATE TABLE Evenement(
 CREATE TABLE FluxRSS(
         id_flux  int (11) Auto_increment  NOT NULL ,
         Rss     TEXT (1255)  ,
-        Lien     VARCHAR (255) ,
+        Lien     VARCHAR (191) ,
         Titre    TEXT (1255) ,
         Description    TEXT (2550),
         Date    DATETIME NOT NULL ,
@@ -242,6 +242,16 @@ CREATE VIEW utilisateur_detaille AS
   WHERE Personne.id_personne = Utilisateur.id_personne;
 
 
+#------------------------------------------------------------
+# Vue les evenements
+#------------------------------------------------------------
+
+CREATE VIEW lesEvents AS
+        SELECT `id_event`, `Titre_event`, `Description_event`, `Date_evenement`, `Photo_evenement`, `libelle_ville`
+        FROM Evenement, Ville
+        WHERE Evenement.id_ville = Ville.id_ville;
+
+
 
 #------------------------------------------------------------
 # Vue mes evenements
@@ -320,7 +330,7 @@ DELIMITER ;
 
 DELIMITER |
 CREATE PROCEDURE insert_user (IN nom varchar(25), prenom VARCHAR(25),
-                                 Age int, genre varchar (25), email varchar (255), pseudo varchar (25), mot_de_passe varchar (255), role VARCHAR(100))
+                                 Age int, genre varchar (25), email varchar (191), pseudo varchar (25), mot_de_passe varchar (191), role VARCHAR(100))
 
         BEGIN
                 INSERT INTO `Personne` (`id_personne`, `Nom`, `Prenom`, `Age`, `Genre`)  VALUES (NULL,nom,prenom,age,genre);
@@ -336,7 +346,7 @@ DELIMITER ;
 
 DELIMITER |
 CREATE PROCEDURE update_user (IN id int,nom varchar(25), prenom VARCHAR(25),Age int, genre varchar (25),
-                                email varchar (255), pseudo varchar (25), mot_de_passe varchar (255), role VARCHAR(100))
+                                email varchar (191), pseudo varchar (25), mot_de_passe varchar (191), role VARCHAR(100))
   BEGIN
     UPDATE `Personne` SET `nom` = nom,`prenom` = prenom,`age` = age,`genre` = genre WHERE `id_personne` = id;
     UPDATE `Utilisateur` SET `email` = email,`pseudo` = pseudo,`mot_de_passe` = mot_de_passe,`role` = role
