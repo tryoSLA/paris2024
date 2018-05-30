@@ -72,7 +72,7 @@ CREATE TABLE Evenement(
         Titre_event         Varchar (191) ,
         Description_event         TEXT NOT NULL ,
         Date_evenement      Date NOT NULL ,
-        Photo_evenement         VARCHAR(25),
+        Photo_evenement         VARCHAR(191),
         id_ville            Int NOT NULL ,
         id_type_event       Int NOT NULL ,
         PRIMARY KEY (id_event) ,
