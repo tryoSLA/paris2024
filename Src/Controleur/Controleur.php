@@ -207,6 +207,8 @@ class Controleur
             $_SESSION['prenom'] = $resultat[0]['Prenom'];
             $_SESSION['age'] = $resultat[0]['Age'];
             $_SESSION['genre'] = $resultat[0]['Genre'];
+            echo("<meta http-equiv='refresh' content='0'>"); //Permet de rafraichir la page en auto
+
         }
         elseif ($resultat[0] == 0) {
             $erreur = '<br><div class="alert alert-danger alert-dismissible fade show" role="alert">
