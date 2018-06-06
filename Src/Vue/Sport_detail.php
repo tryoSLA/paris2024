@@ -4,10 +4,18 @@
         <?php
         foreach ($result as $sport)
         {
-            echo "<div class='row'>
+            echo "
+<div class='row'>
+    <div class='col-12'>
+        <center>
+            <h3>Fiche Sports: ".$sport['Libelle_sport']."</h3>
+        </center>
+    </div>
+</div>
+<hr>
+<div class='row'>
                         <div class='col'>
                             <div class='image_sport'><img src='Web/Images/Sports/".$sport['Image_sport']."'></div>
-                            <div class='libelle_sport'>".$sport['Libelle_sport']."</div>
                         </div>
                    </div>
                    <div class='row'>
